@@ -5,13 +5,13 @@ import { RecipesListComponent } from './components/content/recipes-list/recipes-
 
 
 const routes: Routes = [
-  { path:"add", component: NewRecipeFormComponent},
-  { path:"", component: RecipesListComponent},
-  { path:"**", redirectTo: ""},
+  { path: "add", component: NewRecipeFormComponent },
+  { path: "", component: RecipesListComponent },
+  { path: "**", redirectTo: "" },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
