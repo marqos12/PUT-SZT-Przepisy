@@ -31,3 +31,4 @@ build/
 
 ### VS Code ###
 .vscode/
+src/main/ts/szt-przepisy/src/app/api/api.d.ts
