@@ -24,5 +24,5 @@ public class RecipeIngredient {
 	private Ingredient ingredient;
 	
 	private Double quantity;
-	private Boolean optional;
+	private Boolean required;
 }
