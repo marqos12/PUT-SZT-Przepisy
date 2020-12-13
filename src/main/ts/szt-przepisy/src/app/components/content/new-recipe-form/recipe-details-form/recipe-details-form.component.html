@@ -1,0 +1,39 @@
+<p-fieldset legend="Szczegóły przepisu">
+  <form [formGroup]="recipeDetailsForm" class="recipeDetailsForm  p-fluid">
+    <span class="p-float-label">
+      <input id="float-input" type="text" formControlName="name" pInputText>
+      <label for="float-input">Nazwa</label>
+    </span>
+    <span class="p-float-label">
+      <textarea [rows]="5" [cols]="30" pInputTextarea formControlName="description" autoResize="autoResize"></textarea>
+      <label for="float-input">Opis</label>
+    </span>
+    <span class="p-float-label">
+      <input id="float-input" type="text" formControlName="image" pInputText>
+      <label for="float-input">Zdjęcie</label>
+    </span>
+    <span class="p-float-label">
+      <input id="float-input" type="text" formControlName="portions" pInputText>
+      <label for="float-input">Liczba porcji</label>
+    </span>
+    <span class="p-float-label">
+      <input id="float-input" type="text" formControlName="duration" pInputText>
+      <label for="float-input">Czas trwania</label>
+    </span>
+    <div class="p-grid">
+      <div class="p-col">
+        <span class="p-float-label">
+          <p-dropdown [options]="recipeTypes" optionLabel="name" formControlName="recipeType"></p-dropdown>
+          <label for="float-input">Rodzaj</label>
+        </span>
+      </div>
+      <div class="p-col p-fluid">
+        <span class="p-float-label">
+          <p-dropdown [options]="complexityLevels" optionLabel="name" formControlName="complexity"></p-dropdown>
+          <label for="float-input">Poziom skomplikowania</label>
+        </span>
+      </div>
+    </div>
+
+  </form>
+</p-fieldset>

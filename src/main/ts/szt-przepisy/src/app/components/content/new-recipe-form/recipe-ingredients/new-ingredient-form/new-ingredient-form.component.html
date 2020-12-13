@@ -1,0 +1,32 @@
+<form [formGroup]="newIngredientForm" class="newIngredientForm">
+  <div class="p-d-flex p-fluid p-ai-center p-jc-around">
+    <div class="formColumn">
+      <span class="p-float-label">
+        <input id="float-input" type="text" formControlName="quantity" pInputText>
+        <label for="float-input">Ilość</label>
+      </span>
+      <span class="p-float-label">
+        <input id="float-input" type="text" formControlName="unit" pInputText>
+        <label for="float-input">Jednostka</label>
+      </span>
+    </div>
+    <div class="formColumn">
+      <span class="p-float-label">
+        <p-autoComplete formControlName="name" [suggestions]="results" (completeMethod)="search($event)">
+        </p-autoComplete>
+        <label for="float-input">Nazwa</label>
+      </span>
+      <span class="p-float-label">
+        <p-toggleButton onLabel="Wymagane" offLabel="Niewymagane" formControlName="required"></p-toggleButton>
+      </span>
+    </div>
+    <div class="buttonColumn">
+      <span class="p-float-label ">
+        <div class="p-d-flex p-jc-around">
+          <button pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger "></button>
+          <button pButton pRipple type="button" icon="pi pi-check" class="p-button-rounded "></button>
+        </div>
+      </span>
+    </div>
+  </div>
+</form>
