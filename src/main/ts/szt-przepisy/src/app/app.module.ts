@@ -25,6 +25,7 @@ import { RecipeIngredientComponent } from './components/content/new-recipe-form/
 import { RecipeStepComponent } from './components/content/new-recipe-form/recipe-steps/recipe-step/recipe-step.component';
 import { RecipeStepFormComponent } from './components/content/new-recipe-form/recipe-steps/recipe-step-form/recipe-step-form.component';
 import { EditorModule } from 'primeng/editor';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { EditorModule } from 'primeng/editor';
     InputTextModule,
     AutoCompleteModule,
     ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
