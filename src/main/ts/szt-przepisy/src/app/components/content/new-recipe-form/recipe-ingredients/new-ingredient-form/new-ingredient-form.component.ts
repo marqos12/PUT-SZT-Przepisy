@@ -1,37 +1,92 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { IngredientDto } from 'src/app/api/api';
+import { IngredientsService } from 'src/app/services/ingredients.service';
+import { NewRecipeService } from 'src/app/services/new-recipe.service';
 
 @Component({
   selector: 'app-new-ingredient-form',
   templateUrl: './new-ingredient-form.component.html',
   styleUrls: ['./new-ingredient-form.component.scss']
 })
-export class NewIngredientFormComponent implements OnInit {
+export class NewIngredientFormComponent implements OnInit, OnDestroy {
+
+  @Output() closeForm = new EventEmitter();
 
   newIngredientForm: FormGroup;
-
-  constructor(private formBuilder: FormBuilder) { }
-
+  ingredients: IngredientDto[] = [];
+  suggestedIngredients: IngredientDto[] = [];
   text: string;
+  private ingredientsSubscription: Subscription;
 
-  results: string[];
+  constructor(
+    private formBuilder: FormBuilder,
+    private ingredientsService: IngredientsService,
+    private newRecipeService: NewRecipeService
+  ) { }
 
-  search(event) {
-    this.results = ["test", "test", "test", "test"];
 
+  searchIngredient(event) {
+    const name = event.query.trim();
+    this.suggestedIngredients = this.ingredients.filter(this.filterIngredientsByName(name));
+  }
+
+  filterIngredientsByName(name: string) {
+    return (ingredient: IngredientDto) => ingredient.name.toLowerCase().indexOf(name.toLowerCase()) >= 0;
   }
 
   ngOnInit(): void {
+    this.ingredientsSubscription = this.registerIngredientsListener();
     this.initForm();
   }
 
   initForm() {
     this.newIngredientForm = this.formBuilder.group({
-      name: '',
-      unit: '',
-      quantity: '',
+      name: ['', Validators.required],
+      unit: ['', Validators.required],
+      quantity: ['', Validators.required],
       required: true,
     })
+  }
+
+  registerIngredientsListener(): Subscription {
+    return this.ingredientsService.getAllIngredients()
+      .subscribe(ingredients => this.ingredients = ingredients)
+  }
+
+  ngOnDestroy(): void {
+    this.ingredientsSubscription.unsubscribe();
+  }
+
+  onIngredientSelect(event) {
+    this.newIngredientForm.controls.unit.setValue(event.unit);
+  }
+
+  onAddIngredient() {
+    if (this.newIngredientForm.valid) {
+      this.newRecipeService.addIngredient(this.createIngredient(this.newIngredientForm.value));
+      this.initForm();
+    } else {
+      this.markAllControlsAsTouched()
+    }
+  }
+
+  createIngredient(formValue): IngredientDto {
+    const ingredient = formValue;
+    ingredient.id = ingredient.name.id
+    ingredient.name = ingredient.name.name || ingredient.name
+    return ingredient;
+  }
+
+  markAllControlsAsTouched() {
+    for (const field in this.newIngredientForm.controls) {
+      this.newIngredientForm.controls[field].markAsDirty();
+    }
+  }
+
+  close() {
+    this.closeForm.emit();
   }
 
 }

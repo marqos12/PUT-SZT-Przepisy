@@ -5,10 +5,6 @@
       <label for="float-input">Nazwa</label>
     </span>
     <span class="p-float-label">
-      <textarea [rows]="5" [cols]="30" pInputTextarea formControlName="description" autoResize="autoResize"></textarea>
-      <label for="float-input">Opis</label>
-    </span>
-    <span class="p-float-label">
       <input id="float-input" type="text" formControlName="image" pInputText>
       <label for="float-input">Zdjęcie</label>
     </span>
@@ -34,6 +30,10 @@
         </span>
       </div>
     </div>
+    <span class="p-float-label">
+      <span>Opis</span>
+      <p-editor formControlName="description" [style]="{'height':'220px'}"></p-editor>
+    </span>
 
   </form>
 </p-fieldset>

@@ -1,6 +1,9 @@
 <p-fieldset legend="Lista składników">
   <div class="p-fluid">
-    <app-recipe-ingredient></app-recipe-ingredient>
-    <app-new-ingredient-form></app-new-ingredient-form>
+    <app-recipe-ingredient *ngFor="let ingredient of ingredients" [ingredient]="ingredient"></app-recipe-ingredient>
+    <app-new-ingredient-form *ngIf="showNewIngredientForm" (closeForm)="toggleShowIngredientForm()">
+    </app-new-ingredient-form>
+    <button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded toggleShowFormButton"
+      *ngIf="!showNewIngredientForm" (click)="toggleShowIngredientForm()"></button>
   </div>
 </p-fieldset>

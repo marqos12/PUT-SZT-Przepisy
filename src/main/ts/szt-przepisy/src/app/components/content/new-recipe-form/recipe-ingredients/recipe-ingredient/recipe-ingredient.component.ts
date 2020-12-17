@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { IngredientDto } from 'src/app/api/api';
 
 @Component({
@@ -8,13 +8,8 @@ import { IngredientDto } from 'src/app/api/api';
 })
 export class RecipeIngredientComponent implements OnInit {
 
-  ingredient: IngredientDto = {
-    id: null,
-    name: 'Pierś z kurczaka',
-    unit: 'sztuk',
-    quantity: 2,
-    required: true,
-  }
+  @Input()
+  ingredient: IngredientDto;
 
   constructor() { }
 
