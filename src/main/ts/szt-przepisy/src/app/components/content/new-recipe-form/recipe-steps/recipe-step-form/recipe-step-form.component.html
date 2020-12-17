@@ -1,4 +1,9 @@
 <form [formGroup]="newStepForm">
-<p-editor formControlName="description" [style]="{'height':'320px'}"></p-editor>
-
+  <p-editor formControlName="description" [style]="{'height':'220px'}"></p-editor>
+  <div class="buttons">
+    <div class="p-d-flex p-jc-around">
+      <button pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger p-button-outlined" (click)="close()"></button>
+      <button pButton pRipple type="button" icon="pi pi-check" class="p-button-rounded " (click)="onAddStep()"></button>
+    </div>
+  </div>
 </form>

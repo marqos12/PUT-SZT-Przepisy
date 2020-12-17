@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
 import org.springframework.data.annotation.CreatedDate;
@@ -25,25 +26,26 @@ public class Recipe {
 	private Long id;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+	@JoinColumn(name = "user_id")
 	private User user;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	private RecipeType recipeType;
-	
-    @CreatedDate
-    private Date createdAt;
 
-    @LastModifiedDate
-    private LocalDateTime updatedAt;
-	
-    private String name;
+	@CreatedDate
+	private Date createdAt;
+
+	@LastModifiedDate
+	private LocalDateTime updatedAt;
+
+	@Lob
 	private String description;
+
+	private String name;
 	private String image;
 	private RecipeComplexity complexity;
 	private String portions;
 	private String duration;
 	private Double mark;
-	
-	
+
 }

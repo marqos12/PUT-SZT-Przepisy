@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { StepDto } from 'src/app/api/api';
 
 @Component({
@@ -8,11 +8,8 @@ import { StepDto } from 'src/app/api/api';
 })
 export class RecipeStepComponent implements OnInit {
 
-  step: StepDto = {
-    id:null,
-    description: "Jakiś dłuższy tekst tego co się będzie tutaj działo.",
-    number: 1
-  }
+  @Input()
+  step: StepDto;
 
   constructor() { }
 

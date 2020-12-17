@@ -36,6 +36,7 @@ export class NewRecipeService {
   }
 
   public addStep(step: StepDto) {
+    step.number = this.stepsList.length + 1;
     this.stepsList.push(step);
     this.steps.next(this.stepsList);
   }

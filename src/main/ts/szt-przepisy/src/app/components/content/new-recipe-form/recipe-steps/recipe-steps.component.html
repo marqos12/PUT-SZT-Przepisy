@@ -1,4 +1,6 @@
 <p-fieldset legend="Lista kroków">
-    <app-recipe-step></app-recipe-step>
-    <app-recipe-step-form></app-recipe-step-form>
+    <app-recipe-step *ngFor="let step of steps" [step]="step"></app-recipe-step>
+    <app-recipe-step-form *ngIf="showNewStepForm" (closeForm)="toggleShowIngredientForm()"></app-recipe-step-form>
+    <button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded toggleShowFormButton"
+      *ngIf="!showNewStepForm" (click)="toggleShowIngredientForm()"></button>
 </p-fieldset>

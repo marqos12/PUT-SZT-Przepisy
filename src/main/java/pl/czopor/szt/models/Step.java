@@ -5,7 +5,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
 import lombok.Data;
@@ -19,7 +19,9 @@ public class Step {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Recipe recipe;
-	
-	private Integer number;
+
+	@Lob
 	private String description;
+
+	private Integer number;
 }
