@@ -4,9 +4,11 @@ import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
+import lombok.Builder;
 import pl.czopor.szt.enums.RecipeComplexity;
 import pl.czopor.szt.models.User;
 
+@Builder
 public class RecipeDto {
 	public Long id;
 	public User user;
@@ -22,6 +24,5 @@ public class RecipeDto {
 	public String name;
 	public RecipeComplexity complexity;
 	public String portions;
-	
-	
+
 }

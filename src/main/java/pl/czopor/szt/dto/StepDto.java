@@ -1,5 +1,8 @@
 package pl.czopor.szt.dto;
 
+import lombok.Builder;
+
+@Builder
 public class StepDto {
 	public Long id;
 	public int number;

@@ -6,6 +6,7 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
+import pl.czopor.szt.converters.RecipeTypeConverter;
 import pl.czopor.szt.models.RecipeType;
 
 public class RecipeTypeConversionsTest {
@@ -35,7 +36,7 @@ public class RecipeTypeConversionsTest {
 		r3.setParent(r2);
 		r2.setChildren(Arrays.asList(r3,r4));
 		
-		RecipeTypeDto dto = RecipeTypeDto.mapToDto(r1);
+		RecipeTypeDto dto = RecipeTypeConverter.mapToDto(r1);
 		
 		assertThat(dto.children).isNotEmpty();
 		assertThat(dto.children.get(0).children).isNotEmpty();
