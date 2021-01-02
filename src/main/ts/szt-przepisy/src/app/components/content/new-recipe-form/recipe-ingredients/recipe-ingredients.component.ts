@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { IngredientDto } from 'src/app/api/api';
+import { RecipeIngredientDto } from 'src/app/api/api';
 import { NewRecipeService } from 'src/app/services/new-recipe.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { NewRecipeService } from 'src/app/services/new-recipe.service';
 })
 export class RecipeIngredientsComponent implements OnInit, OnDestroy {
 
-  ingredients: IngredientDto[] = [];
+  ingredients: RecipeIngredientDto[] = [];
   private ingredientsSubscription: Subscription;
 
   showNewIngredientForm = true;

@@ -3,4 +3,14 @@
     margin-bottom: 30px;
     margin-top: 10px;
   }
+
+  .error {
+    color: red;
+
+    ::ng-deep .p-editor-container {
+      border: 1px solid red;
+      border-radius: 3px;
+    }
+  }
+
 }

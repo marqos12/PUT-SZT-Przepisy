@@ -1,56 +1,109 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { RecipeComplexity, RecipeDto, RecipeTypeDto } from 'src/app/api/api';
+import { ComplexityLevelsService } from 'src/app/services/complexity-levels.service';
+import { RecipeTypesService } from 'src/app/services/recipe-types.service';
+import { NewRecipeService } from 'src/app/services/new-recipe.service';
 
 @Component({
   selector: 'app-recipe-details-form',
   templateUrl: './recipe-details-form.component.html',
   styleUrls: ['./recipe-details-form.component.scss']
 })
-export class RecipeDetailsFormComponent implements OnInit {
+export class RecipeDetailsFormComponent implements OnInit, OnDestroy {
   recipeDetailsForm: FormGroup;
-  recipeTypes;
-  complexityLevels ;
+  recipeTypes: RecipeTypeDto[] = [];
+  recipeTypesSubscription: Subscription;
+  complexityLevels: RecipeComplexity[] = [];
+  complexityLevelsSubscription: Subscription;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private recipeTypesService: RecipeTypesService,
+    private complexityLevelsService: ComplexityLevelsService,
+    private newRecipeService: NewRecipeService
+  ) { }
 
   ngOnInit(): void {
     this.initForm();
-    this.getRecipeTypes();
-    this.getComplexityLevels();
+    this.registerRecipeTypesListener();
+    this.registerComplexityLevelsListener();
   }
 
   initForm() {
     this.recipeDetailsForm = this.formBuilder.group({
-      description: '',
+      description: ['', Validators.required],
       image: '',
-      duration: '',
-      recipeType: '',
-      name: '',
-      complexity: '',
-      portions: '',
+      duration: ['', Validators.required],
+      recipeType: ['', Validators.required],
+      name: ['', Validators.required],
+      complexity: ['', Validators.required],
+      portions: ['', Validators.required],
     })
   }
 
-  getRecipeTypes() {
-    this.recipeTypes = [
-      { name: 'New York', code: 'NY' },
-      { name: 'Rome', code: 'RM' },
-      { name: 'London', code: 'LDN' },
-      { name: 'Istanbul', code: 'IST' },
-      { name: 'Paris', code: 'PRS' }
-    ];
+  registerRecipeTypesListener() {
+    this.recipeTypesSubscription = this.recipeTypesService.registerListener(this.onRecipeTypesReceive.bind(this));
   }
 
-  getComplexityLevels() {
-    this.complexityLevels = [
-      { name: 'New York', code: 'NY' },
-      { name: 'Rome', code: 'RM' },
-      { name: 'London', code: 'LDN' },
-      { name: 'Istanbul', code: 'IST' },
-      { name: 'Paris', code: 'PRS' }
-    ];
+  onRecipeTypesReceive(types: RecipeTypeDto[]) {
+    this.recipeTypes = types;
+    this.recipeDetailsForm.controls.recipeType.setValue(types[0]);
   }
 
+  registerComplexityLevelsListener() {
+    this.complexityLevelsSubscription = this.complexityLevelsService.registerListener(this.onComplexityLevelReceive.bind(this));
+  }
+  onComplexityLevelReceive(levels: RecipeComplexity[]) {
+    this.complexityLevels = levels.map(this.createComplexityLevel.bind(this))
+    this.recipeDetailsForm.controls.complexity.setValue(levels[0]);
+  }
+
+  ngOnDestroy(): void {
+    this.recipeTypesSubscription.unsubscribe();
+    this.complexityLevelsSubscription.unsubscribe();
+  }
+
+  createComplexityLevel(value) {
+    return {
+      value: value,
+      name: this.translateComplexityName(value)
+    }
+  }
+
+  translateComplexityName(value: RecipeComplexity) {
+    switch (value) {
+      case "VERY_ESY":
+        return "Bardzo łatwy";
+      case "EASY":
+        return "Łatwy";
+      case "MEDIUM":
+        return "Średni";
+      case "HARD":
+        return "Trudny";
+      case "VERY_HARD":
+        return "Bardo trudny";
+      case "PERFECT_HOUSEWIFE":
+        return "Perfekcyjna pani domu";
+      default:
+        return value;
+    }
+  }
+
+  public createRecipeAndSave() {
+    if (this.recipeDetailsForm.valid) {
+      this.newRecipeService.saveRecipe(this.recipeDetailsForm.value);
+    } else {
+      this.markAllControlsAsTouched()
+    }
+  }
+
+  markAllControlsAsTouched() {
+    for (const field in this.recipeDetailsForm.controls) {
+      this.recipeDetailsForm.controls[field].markAsDirty();
+    }
+  }
 }
 
 

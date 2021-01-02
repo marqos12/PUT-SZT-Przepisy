@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { RecipeDetailsFormComponent } from './recipe-details-form/recipe-details-form.component';
 
 @Component({
   selector: 'app-new-recipe-form',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewRecipeFormComponent implements OnInit {
 
+  @ViewChild(RecipeDetailsFormComponent) recipeDetailsForm: RecipeDetailsFormComponent;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  save() {
+    this.recipeDetailsForm.createRecipeAndSave();
   }
 
 }

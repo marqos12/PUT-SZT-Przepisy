@@ -2,29 +2,17 @@ import { _isNumberValue } from '@angular/cdk/coercion';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { IngredientDto } from '../api/api';
+import { TypeService } from '../common/services/typesService';
 import { RestService } from './rest.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class IngredientsService {
+export class IngredientsService extends TypeService<IngredientDto> {
 
-  private ingredients = new BehaviorSubject<IngredientDto[]>([]);
-
-  constructor(private rest: RestService) {
-    this.getAllIngredientsRequest();
+  constructor(rest: RestService) {
+    super("/api/ingredients", rest)
   }
 
-  private getAllIngredientsRequest() {
-    this.rest.get<IngredientDto[]>("/api/ingredients").subscribe(this.onAllIngredientsResponse.bind(this))
-  }
-
-  public onAllIngredientsResponse(ingredients: IngredientDto[]) {
-    this.ingredients.next(ingredients);
-  }
-
-  public getAllIngredients(): Observable<IngredientDto[]> {
-    return this.ingredients.asObservable();
-  }
 }
 

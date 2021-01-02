@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { IngredientDto, RecipeDto, StepDto } from '../api/api';
+import { RecipeIngredientDto, RecipeDto, StepDto } from '../api/api';
+import { RestService } from './rest.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,12 +9,12 @@ import { IngredientDto, RecipeDto, StepDto } from '../api/api';
 export class NewRecipeService {
 
   recipe: RecipeDto;
-  private ingredientsList: IngredientDto[] = [];
-  private ingredients = new BehaviorSubject<IngredientDto[]>([]);
+  private ingredientsList: RecipeIngredientDto[] = [];
+  private ingredients = new BehaviorSubject<RecipeIngredientDto[]>([]);
   private stepsList: StepDto[] = [];
   private steps = new BehaviorSubject<StepDto[]>([]);
 
-  constructor() { }
+  constructor(private restService: RestService) { }
 
   init() {
     this.ingredientsList = [];
@@ -22,11 +23,11 @@ export class NewRecipeService {
     this.steps.next(this.stepsList);
   }
 
-  public getRecipeIngredients(): Observable<IngredientDto[]> {
+  public getRecipeIngredients(): Observable<RecipeIngredientDto[]> {
     return this.ingredients.asObservable();
   }
 
-  public addIngredient(ingredient: IngredientDto) {
+  public addIngredient(ingredient: RecipeIngredientDto) {
     this.ingredientsList.push(ingredient);
     this.ingredients.next(this.ingredientsList);
   }
@@ -41,4 +42,14 @@ export class NewRecipeService {
     this.steps.next(this.stepsList);
   }
 
+  public saveRecipe(recipe: RecipeDto) {
+    const fullRecipe = this.buildRecipe(recipe);
+    this.restService.post("/api/recipe", fullRecipe).subscribe(resp => console.log(resp));
+  }
+
+  private buildRecipe(recipe: RecipeDto) {
+    recipe.ingredients = this.ingredientsList;
+    recipe.steps = this.stepsList;
+    return recipe;
+  }
 }

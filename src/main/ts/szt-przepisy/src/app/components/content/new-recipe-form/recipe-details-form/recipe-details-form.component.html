@@ -30,7 +30,8 @@
         </span>
       </div>
     </div>
-    <span class="p-float-label">
+    <span class="p-float-label"
+      [ngClass]="{'error': (!recipeDetailsForm.controls.description.valid && recipeDetailsForm.controls.description.dirty)}">
       <span>Opis</span>
       <p-editor formControlName="description" [style]="{'height':'220px'}"></p-editor>
     </span>

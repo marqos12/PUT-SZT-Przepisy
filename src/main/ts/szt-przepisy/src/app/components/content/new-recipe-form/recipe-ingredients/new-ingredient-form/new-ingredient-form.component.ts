@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { IngredientDto } from 'src/app/api/api';
+import { IngredientDto, RecipeIngredientDto } from 'src/app/api/api';
 import { IngredientsService } from 'src/app/services/ingredients.service';
 import { NewRecipeService } from 'src/app/services/new-recipe.service';
 
@@ -37,7 +37,7 @@ export class NewIngredientFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.ingredientsSubscription = this.registerIngredientsListener();
+    this.registerIngredientsListener();
     this.initForm();
   }
 
@@ -50,9 +50,8 @@ export class NewIngredientFormComponent implements OnInit, OnDestroy {
     })
   }
 
-  registerIngredientsListener(): Subscription {
-    return this.ingredientsService.getAllIngredients()
-      .subscribe(ingredients => this.ingredients = ingredients)
+  registerIngredientsListener() {
+    this.ingredientsSubscription = this.ingredientsService.registerListener(ingredients => this.ingredients = ingredients);
   }
 
   ngOnDestroy(): void {
@@ -72,7 +71,7 @@ export class NewIngredientFormComponent implements OnInit, OnDestroy {
     }
   }
 
-  createIngredient(formValue): IngredientDto {
+  createIngredient(formValue): RecipeIngredientDto {
     const ingredient = formValue;
     ingredient.id = ingredient.name.id
     ingredient.name = ingredient.name.name || ingredient.name
