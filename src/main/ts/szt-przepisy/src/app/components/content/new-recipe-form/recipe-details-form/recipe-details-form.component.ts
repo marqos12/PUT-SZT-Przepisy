@@ -35,11 +35,21 @@ export class RecipeDetailsFormComponent implements OnInit, OnDestroy {
     this.recipeDetailsForm = this.formBuilder.group({
       description: ['', Validators.required],
       image: '',
-      duration: ['', Validators.required],
+      duration: [0, Validators.required],
+      durationSlider: 0,
       recipeType: ['', Validators.required],
       name: ['', Validators.required],
       complexity: ['', Validators.required],
       portions: ['', Validators.required],
+    })
+    this.registerFormChangeListeners();
+  }
+
+  registerFormChangeListeners() {
+    this.recipeDetailsForm.controls.duration.valueChanges.subscribe(val => {
+      if (val === null || val < 0) this.recipeDetailsForm.controls.duration.setValue(0);
+      else if (val > 300) this.recipeDetailsForm.controls.duration.setValue(300);
+      this.recipeDetailsForm.controls.durationSlider.setValue(val);
     })
   }
 
@@ -92,6 +102,7 @@ export class RecipeDetailsFormComponent implements OnInit, OnDestroy {
   }
 
   public createRecipeAndSave() {
+    debugger
     if (this.recipeDetailsForm.valid) {
       this.newRecipeService.saveRecipe(this.recipeDetailsForm.value);
     } else {
@@ -104,7 +115,8 @@ export class RecipeDetailsFormComponent implements OnInit, OnDestroy {
       this.recipeDetailsForm.controls[field].markAsDirty();
     }
   }
+
+  durationSliderChange(event) {
+    this.recipeDetailsForm.controls.duration.setValue(event.value);
+  }
 }
-
-
-

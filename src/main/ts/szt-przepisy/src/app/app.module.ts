@@ -26,6 +26,11 @@ import { RecipeStepComponent } from './components/content/new-recipe-form/recipe
 import { RecipeStepFormComponent } from './components/content/new-recipe-form/recipe-steps/recipe-step-form/recipe-step-form.component';
 import { EditorModule } from 'primeng/editor';
 import { HttpClientModule } from '@angular/common/http';
+import { RecipesListFiltersComponent } from './components/content/recipes-list/recipes-list-filters/recipes-list-filters.component';
+import { RecipesGalleryComponent } from './components/content/recipes-list/recipes-gallery/recipes-gallery.component';
+import { PanelMenuModule } from 'primeng/panelmenu';
+import { PanelModule } from 'primeng/panel';
+import { SliderModule } from 'primeng/slider';
 
 @NgModule({
   declarations: [
@@ -41,6 +46,8 @@ import { HttpClientModule } from '@angular/common/http';
     RecipeIngredientComponent,
     RecipeStepComponent,
     RecipeStepFormComponent,
+    RecipesListFiltersComponent,
+    RecipesGalleryComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,6 +64,9 @@ import { HttpClientModule } from '@angular/common/http';
     AutoCompleteModule,
     ReactiveFormsModule,
     HttpClientModule,
+    PanelMenuModule,
+    PanelModule,
+    SliderModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

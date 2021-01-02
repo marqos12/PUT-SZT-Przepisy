@@ -12,10 +12,26 @@
       <input id="float-input" type="text" formControlName="portions" pInputText>
       <label for="float-input">Liczba porcji</label>
     </span>
-    <span class="p-float-label">
-      <input id="float-input" type="text" formControlName="duration" pInputText>
-      <label for="float-input">Czas trwania</label>
-    </span>
+    <div class="p-grid">
+      <div class="p-col">
+        <div class="p-grid">
+          <div class="p-col-7">
+            <span class="p-float-label">
+              <input id="float-input" type="number" min="0" max="300" formControlName="duration" pInputText>
+              <label for="float-input">Czas trwania [min]</label>
+            </span>
+          </div>
+          <div class="p-col-5 durationTime">
+            ({{recipeDetailsForm.value.duration * 1000 * 60| date:'HH':'UTC'}} h
+            {{recipeDetailsForm.value.duration * 1000 * 60| date:'mm':'UTC'}} min)  
+          </div>
+        </div>
+      </div>
+      <div class="p-col ">
+        <p-slider formControlName="durationSlider" [min]="0" [max]="300" (onChange)="durationSliderChange($event)">
+        </p-slider>
+      </div>
+    </div>
     <div class="p-grid">
       <div class="p-col">
         <span class="p-float-label">
