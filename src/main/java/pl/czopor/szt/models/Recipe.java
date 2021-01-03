@@ -2,7 +2,9 @@ package pl.czopor.szt.models;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -11,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -51,7 +54,13 @@ public class Recipe {
 	private String image;
 	private RecipeComplexity complexity;
 	private String portions;
-	private String duration;
+	private Long duration;
 	private Double mark;
+
+	@OneToMany
+	private List<RecipeIngredient> ingredients;
+
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Step> steps;
 
 }

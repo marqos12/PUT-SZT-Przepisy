@@ -14,7 +14,7 @@ public class RecipeDto {
 	public User user;
 	public String description;
 	public String image;
-	public String duration;
+	public Long duration;
 	public Double mark;
 	public List<RecipeIngredientDto> ingredients;
 	public List<StepDto> steps;
