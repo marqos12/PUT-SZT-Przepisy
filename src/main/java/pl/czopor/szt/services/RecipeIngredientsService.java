@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
 import pl.czopor.szt.dao.IngredientDao;
-import pl.czopor.szt.dao.RecipeIngredientDao;
 import pl.czopor.szt.models.Ingredient;
 import pl.czopor.szt.models.RecipeIngredient;
 
@@ -18,9 +17,8 @@ import pl.czopor.szt.models.RecipeIngredient;
 public class RecipeIngredientsService {
 
 	private IngredientDao ingredientDao;
-	private RecipeIngredientDao recipeIngredientDao;
 
-	public void createAndSaveRecipeIngredients(List<RecipeIngredient> recipeIngredients) {
+	public List<RecipeIngredient> updateRecipeIngredients(List<RecipeIngredient> recipeIngredients) {
 		List<Ingredient> ingredients = recipeIngredients.stream().map(RecipeIngredient::getIngredient)
 				.collect(Collectors.toList());
 		createAndSaveNewIngredients(ingredients);
@@ -28,8 +26,7 @@ public class RecipeIngredientsService {
 		List<Ingredient> allIngredients = ingredientDao.findAll();
 
 		recipeIngredients.stream().forEach(updateIngredient(allIngredients));
-
-		recipeIngredientDao.saveAll(recipeIngredients);
+		return recipeIngredients;
 	}
 
 	private void createAndSaveNewIngredients(List<Ingredient> ingredients) {

@@ -1,44 +1,32 @@
 package pl.czopor.szt.services;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
 import pl.czopor.szt.converters.RecipeConverter;
-import pl.czopor.szt.converters.RecipeIngredientConverter;
-import pl.czopor.szt.converters.StepConverter;
-import pl.czopor.szt.dao.RecipeIngredientDao;
-import pl.czopor.szt.dao.StepDao;
+import pl.czopor.szt.dao.RecipeDao;
+import pl.czopor.szt.dao.specifications.RecipeSpecification;
 import pl.czopor.szt.dto.RecipeDto;
-import pl.czopor.szt.dto.RecipeIngredientDto;
-import pl.czopor.szt.dto.StepDto;
+import pl.czopor.szt.dto.RecipeFilters;
 import pl.czopor.szt.models.Recipe;
-import pl.czopor.szt.models.RecipeIngredient;
-import pl.czopor.szt.models.Step;
 
 @Service
 @AllArgsConstructor
 public class RecipeService {
 
-	private RecipeIngredientDao recipeIngredientDao;
-	private StepDao stepDao;
+	private RecipeConverter recipeConverter;
+	private RecipeDao recipeDao;
 
 	public RecipeDto mapRecipeToRecipeDto(Recipe recipe) {
-		RecipeDto recipeDto = RecipeConverter.mapToDto(recipe);
-		recipeDto.ingredients = getIngredientsForRecipe(recipe);
-		recipeDto.steps = getStepsForRecipe(recipe);
-		return recipeDto;
+		return recipeConverter.mapToDto(recipe);
 	}
 
-	private List<RecipeIngredientDto> getIngredientsForRecipe(Recipe recipe) {
-		List<RecipeIngredient> ingredients = recipeIngredientDao.findByRecipe(recipe);
-		return ingredients.stream().map(RecipeIngredientConverter::mapToDto).collect(Collectors.toList());
+	public List<RecipeDto> getRecipeByFilters(RecipeFilters filters) {
+		RecipeSpecification spec = new RecipeSpecification(filters);
+		List<Recipe> recipes = recipeDao.findAll(spec);
+		return recipeConverter.mapRecipesToRecipeDtos(recipes);
 	}
 
-	private List<StepDto> getStepsForRecipe(Recipe recipe) {
-		List<Step> steps = stepDao.findByRecipe(recipe);
-		return steps.stream().map(StepConverter::mapToDto).collect(Collectors.toList());
-	}
 }
