@@ -16,7 +16,12 @@ export class TypeService<T> {
   }
 
   public getAllResponse(types: T[]) {
+    types = types.map(this.mapValue.bind(this))
     this.types.next(types);
+  }
+
+  protected mapValue(value) {
+    return value;
   }
 
   public getAll(): Observable<T[]> {

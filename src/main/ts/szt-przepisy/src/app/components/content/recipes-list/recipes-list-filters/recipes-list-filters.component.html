@@ -1,0 +1,54 @@
+<div class="filtersContainer p-fluid">
+  <button pButton pRipple label="Wyszukaj" class="p-button-lg" (click)="filter()"></button>
+
+  <form [formGroup]="filtersForm">
+    <p-panel header="Nazwa" [toggleable]="true">
+      <span class="p-float-label">
+        <input id="float-input" type="text" formControlName="name" pInputText>
+        <label for="float-input">Nazwa</label>
+      </span>
+    </p-panel>
+    <p-panel header="Czas trwania" [toggleable]="true" class="duration">
+      <div class="p-grid">
+        <div class="p-col">
+          <span class="p-float-label">
+            <input id="float-input" type="number" formControlName="durationFrom" pInputText>
+            <label for="float-input">Od [min]</label>
+          </span>
+        </div>
+        <div class="p-col">
+          <span class="p-float-label">
+            <input id="float-input" type="number" formControlName="durationTo" pInputText>
+            <label for="float-input">Do [min]</label>
+          </span>
+        </div>
+      </div>
+      <p-slider formControlName="durationSlider" [range]="true" [min]="0" [max]="300"
+        (onChange)="durationSliderChange($event)">
+      </p-slider>
+    </p-panel>
+    <p-panel header="Poziom skomplikowania" [toggleable]="true">
+      <span class="p-float-label p-fluid">
+        <p-multiSelect [options]="complexityLevels" formControlName="complexity" optionLabel="name" defaultLabel="">
+        </p-multiSelect>
+        <label for="float-input">Poziom skomplikowania</label>
+      </span>
+    </p-panel>
+    <p-panel header="Rodzaj" [toggleable]="true">
+      <span class="p-float-label p-fluid">
+        <p-multiSelect [options]="recipeTypes" formControlName="type" optionLabel="name" defaultLabel="">
+        </p-multiSelect>
+        <label for="float-input">Rodzaj</label>
+      </span>
+    </p-panel>
+    <p-panel header="Wymagane składniki" [toggleable]="true">
+      <span class="p-float-label p-fluid">
+        <p-multiSelect [options]="ingredients" formControlName="ingredients" optionLabel="name" defaultLabel="">
+        </p-multiSelect>
+        <label for="float-input">Składnik</label>
+      </span>
+    </p-panel>
+  </form>
+
+  <button pButton pRipple label="Wyszukaj" class="p-button-lg" (click)="filter()"></button>
+</div>
