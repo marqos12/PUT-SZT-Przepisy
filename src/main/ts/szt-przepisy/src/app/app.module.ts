@@ -31,6 +31,7 @@ import { RecipesGalleryComponent } from './components/content/recipes-list/recip
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { PanelModule } from 'primeng/panel';
 import { SliderModule } from 'primeng/slider';
+import { MultiSelectModule } from 'primeng/multiselect';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { SliderModule } from 'primeng/slider';
     PanelMenuModule,
     PanelModule,
     SliderModule,
+    MultiSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

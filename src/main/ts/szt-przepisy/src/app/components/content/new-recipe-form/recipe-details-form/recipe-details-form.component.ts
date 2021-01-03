@@ -66,7 +66,7 @@ export class RecipeDetailsFormComponent implements OnInit, OnDestroy {
     this.complexityLevelsSubscription = this.complexityLevelsService.registerListener(this.onComplexityLevelReceive.bind(this));
   }
   onComplexityLevelReceive(levels: RecipeComplexity[]) {
-    this.complexityLevels = levels.map(this.createComplexityLevel.bind(this))
+    this.complexityLevels = levels;
     this.recipeDetailsForm.controls.complexity.setValue(levels[0]);
   }
 
@@ -75,34 +75,7 @@ export class RecipeDetailsFormComponent implements OnInit, OnDestroy {
     this.complexityLevelsSubscription.unsubscribe();
   }
 
-  createComplexityLevel(value) {
-    return {
-      value: value,
-      name: this.translateComplexityName(value)
-    }
-  }
-
-  translateComplexityName(value: RecipeComplexity) {
-    switch (value) {
-      case "VERY_ESY":
-        return "Bardzo łatwy";
-      case "EASY":
-        return "Łatwy";
-      case "MEDIUM":
-        return "Średni";
-      case "HARD":
-        return "Trudny";
-      case "VERY_HARD":
-        return "Bardo trudny";
-      case "PERFECT_HOUSEWIFE":
-        return "Perfekcyjna pani domu";
-      default:
-        return value;
-    }
-  }
-
   public createRecipeAndSave() {
-    debugger
     if (this.recipeDetailsForm.valid) {
       this.newRecipeService.saveRecipe(this.recipeDetailsForm.value);
     } else {
