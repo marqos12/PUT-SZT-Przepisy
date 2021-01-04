@@ -1,0 +1,15 @@
+<div class="recipeGridItem">
+  <div class="p-d-flex p-jc-between">
+    <p> {{recipe.complexity}}</p>
+    <p> {{recipe.recipeType.name}}</p>
+  </div>
+  <div class="">
+    <img [src]="recipe.image" />
+  </div>
+  <div class="">
+    <h2>{{recipe.name}}</h2>
+    <p>Czas trwania: {{recipe.duration}} min</p>
+    <p>Ocena: {{recipe.mark}}</p>
+  </div>
+  <button pButton pRipple label="Zobacz" class="p-button-lg" (click)="show()"></button>
+</div>

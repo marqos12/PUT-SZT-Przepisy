@@ -4,22 +4,22 @@
   <form [formGroup]="filtersForm">
     <p-panel header="Nazwa" [toggleable]="true">
       <span class="p-float-label">
-        <input id="float-input" type="text" formControlName="name" pInputText>
-        <label for="float-input">Nazwa</label>
+        <input id="nameInput" type="text" formControlName="name" pInputText>
+        <label for="nameInput">Nazwa</label>
       </span>
     </p-panel>
     <p-panel header="Czas trwania" [toggleable]="true" class="duration">
       <div class="p-grid">
         <div class="p-col">
           <span class="p-float-label">
-            <input id="float-input" type="number" formControlName="durationFrom" pInputText>
-            <label for="float-input">Od [min]</label>
+            <input id="durationFromInput" type="number" formControlName="durationFrom" pInputText>
+            <label for="durationFromInput">Od [min]</label>
           </span>
         </div>
         <div class="p-col">
           <span class="p-float-label">
-            <input id="float-input" type="number" formControlName="durationTo" pInputText>
-            <label for="float-input">Do [min]</label>
+            <input id="durationToInput" type="number" formControlName="durationTo" pInputText>
+            <label for="durationToInput">Do [min]</label>
           </span>
         </div>
       </div>
@@ -31,21 +31,20 @@
       <span class="p-float-label p-fluid">
         <p-multiSelect [options]="complexityLevels" formControlName="complexity" optionLabel="name" defaultLabel="">
         </p-multiSelect>
-        <label for="float-input">Poziom skomplikowania</label>
+        <label for="complexityInput">Poziom skomplikowania</label>
       </span>
     </p-panel>
     <p-panel header="Rodzaj" [toggleable]="true">
-      <span class="p-float-label p-fluid">
-        <p-multiSelect [options]="recipeTypes" formControlName="type" optionLabel="name" defaultLabel="">
-        </p-multiSelect>
-        <label for="float-input">Rodzaj</label>
-      </span>
+      <div>
+        <label for="recipeTypeInput" class="floatingLabel">Rodzaj</label>
+        <app-recipe-type-select formControlName="type" [multiple]="true" [allowAddNew]="false"></app-recipe-type-select>
+      </div>
     </p-panel>
     <p-panel header="Wymagane składniki" [toggleable]="true">
       <span class="p-float-label p-fluid">
         <p-multiSelect [options]="ingredients" formControlName="ingredients" optionLabel="name" defaultLabel="">
         </p-multiSelect>
-        <label for="float-input">Składnik</label>
+        <label for="ingredientsInput">Składnik</label>
       </span>
     </p-panel>
   </form>

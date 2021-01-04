@@ -1,7 +1,8 @@
 package pl.czopor.szt.services;
 
-import java.util.List;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
@@ -23,10 +24,13 @@ public class RecipeService {
 		return recipeConverter.mapToDto(recipe);
 	}
 
-	public List<RecipeDto> getRecipeByFilters(RecipeFilters filters) {
+	public Page<RecipeDto> getRecipeByFilters(RecipeFilters filters, Pageable pageable) {
 		RecipeSpecification spec = new RecipeSpecification(filters);
-		List<Recipe> recipes = recipeDao.findAll(spec);
-		return recipeConverter.mapRecipesToRecipeDtos(recipes);
+
+		Page<Recipe> recipes = recipeDao.findAll(spec, pageable);
+		Page<RecipeDto> recipesDto = new PageImpl<RecipeDto>(
+				recipeConverter.mapRecipesToRecipeDtos(recipes.getContent()), pageable, recipes.getTotalElements());
+		return recipesDto;
 	}
 
 }

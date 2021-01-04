@@ -1,0 +1,27 @@
+<div class="recipeListItem p-grid vertical-container">
+  <div class="p-col-2 imgCol">
+    <img [src]="recipe.image" />
+  </div>
+  <div class="p-col-8 ">
+    <h2>{{recipe.name}}</h2>
+    <div class="p-grid">
+      <div class="p-col ">
+        <p>{{recipe.shortDescription}}</p>
+      </div>
+      <div class="p-col ">
+        <p>Czas trwania: {{recipe.duration}} min</p>
+        <p>Rodzaj: {{recipe.recipeType.name}}</p>
+      </div>
+      <div class="p-col ">
+        <p>Poziom skomplikowania: {{recipe.complexity}}</p>
+        <p>Ocena: {{recipe.mark}}</p>
+      </div>
+      <div class="p-col ">
+        <p>Składniki: <span *ngFor="let ingredient of recipe.ingredients">{{ingredient.name}} </span> </p>
+      </div>
+    </div>
+  </div>
+  <div class="p-col-2  p-as-center buttonCol ">
+    <button pButton pRipple label="Zobacz" class="p-button-lg" (click)="show()"></button>
+  </div>
+</div>

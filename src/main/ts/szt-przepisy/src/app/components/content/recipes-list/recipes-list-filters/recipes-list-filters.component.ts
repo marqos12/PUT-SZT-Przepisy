@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Console } from 'console';
 import { Subscription } from 'rxjs';
 import { IngredientDto, RecipeComplexity, RecipeTypeDto } from 'src/app/api/api';
 import { ComplexityLevelsService } from 'src/app/services/complexity-levels.service';
@@ -100,7 +99,7 @@ export class RecipesListFiltersComponent implements OnInit, OnDestroy {
   }
 
   filter() {
-    this.recipesService.getRecipes(this.createParams(this.filtersForm.value)).subscribe(resp => console.log(resp));
+    this.recipesService.refreshRecipesAfterFiltersChanged(this.createParams(this.filtersForm.value));
   }
 
   private createParams(filters): String {
@@ -110,7 +109,6 @@ export class RecipesListFiltersComponent implements OnInit, OnDestroy {
     for (const field in filters) {
       const value = filters[field]
       if (value) {
-        if (paramsNumber === 0) params = '?'
         if (paramsNumber > 0) params += '&'
         if (['name', 'durationFrom', 'durationTo'].includes(field)) {
           params += `${field}=${value}`;

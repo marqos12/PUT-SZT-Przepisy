@@ -1,1 +1,23 @@
-<p>recipes-gallery works!</p>
+<p-dataView [value]="recipes" [paginator]="true" [rows]="10"
+  [totalRecords]="recipesPage ? recipesPage.numberOfElements : 0" [lazy]="true"
+  (onLazyLoad)="onPaginationChange($event)" [loading]="isLoading" [rowsPerPageOptions]="rowsPerPageOptions">
+
+  <p-header>
+    <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
+      <span>Lista przepisów</span>
+      <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sortuje według"
+        (onChange)="onSortChange($event)" [style]="{'min-width':'15em'}"></p-dropdown>
+      <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+    </div>
+  </p-header>
+
+  <ng-template let-recipe pTemplate="listItem">
+    <app-recipe-list-item [recipe]="recipe" class="p-col-12"></app-recipe-list-item>
+  </ng-template>
+  <ng-template let-recipe pTemplate="gridItem">
+    <app-recipe-grid-item [recipe]="recipe" class="p-col-12 p-md-3"></app-recipe-grid-item>
+  </ng-template>
+  <ng-template let-item pTemplate="paginatordropdownitem">
+    {{item.value}}
+  </ng-template>
+</p-dataView>
