@@ -4,8 +4,8 @@
       <div class="p-grid">
         <div class="p-col">
           <span class="p-float-label">
-            <input id="float-input" type="text" formControlName="quantity" pInputText>
-            <label for="float-input">Ilość</label>
+            <input id="quantityInput" type="text" formControlName="quantity" pInputText>
+            <label for="quantityInput">Ilość</label>
           </span>
         </div>
         <div class="p-col">
@@ -16,15 +16,15 @@
                 <span style="font-size:18px">{{ingredient.name}} </span>[{{ingredient.unit}}]
               </ng-template>
             </p-autoComplete>
-            <label for="float-input">Nazwa</label>
+            <label for="suggestedIngredientsInput">Nazwa</label>
           </span>
         </div>
       </div>
       <div class="p-grid">
         <div class="p-col">
           <span class="p-float-label">
-            <input id="float-input" type="text" formControlName="unit" pInputText>
-            <label for="float-input">Jednostka</label>
+            <input id="unitInput" type="text" formControlName="unit" pInputText>
+            <label for="unitInput">Jednostka</label>
           </span>
         </div>
         <div class="p-col">
@@ -38,8 +38,8 @@
     <div class="buttonColumn">
       <span class="p-float-label ">
         <div class="p-d-flex p-jc-around">
-          <button pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger p-button-outlined"
-            (click)="close()"></button>
+          <button pButton pRipple type="button" icon="pi pi-times"
+            class="p-button-rounded p-button-danger p-button-outlined" (click)="close()"></button>
           <button pButton pRipple type="button" icon="pi pi-check" class="p-button-rounded "
             (click)="onAddIngredient()"></button>
         </div>

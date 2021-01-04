@@ -1,0 +1,19 @@
+.recipeTypesTreeContainer {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.inputButton {
+  border-color: #ced4da !important;
+  color: #495057 !important;
+
+  &:hover {
+    border-color: #2196F3 !important;
+  }
+}
+
+.chip {
+  margin: 5px;
+  width: fit-content;
+  padding: 3px;
+}

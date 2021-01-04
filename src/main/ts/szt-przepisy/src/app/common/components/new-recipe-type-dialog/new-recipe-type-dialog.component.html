@@ -1,0 +1,17 @@
+<span class="p-float-label recipeNameInputContainer">
+  <input id="recipeNameInput" type="text" [formControl]="nameControl" pInputText>
+  <label for="recipeNameInput">Nazwa </label>
+</span>
+
+<h4>Wybierz nadrodzaj (nowy rodzaj zostanie dodany jako podrodzaj wskazanego).</h4>
+<div class="treeContainer">
+  <p-tree [value]="recipeTypes" layout="horizontal" selectionMode="single" [filter]="true"
+    [(selection)]="selectedRecipe"></p-tree>
+</div>
+
+<div class="buttonsContainer">
+  <button pButton pRipple type="button" label="Powrót" class="p-button-raised p-button-danger p-button-text p-button-lg"
+    (click)="cancel()"></button>
+  <button pButton pRipple label="Dodaj" class="p-button-lg" (click)="save()"
+    [disabled]="!selectedRecipe || !nameControl.value.trim()"></button>
+</div>

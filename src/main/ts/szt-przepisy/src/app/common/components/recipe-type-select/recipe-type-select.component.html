@@ -1,0 +1,20 @@
+<p-overlayPanel #op [dismissable]="true">
+  <ng-template pTemplate>
+    <div class="recipeTypesTreeContainer p-grid">
+      <div class="p-col-12">
+        <p-tree [value]="recipeTypes" [filter]="true" (onNodeSelect)="onRecipeSelect($event)"
+          (onNodeUnselect)="onRecipeUnselect($event)" [selectionMode]="multiple?'checkbox':'single'"
+          [(selection)]="selected"></p-tree>
+      </div>
+      <button *ngIf="allowAddNew" type="text" pButton label="Dodaj" (click)="addNew()"></button>
+    </div>
+  </ng-template>
+</p-overlayPanel>
+
+<button type="text" label="{{recipeType && !multiple ? recipeType.name : 'Wybierz rodzaj'}}" pButton
+  (click)="op.toggle($event)" class="p-button-outlined p-button-secondary inputButton"></button>
+
+<div *ngIf="multiple">
+  <button *ngFor="let type of selected" pButton pRipple type="button" [label]="type.label" disabled="true"
+    class="p-button-outlined p-button-secondary p-button-rounded p-button-sm chip"></button>
+</div>

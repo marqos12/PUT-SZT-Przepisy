@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import pl.czopor.szt.models.RecipeType;
 
 @Repository
-public interface RecipeTypeDao extends JpaRepository<RecipeType, Long>{
-	public List<RecipeType> findByIsRootNotNull();
+public interface RecipeTypeDao extends JpaRepository<RecipeType, Long> {
+	public List<RecipeType> findByIsRootIsTrue();
 }

@@ -7,11 +7,11 @@ export class TypeService<T> {
 
   private types = new BehaviorSubject<T[]>([]);
 
-  constructor(private url: string, private rest: RestService) {
+  constructor(protected url: string, protected rest: RestService) {
     this.getAllRequest();
   }
 
-  private getAllRequest() {
+  protected getAllRequest() {
     this.rest.get<T[]>(this.url).subscribe(this.getAllResponse.bind(this))
   }
 
