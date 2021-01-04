@@ -14,7 +14,7 @@ import { RecipeImageComponent } from './components/content/new-recipe-form/recip
 import { RecipeStepsComponent } from './components/content/new-recipe-form/recipe-steps/recipe-steps.component';
 import { RecipeIngredientsComponent } from './components/content/new-recipe-form/recipe-ingredients/recipe-ingredients.component';
 import { DropdownModule } from 'primeng/dropdown';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { NewIngredientFormComponent } from './components/content/new-recipe-form/recipe-ingredients/new-ingredient-form/new-ingredient-form.component';
@@ -32,6 +32,16 @@ import { PanelMenuModule } from 'primeng/panelmenu';
 import { PanelModule } from 'primeng/panel';
 import { SliderModule } from 'primeng/slider';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { DataViewModule } from 'primeng/dataview';
+import { RecipeListItemComponent } from './components/content/recipes-list/recipes-gallery/recipe-list-item/recipe-list-item.component';
+import { RecipeGridItemComponent } from './components/content/recipes-list/recipes-gallery/recipe-grid-item/recipe-grid-item.component';
+import { RatingModule } from 'primeng/rating';
+import { RecipeTypeSelectComponent } from './common/components/recipe-type-select/recipe-type-select.component';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { TreeModule } from 'primeng/tree';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { NewRecipeTypeDialogComponent } from './common/components/new-recipe-type-dialog/new-recipe-type-dialog.component';
+import { DialogModule } from 'primeng/dialog';
 
 @NgModule({
   declarations: [
@@ -49,6 +59,10 @@ import { MultiSelectModule } from 'primeng/multiselect';
     RecipeStepFormComponent,
     RecipesListFiltersComponent,
     RecipesGalleryComponent,
+    RecipeListItemComponent,
+    RecipeGridItemComponent,
+    RecipeTypeSelectComponent,
+    NewRecipeTypeDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,8 +83,18 @@ import { MultiSelectModule } from 'primeng/multiselect';
     PanelModule,
     SliderModule,
     MultiSelectModule,
+    DataViewModule,
+    FormsModule,
+    RatingModule,
+    OverlayPanelModule,
+    TreeModule,
+    DynamicDialogModule,
+    DialogModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    NewRecipeTypeDialogComponent
+  ]
 })
 export class AppModule { }

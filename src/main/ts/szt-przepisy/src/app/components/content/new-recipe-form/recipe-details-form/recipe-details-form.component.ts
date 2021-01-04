@@ -41,6 +41,7 @@ export class RecipeDetailsFormComponent implements OnInit, OnDestroy {
       name: ['', Validators.required],
       complexity: ['', Validators.required],
       portions: ['', Validators.required],
+      shortDescription: ['', Validators.required],
     })
     this.registerFormChangeListeners();
   }
@@ -75,7 +76,7 @@ export class RecipeDetailsFormComponent implements OnInit, OnDestroy {
     this.complexityLevelsSubscription.unsubscribe();
   }
 
-  public createRecipeAndSave() {
+  createRecipeAndSave() {
     if (this.recipeDetailsForm.valid) {
       this.newRecipeService.saveRecipe(this.recipeDetailsForm.value);
     } else {

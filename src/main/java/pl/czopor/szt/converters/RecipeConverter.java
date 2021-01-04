@@ -33,7 +33,8 @@ public class RecipeConverter {
 				.image(recipeDto.image).duration(recipeDto.duration).mark(recipeDto.mark)
 				.recipeType(RecipeTypeConverter.mapFromDto(recipeDto.recipeType)).createdAt(recipeDto.createdAt)
 				.updatedAt(recipeDto.updatedAt).name(recipeDto.name).complexity(recipeDto.complexity)
-				.portions(recipeDto.portions).ingredients(ingredients).steps(steps).build();
+				.portions(recipeDto.portions).ingredients(ingredients).steps(steps)
+				.shortDescription(recipeDto.shortDescription).build();
 
 		return recipe;
 	}
@@ -44,7 +45,8 @@ public class RecipeConverter {
 		return RecipeDto.builder().id(recipe.getId()).user(recipe.getUser()).description(recipe.getDescription())
 				.image(recipe.getImage()).duration(recipe.getDuration()).mark(recipe.getMark()).recipeType(recipeType)
 				.createdAt(recipe.getCreatedAt()).updatedAt(recipe.getUpdatedAt()).name(recipe.getName())
-				.complexity(recipe.getComplexity()).portions(recipe.getPortions()).build();
+				.complexity(recipe.getComplexity()).portions(recipe.getPortions())
+				.shortDescription(recipe.getShortDescription()).build();
 	}
 
 	public RecipeDto mapToDto(Recipe recipe) {

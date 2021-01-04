@@ -50,6 +50,7 @@ public class Recipe {
 	@Lob
 	private String description;
 
+	private String shortDescription;
 	private String name;
 	private String image;
 	private RecipeComplexity complexity;

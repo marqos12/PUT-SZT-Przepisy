@@ -24,5 +24,6 @@ public class RecipeDto {
 	public String name;
 	public RecipeComplexity complexity;
 	public String portions;
+	public String shortDescription;
 
 }

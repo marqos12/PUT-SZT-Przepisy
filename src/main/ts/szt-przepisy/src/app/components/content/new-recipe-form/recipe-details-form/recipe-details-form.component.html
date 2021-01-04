@@ -1,29 +1,33 @@
 <p-fieldset legend="Szczegóły przepisu">
   <form [formGroup]="recipeDetailsForm" class="recipeDetailsForm  p-fluid">
     <span class="p-float-label">
-      <input id="float-input" type="text" formControlName="name" pInputText>
-      <label for="float-input">Nazwa</label>
+      <input id="nameInput" type="text" formControlName="name" pInputText>
+      <label for="nameInput">Nazwa</label>
     </span>
     <span class="p-float-label">
-      <input id="float-input" type="text" formControlName="image" pInputText>
-      <label for="float-input">Zdjęcie</label>
+      <textarea id="shortDescriptionIput" type="text" formControlName="shortDescription" pInputText></textarea>
+      <label for="shortDescriptionIput">Krótki opis</label>
     </span>
     <span class="p-float-label">
-      <input id="float-input" type="text" formControlName="portions" pInputText>
-      <label for="float-input">Liczba porcji</label>
+      <input id="imageInput" type="text" formControlName="image" pInputText>
+      <label for="imageInput">Zdjęcie</label>
+    </span>
+    <span class="p-float-label">
+      <input id="portionsInput" type="text" formControlName="portions" pInputText>
+      <label for="portionsInput">Liczba porcji</label>
     </span>
     <div class="p-grid">
       <div class="p-col">
         <div class="p-grid">
-          <div class="p-col-7">
-            <span class="p-float-label">
-              <input id="float-input" type="number" min="0" max="300" formControlName="duration" pInputText>
-              <label for="float-input">Czas trwania [min]</label>
+          <div class="p-col-7 durationTimeInputContainer">
+            <span class="p-float-label withoutMargin">
+              <input id="durationInput" type="number" min="0" max="300" formControlName="duration" pInputText>
+              <label for="durationInput">Czas trwania [min]</label>
             </span>
           </div>
           <div class="p-col-5 durationTime">
             ({{recipeDetailsForm.value.duration * 1000 * 60| date:'HH':'UTC'}} h
-            {{recipeDetailsForm.value.duration * 1000 * 60| date:'mm':'UTC'}} min)  
+            {{recipeDetailsForm.value.duration * 1000 * 60| date:'mm':'UTC'}} min)
           </div>
         </div>
       </div>
@@ -34,15 +38,16 @@
     </div>
     <div class="p-grid">
       <div class="p-col">
-        <span class="p-float-label">
-          <p-dropdown [options]="recipeTypes" optionLabel="name" formControlName="recipeType"></p-dropdown>
-          <label for="float-input">Rodzaj</label>
-        </span>
+        <div>
+          <label for="recipeTypeInput" class="floatingLabel">Rodzaj</label>
+          <app-recipe-type-select formControlName="recipeType" [multiple]="false" [allowAddNew]="true">
+          </app-recipe-type-select>
+        </div>
       </div>
-      <div class="p-col p-fluid">
+      <div class="p-col p-fluid complexityLevelsContainer">
         <span class="p-float-label">
           <p-dropdown [options]="complexityLevels" optionLabel="name" formControlName="complexity"></p-dropdown>
-          <label for="float-input">Poziom skomplikowania</label>
+          <label for="complexityInput">Poziom skomplikowania</label>
         </span>
       </div>
     </div>
