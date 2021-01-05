@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -47,7 +48,7 @@ public class Recipe {
 	@LastModifiedDate
 	private LocalDateTime updatedAt;
 
-	@Lob
+	@Column(length = 10000)
 	private String description;
 
 	private String shortDescription;

@@ -1,0 +1,11 @@
+<p-fieldset legend="Lista składników">
+  <div class="p-fluid">
+    <div *ngFor="let ingredient of recipe.ingredients">
+      <i class="pi pi-circle-on" *ngIf="ingredient.required"></i>
+      <i class="pi pi-circle-off" *ngIf="!ingredient.required"></i>
+      <span class="name"> {{ingredient.name}} </span>
+      <span class="quantity"> {{ingredient.quantity}} </span>
+      <span class="unit"> [{{ingredient.unit}}] </span>
+    </div>
+  </div>
+</p-fieldset>

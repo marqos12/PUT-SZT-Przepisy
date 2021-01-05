@@ -11,5 +11,6 @@
     <p>Czas trwania: {{recipe.duration}} min</p>
     <p>Ocena: {{recipe.mark}}</p>
   </div>
-  <button pButton pRipple label="Zobacz" class="p-button-lg" (click)="show()"></button>
+  <button pButton pRipple label="Zobacz" class="p-button-lg"
+    [routerLink]="'/recipe/'+recipe.id"></button>
 </div>

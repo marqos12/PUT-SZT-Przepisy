@@ -13,6 +13,4 @@ export class RecipeGridItemComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-  show() { }
 }

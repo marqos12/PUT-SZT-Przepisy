@@ -8,6 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -61,6 +62,12 @@ public class RecipesController {
 		Pageable pageable = PageRequest.of(pageNo, pageSize, sort);
 
 		return recipeService.getRecipeByFilters(recipeFilters, pageable);
+	}
+	
+
+	@GetMapping("/{id}")
+	public RecipeDto getRecipeById(@PathVariable long id) {
+		return recipeService.getRecipeById(id);
 	}
 
 }

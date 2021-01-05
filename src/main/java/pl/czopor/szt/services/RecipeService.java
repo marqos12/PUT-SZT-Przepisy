@@ -33,4 +33,9 @@ public class RecipeService {
 		return recipesDto;
 	}
 
+	public RecipeDto getRecipeById(Long recipeId) {
+		Recipe recipe = recipeDao.getOne(recipeId);
+		return recipeConverter.mapToDto(recipe);
+	}
+
 }

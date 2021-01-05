@@ -45,4 +45,9 @@ export class RecipesService implements OnInit {
     return this.recipes.asObservable();
   }
 
+  public getRecipeById(id:string): Observable<RecipeDto> {
+    const recipeUrl = '/api/recipe/' + id;
+    return this.rest.get(recipeUrl);
+  }
+
 }

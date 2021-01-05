@@ -42,6 +42,11 @@ import { TreeModule } from 'primeng/tree';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { NewRecipeTypeDialogComponent } from './common/components/new-recipe-type-dialog/new-recipe-type-dialog.component';
 import { DialogModule } from 'primeng/dialog';
+import { RecipeViewComponent } from './components/content/recipe-view/recipe-view.component';
+import { RecipeDetailsViewComponent } from './components/content/recipe-view/recipe-details-view/recipe-details-view.component';
+import { RecipeIngredientsViewComponent } from './components/content/recipe-view/recipe-ingredients-view/recipe-ingredients-view.component';
+import { RecipeStepsViewComponent } from './components/content/recipe-view/recipe-steps-view/recipe-steps-view.component';
+import { RecipeImageViewComponent } from './components/content/recipe-view/recipe-image-view/recipe-image-view.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +68,11 @@ import { DialogModule } from 'primeng/dialog';
     RecipeGridItemComponent,
     RecipeTypeSelectComponent,
     NewRecipeTypeDialogComponent,
+    RecipeViewComponent,
+    RecipeDetailsViewComponent,
+    RecipeIngredientsViewComponent,
+    RecipeStepsViewComponent,
+    RecipeImageViewComponent,
   ],
   imports: [
     BrowserModule,
