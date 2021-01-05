@@ -78,7 +78,9 @@ export class RecipeDetailsFormComponent implements OnInit, OnDestroy {
 
   createRecipeAndSave() {
     if (this.recipeDetailsForm.valid) {
-      this.newRecipeService.saveRecipe(this.recipeDetailsForm.value);
+      const recipe = this.recipeDetailsForm.value;
+      recipe.complexity = recipe.complexity.value
+      this.newRecipeService.saveRecipe(recipe);
     } else {
       this.markAllControlsAsTouched()
     }

@@ -2,9 +2,12 @@
   margin-top: 20px;
 }
 
-::ng-deep .p-tree {
-  max-height: 300px;
+.treeContainer {
+  ::ng-deep .p-tree {
+    max-height: 300px;
+  }
 }
+
 
 .buttonsContainer {
   margin: 10px;

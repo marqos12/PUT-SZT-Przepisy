@@ -22,7 +22,7 @@
           <div class="p-col-7 durationTimeInputContainer">
             <span class="p-float-label withoutMargin">
               <input id="durationInput" type="number" min="0" max="300" formControlName="duration" pInputText>
-              <label for="durationInput">Czas trwania [min]</label>
+              <label for="durationInput">Czas przyrządzenia [min]</label>
             </span>
           </div>
           <div class="p-col-5 durationTime">
@@ -46,7 +46,7 @@
       </div>
       <div class="p-col p-fluid complexityLevelsContainer">
         <span class="p-float-label">
-          <p-dropdown [options]="complexityLevels" optionLabel="name" formControlName="complexity"></p-dropdown>
+          <p-dropdown [options]="complexityLevels" optionValue="value" optionLabel="name" formControlName="complexity"></p-dropdown>
           <label for="complexityInput">Poziom skomplikowania</label>
         </span>
       </div>

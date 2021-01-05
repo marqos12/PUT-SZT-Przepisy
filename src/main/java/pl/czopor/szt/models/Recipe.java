@@ -59,7 +59,7 @@ public class Recipe {
 	private Long duration;
 	private Double mark;
 
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<RecipeIngredient> ingredients;
 
 	@OneToMany(cascade = CascadeType.ALL)
