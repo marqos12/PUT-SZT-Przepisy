@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PrimeNGConfig } from 'primeng/api';
+import { MessageService, PrimeNGConfig } from 'primeng/api';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +9,10 @@ import { PrimeNGConfig } from 'primeng/api';
 export class AppComponent implements OnInit {
   title = 'szt-przepisy';
 
-  constructor(private primengConfig: PrimeNGConfig) { }
+  constructor(
+    private primengConfig: PrimeNGConfig,
+    private messageService: MessageService
+  ) { }
 
   ngOnInit() {
     this.primengConfig.ripple = true;

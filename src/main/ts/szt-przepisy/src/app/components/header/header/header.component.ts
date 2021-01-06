@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
+import { User, UserDto } from 'src/app/api/api';
+import { UserAuthService } from 'src/app/services/user-auth.service';
 
 @Component({
   selector: 'app-header',
@@ -8,13 +10,32 @@ import { MenuItem } from 'primeng/api';
 })
 export class HeaderComponent implements OnInit {
 
+  user: UserDto;
   items: MenuItem[];
 
-  constructor() { }
+  constructor(private userAuthService: UserAuthService) { }
 
 
   ngOnInit() {
-    this.items = [
+    this.items = this.getBasicMenuItems();
+    this.registerUserChangeListener();
+  }
+
+  registerUserChangeListener() {
+    this.userAuthService.getLoggedUser().subscribe(this.onUserLogin.bind(this));
+  }
+
+  onUserLogin(user) {
+    this.user = user;
+    if (user) {
+      this.items = [...this.getBasicMenuItems(), ...this.userAuthenticatedMenuItems()];
+    } else {
+      this.items = [...this.getBasicMenuItems(), ...this.userNotAuthenticatedMenuItems()];
+    }
+  }
+
+  getBasicMenuItems() {
+    return [
       {
         label: 'Lista przepisów',
         icon: 'pi pi-fw pi-list',
@@ -25,7 +46,44 @@ export class HeaderComponent implements OnInit {
         icon: 'pi pi-fw pi-plus',
         routerLink: "add"
       }
-    ];
+    ]
   }
 
+  userNotAuthenticatedMenuItems() {
+    return [
+      {
+        styleClass: "toRight",
+        label: 'Rejestracja',
+        icon: 'pi pi-fw pi-user-edit',
+        routerLink: "/register"
+      },
+      {
+        styleClass: "toRight",
+        label: 'Logowanie',
+        icon: 'pi pi-fw pi-user-plus',
+        routerLink: "/login"
+      }
+    ]
+  }
+
+  userAuthenticatedMenuItems() {
+    return [
+      {
+        styleClass: "toRightFull",
+        label: this.user.username,
+        icon: 'pi pi-fw pi-user',
+        items: [
+          {
+            label: 'Wyloguj',
+            icon: 'pi pi-fw pi-power-off',
+            command: this.logout.bind(this)
+          },
+        ]
+      },
+    ]
+  }
+
+  logout() {
+    this.userAuthService.logout();
+  }
 }

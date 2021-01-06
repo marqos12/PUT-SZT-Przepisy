@@ -25,7 +25,7 @@ import { RecipeIngredientComponent } from './components/content/new-recipe-form/
 import { RecipeStepComponent } from './components/content/new-recipe-form/recipe-steps/recipe-step/recipe-step.component';
 import { RecipeStepFormComponent } from './components/content/new-recipe-form/recipe-steps/recipe-step-form/recipe-step-form.component';
 import { EditorModule } from 'primeng/editor';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RecipesListFiltersComponent } from './components/content/recipes-list/recipes-list-filters/recipes-list-filters.component';
 import { RecipesGalleryComponent } from './components/content/recipes-list/recipes-gallery/recipes-gallery.component';
 import { PanelMenuModule } from 'primeng/panelmenu';
@@ -47,6 +47,12 @@ import { RecipeDetailsViewComponent } from './components/content/recipe-view/rec
 import { RecipeIngredientsViewComponent } from './components/content/recipe-view/recipe-ingredients-view/recipe-ingredients-view.component';
 import { RecipeStepsViewComponent } from './components/content/recipe-view/recipe-steps-view/recipe-steps-view.component';
 import { RecipeImageViewComponent } from './components/content/recipe-view/recipe-image-view/recipe-image-view.component';
+import { LoginFormComponent } from './components/content/auth/login-form/login-form.component';
+import { RegisterFormComponent } from './components/content/auth/register-form/register-form.component';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -73,6 +79,8 @@ import { RecipeImageViewComponent } from './components/content/recipe-view/recip
     RecipeIngredientsViewComponent,
     RecipeStepsViewComponent,
     RecipeImageViewComponent,
+    LoginFormComponent,
+    RegisterFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -100,8 +108,13 @@ import { RecipeImageViewComponent } from './components/content/recipe-view/recip
     TreeModule,
     DynamicDialogModule,
     DialogModule,
+    MessagesModule,
+    MessageModule,
+    ToastModule
   ],
-  providers: [],
+  providers: [
+    MessageService
+  ],
   bootstrap: [AppComponent],
   entryComponents: [
     NewRecipeTypeDialogComponent
