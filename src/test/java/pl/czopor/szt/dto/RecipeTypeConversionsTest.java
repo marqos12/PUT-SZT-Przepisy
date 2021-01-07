@@ -36,7 +36,7 @@ public class RecipeTypeConversionsTest {
 		r3.setParent(r2);
 		r2.setChildren(Arrays.asList(r3,r4));
 		
-		RecipeTypeDto dto = RecipeTypeConverter.mapToDto(r1);
+		RecipeTypeDto dto = new RecipeTypeConverter().mapToDto(r1);
 		
 		assertThat(dto.children).isNotEmpty();
 		assertThat(dto.children.get(0).children).isNotEmpty();

@@ -16,7 +16,8 @@ public class IngredientConverterTest {
 				.name("Chicken")
 				.unit("g")
 				.build();
-		Ingredient ingredient = IngredientConverter.mapFromDto(ingredientDto);
+		
+		Ingredient ingredient = new IngredientConverter().mapFromDto(ingredientDto);
 		
 		assertThat(ingredient.getId()).isEqualTo(ingredientDto.id);
 		assertThat(ingredient.getName()).isEqualTo(ingredientDto.name);

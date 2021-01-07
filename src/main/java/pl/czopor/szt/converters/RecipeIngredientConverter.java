@@ -4,9 +4,9 @@ import pl.czopor.szt.dto.RecipeIngredientDto;
 import pl.czopor.szt.models.Ingredient;
 import pl.czopor.szt.models.RecipeIngredient;
 
-public class RecipeIngredientConverter {
+public class RecipeIngredientConverter implements Converter<RecipeIngredient, RecipeIngredientDto> {
 	
-	public static RecipeIngredient mapFromDto(RecipeIngredientDto ingredientDto) {
+	public RecipeIngredient mapFromDto(RecipeIngredientDto ingredientDto) {
 		Ingredient ingredient = Ingredient.builder()
 				.name(ingredientDto.name)
 				.unit(ingredientDto.unit)
@@ -20,7 +20,7 @@ public class RecipeIngredientConverter {
 				.build();
 	}
 	
-	public static RecipeIngredientDto mapToDto(RecipeIngredient ingredient) {
+	public RecipeIngredientDto mapToDto(RecipeIngredient ingredient) {
 		return RecipeIngredientDto.builder()
 				.id(ingredient.getId())
 				.name(ingredient.getIngredient().getName())

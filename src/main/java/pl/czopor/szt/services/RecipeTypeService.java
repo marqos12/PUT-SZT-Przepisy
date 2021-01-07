@@ -17,16 +17,17 @@ import pl.czopor.szt.models.RecipeType;
 public class RecipeTypeService {
 
 	private RecipeTypeDao recipeTypeDao;
+	private RecipeTypeConverter recipeTypeConverter;
 
 	public RecipeTypeDto saveRecipeType(RecipeTypeDto recipeTypeDto) {
-		RecipeType recipeType = RecipeTypeConverter.mapFromDto(recipeTypeDto);
+		RecipeType recipeType = recipeTypeConverter.mapFromDto(recipeTypeDto);
 		recipeType.setIsRoot(Objects.isNull(recipeType.getParent()));
 		RecipeType savedRecipeType = recipeTypeDao.save(recipeType);
-		return RecipeTypeConverter.mapToDto(savedRecipeType);
+		return recipeTypeConverter.mapToDto(savedRecipeType);
 	}
 
 	public List<RecipeTypeDto> getRecipesByRoot() {
-		return recipeTypeDao.findByIsRootIsTrue().stream().map(RecipeTypeConverter::mapToDto)
+		return recipeTypeDao.findByIsRootIsTrue().stream().map(recipeTypeConverter::mapToDto)
 				.collect(Collectors.toList());
 	}
 

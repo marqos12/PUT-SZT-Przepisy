@@ -14,14 +14,14 @@ public class NewRecipeService {
 
 	private RecipeDao recipeDao;
 	private RecipeIngredientsService recipeIngredientsService;
+	private RecipeConverter recipeConverter;
 
 	public Recipe createAndSaveRecipe(RecipeDto recipeDto) {
-		RecipeConverter recipeConverter = new RecipeConverter();
 		Recipe recipe = recipeConverter.mapFromDto(recipeDto);
 
 		updateIngredients(recipe);
 
-		Recipe newRecipe = recipeDao.save(recipeConverter.recipe);
+		Recipe newRecipe = recipeDao.save(recipe);
 		return newRecipe;
 	}
 

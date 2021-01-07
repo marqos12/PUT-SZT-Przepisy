@@ -8,14 +8,14 @@ import java.util.stream.Collectors;
 import pl.czopor.szt.dto.RecipeTypeDto;
 import pl.czopor.szt.models.RecipeType;
 
-public class RecipeTypeConverter {
+public class RecipeTypeConverter implements Converter<RecipeType, RecipeTypeDto> {
 	
-	public static RecipeTypeDto mapToDto (RecipeType recipeType) {
+	public RecipeTypeDto mapToDto (RecipeType recipeType) {
 		if(Objects.isNull(recipeType)) return null;
 		
 		List<RecipeTypeDto> children = getChildren(recipeType)
 				.stream()
-				.map(RecipeTypeConverter::mapToDto)
+				.map(this::mapToDto)
 				.collect(Collectors.toList());
 		
 		RecipeType parent = recipeType.getParent();
@@ -37,14 +37,14 @@ public class RecipeTypeConverter {
 				: recipeType.getChildren();
 	}
 
-	public static RecipeType mapFromDto(RecipeTypeDto recipeType) {
+	public RecipeType mapFromDto(RecipeTypeDto recipeType) {
 		if (Objects.isNull(recipeType)) {
 			return null;
 		}
 		
 		List<RecipeType> children = getChildren(recipeType)
 				.stream()
-				.map(RecipeTypeConverter::mapFromDto)
+				.map(this::mapFromDto)
 				.collect(Collectors.toList());
 				
 		return RecipeType.builder()
