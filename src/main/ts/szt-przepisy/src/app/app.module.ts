@@ -54,6 +54,7 @@ import { MessageModule } from 'primeng/message';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { SidebarModule } from 'primeng/sidebar';
+import { RecipeComplexityNamePipe } from './common/pipes/recipe-complexity-name.pipe';
 
 @NgModule({
   declarations: [
@@ -82,6 +83,7 @@ import { SidebarModule } from 'primeng/sidebar';
     RecipeImageViewComponent,
     LoginFormComponent,
     RegisterFormComponent,
+    RecipeComplexityNamePipe,
   ],
   imports: [
     BrowserModule,

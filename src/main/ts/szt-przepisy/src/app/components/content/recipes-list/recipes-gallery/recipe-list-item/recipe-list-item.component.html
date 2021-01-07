@@ -11,7 +11,7 @@
         <p>Rodzaj: {{getRecipeType(recipe.recipeType)}}</p>
       </div>
       <div class="p-col-6 p-md-4">
-        <p>Poziom skomplikowania: {{recipe.complexity}}</p>
+        <p>Poziom skomplikowania: {{recipe.complexity | recipeComplexityName}}</p>
         <p>Ocena: {{recipe.mark}}</p>
       </div>
       <div class="p-col-12 p-md-4">
