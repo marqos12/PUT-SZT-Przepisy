@@ -17,7 +17,7 @@
       <label for="portionsInput">Liczba porcji</label>
     </span>
     <div class="p-grid">
-      <div class="p-col">
+      <div class="p-col-12 p-xl-6">
         <div class="p-grid">
           <div class="p-col-7 durationTimeInputContainer">
             <span class="p-float-label withoutMargin">
@@ -31,8 +31,9 @@
           </div>
         </div>
       </div>
-      <div class="p-col ">
-        <p-slider formControlName="durationSlider" [min]="0" [max]="300" (onChange)="durationSliderChange($event)">
+      <div class="p-col-12 p-xl-6">
+        <p-slider formControlName="durationSlider" [min]="0" [max]="300" (onChange)="durationSliderChange($event)"
+          styleClass="durationSlider">
         </p-slider>
       </div>
     </div>
@@ -46,7 +47,8 @@
       </div>
       <div class="p-col p-fluid complexityLevelsContainer">
         <span class="p-float-label">
-          <p-dropdown [options]="complexityLevels" optionValue="value" optionLabel="name" formControlName="complexity"></p-dropdown>
+          <p-dropdown [options]="complexityLevels" optionValue="value" optionLabel="name" formControlName="complexity">
+          </p-dropdown>
           <label for="complexityInput">Poziom skomplikowania</label>
         </span>
       </div>

@@ -3,18 +3,17 @@
   margin-top: 20px;
 
   span {
-    margin-top: 30px;
+    margin-top: 25px;
   }
 
   .formColumn {
-    width: auto;
+    padding-left: 15px;
+    padding-right: 15px;
   }
 
-  .buttonColumn {
-    width: 20%;
-  }
-
-  .Width {
-    width: 100%;
+  .buttonsContainer {
+    height: 100%;
+    max-width: 100px;
+    margin-left: auto;
   }
 }

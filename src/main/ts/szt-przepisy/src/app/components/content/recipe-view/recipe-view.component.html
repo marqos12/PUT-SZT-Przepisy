@@ -1,27 +1,27 @@
 <div class="recipeContainer" *ngIf="isRecipeLoaded">
-    <div class="p-grid">
-      <div class="p-col">
-        <app-recipe-details-view [recipe]="recipe"></app-recipe-details-view>
-      </div>
-      <div class="p-col">
-        <app-recipe-image-view [recipe]="recipe"></app-recipe-image-view>
-      </div>
+  <div class="p-grid">
+    <div class="p-col-12 p-md-6">
+      <app-recipe-details-view [recipe]="recipe"></app-recipe-details-view>
     </div>
-    <div class="p-grid">
-      <div class="p-col">
-        <app-recipe-ingredients-view [recipe]="recipe"></app-recipe-ingredients-view>
-      </div>
-      <div class="p-col">
-        <app-recipe-steps-view [recipe]="recipe"></app-recipe-steps-view>
-      </div>
-    </div>
-    <div class="p-grid buttonRow">
-      <div class="p-col p-fluid">
-        <button pButton pRipple type="button" label="Powrót"
-          class="p-button-raised p-button-danger p-button-text p-button-lg" [routerLink]="'/'" ></button>
-      </div>
-      <div class="p-col p-fluid">
-       <!-- <button pButton pRipple label="Zapisz" class="p-button-lg" (click)="save()"></button>-->
-      </div>
+    <div class="p-col-12 p-md-6">
+      <app-recipe-image-view [recipe]="recipe"></app-recipe-image-view>
     </div>
   </div>
+  <div class="p-grid">
+    <div class="p-col-12 p-md-6">
+      <app-recipe-ingredients-view [recipe]="recipe"></app-recipe-ingredients-view>
+    </div>
+    <div class="p-col-12 p-md-6">
+      <app-recipe-steps-view [recipe]="recipe"></app-recipe-steps-view>
+    </div>
+  </div>
+  <div class="p-grid buttonRow">
+    <div class="p-col p-fluid">
+      <button pButton pRipple type="button" label="Powrót"
+        class="p-button-raised p-button-danger p-button-text p-button-lg" [routerLink]="'/'"></button>
+    </div>
+    <div class="p-col p-fluid">
+      <!-- <button pButton pRipple label="Zapisz" class="p-button-lg" (click)="save()"></button>-->
+    </div>
+  </div>
+</div>

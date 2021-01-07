@@ -76,7 +76,7 @@ export class RecipeTypeSelectComponent implements OnInit, ControlValueAccessor, 
   addNew() {
     const ref = this.dialogService.open(NewRecipeTypeDialogComponent, {
       header: 'Dodaj rodzaj przepisu',
-      width: '70%'
+      width: '1000px',
     });
     ref.onClose.subscribe((recipeType: RecipeTypeDto) => {
       if (recipeType) {
