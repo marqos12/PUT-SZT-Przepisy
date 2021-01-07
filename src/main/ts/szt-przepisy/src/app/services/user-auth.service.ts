@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { Observable, ReplaySubject } from 'rxjs';
 import { User } from '../api/api';
 import { RequestParams, RestService } from './rest.service';
 
@@ -10,7 +10,7 @@ import { RequestParams, RestService } from './rest.service';
   providedIn: 'root'
 })
 export class UserAuthService {
-  private user = new BehaviorSubject<User>(null);
+  private user = new ReplaySubject<User>(1);
   constructor(
     private http: HttpClient,
     private messageService: MessageService,
