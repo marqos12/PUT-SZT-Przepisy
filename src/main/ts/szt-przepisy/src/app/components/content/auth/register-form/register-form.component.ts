@@ -49,7 +49,7 @@ export class RegisterFormComponent implements OnInit {
 
   register() {
     if (this.userRegisterForm.valid) {
-      this.userAuthService.register(this.userRegisterForm.value).subscribe(response => console.log(response));
+      this.userAuthService.register(this.userRegisterForm.value);
     } else {
       this.showHelp = true;
       this.markAllControlsAsTouched();

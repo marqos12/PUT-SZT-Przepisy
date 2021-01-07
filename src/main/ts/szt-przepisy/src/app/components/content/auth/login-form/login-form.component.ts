@@ -25,7 +25,7 @@ export class LoginFormComponent implements OnInit {
 
   login() {
     if (this.userLoginForm.valid) {
-      this.userAuthService.login(this.userLoginForm.value).subscribe(response => console.log(response));
+      this.userAuthService.login(this.userLoginForm.value);
     } else {
       this.markAllControlsAsTouched();
     }

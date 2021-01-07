@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { RecipeDto } from 'src/app/api/api';
+import { RecipeDto, RecipeType } from 'src/app/api/api';
 
 @Component({
   selector: 'app-recipe-list-item',
@@ -15,4 +15,14 @@ export class RecipeListItemComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  getRecipeType(recipeType: RecipeType): string{
+    let ancestors = "";
+    if(recipeType.parent){
+      ancestors =  this.getRecipeType(recipeType.parent);
+      return ancestors + ' > ' + recipeType.name;
+    }
+    return recipeType.name
+  }
+
 }

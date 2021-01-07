@@ -73,7 +73,6 @@ export class NewIngredientFormComponent implements OnInit, OnDestroy {
 
   createIngredient(formValue): RecipeIngredientDto {
     const ingredient = formValue;
-    ingredient.id = ingredient.name.id
     ingredient.name = ingredient.name.name || ingredient.name
     return ingredient;
   }

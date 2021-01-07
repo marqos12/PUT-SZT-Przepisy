@@ -52,6 +52,8 @@ public class Recipe {
 
 	private String shortDescription;
 	private String name;
+
+	@Column(length = 10000)
 	private String image;
 	private RecipeComplexity complexity;
 	private String portions;

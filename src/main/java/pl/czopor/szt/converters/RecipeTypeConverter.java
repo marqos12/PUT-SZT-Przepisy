@@ -11,15 +11,22 @@ import pl.czopor.szt.models.RecipeType;
 public class RecipeTypeConverter {
 	
 	public static RecipeTypeDto mapToDto (RecipeType recipeType) {
+		if(Objects.isNull(recipeType)) return null;
+		
 		List<RecipeTypeDto> children = getChildren(recipeType)
 				.stream()
 				.map(RecipeTypeConverter::mapToDto)
 				.collect(Collectors.toList());
 		
+		RecipeType parent = recipeType.getParent();
+		if(Objects.nonNull(parent))
+			parent.setChildren(null);
+		
 		return RecipeTypeDto
 				.builder()
 				.id(recipeType.getId())
 				.name(recipeType.getName())
+				.parent(mapToDto(parent))
 				.children(children)
 				.build();	
 	}

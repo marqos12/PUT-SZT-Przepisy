@@ -40,11 +40,6 @@ export class HeaderComponent implements OnInit {
         label: 'Lista przepisów',
         icon: 'pi pi-fw pi-list',
         routerLink: "/"
-      },
-      {
-        label: 'Dodaj przepis',
-        icon: 'pi pi-fw pi-plus',
-        routerLink: "add"
       }
     ]
   }
@@ -52,13 +47,13 @@ export class HeaderComponent implements OnInit {
   userNotAuthenticatedMenuItems() {
     return [
       {
-        styleClass: "toRight",
+        styleClass: "toRightFull",
         label: 'Rejestracja',
         icon: 'pi pi-fw pi-user-edit',
         routerLink: "/register"
       },
       {
-        styleClass: "toRight",
+        styleClass: "toRightFull",
         label: 'Logowanie',
         icon: 'pi pi-fw pi-user-plus',
         routerLink: "/login"
@@ -68,6 +63,11 @@ export class HeaderComponent implements OnInit {
 
   userAuthenticatedMenuItems() {
     return [
+      {
+        label: 'Dodaj przepis',
+        icon: 'pi pi-fw pi-plus',
+        routerLink: "add"
+      },
       {
         styleClass: "toRightFull",
         label: this.user.username,

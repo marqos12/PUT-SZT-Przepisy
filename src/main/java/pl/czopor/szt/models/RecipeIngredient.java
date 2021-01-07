@@ -1,5 +1,6 @@
 package pl.czopor.szt.models;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -25,7 +26,7 @@ public class RecipeIngredient {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Recipe recipe;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Ingredient ingredient;
 
 	private Double quantity;

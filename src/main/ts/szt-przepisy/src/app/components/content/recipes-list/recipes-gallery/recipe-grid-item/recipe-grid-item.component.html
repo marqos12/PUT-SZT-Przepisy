@@ -1,7 +1,7 @@
 <div class="recipeGridItem">
   <div class="p-d-flex p-jc-between">
     <p> {{recipe.complexity}}</p>
-    <p> {{recipe.recipeType.name}}</p>
+    <p> {{getRecipeType(recipe.recipeType)}}</p>
   </div>
   <div class="">
     <img [src]="recipe.image" />
