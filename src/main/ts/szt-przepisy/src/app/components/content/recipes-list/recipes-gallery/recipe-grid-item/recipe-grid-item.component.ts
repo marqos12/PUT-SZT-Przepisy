@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { RecipeDto, RecipeType } from 'src/app/api/api';
+import { RecipeDto, RecipeTypeDto } from 'src/app/api/api';
 
 @Component({
   selector: 'app-recipe-grid-item',
@@ -13,11 +13,11 @@ export class RecipeGridItemComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  
-  getRecipeType(recipeType: RecipeType): string{
+
+  getRecipeType(recipeType: RecipeTypeDto): string {
     let ancestors = "";
-    if(recipeType.parent){
-      ancestors =  this.getRecipeType(recipeType.parent);
+    if (recipeType.parent) {
+      ancestors = this.getRecipeType(recipeType.parent);
       return ancestors + ' > ' + recipeType.name;
     }
     return recipeType.name

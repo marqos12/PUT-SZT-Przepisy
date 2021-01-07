@@ -5,7 +5,7 @@
   <p-header>
     <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
       <span>Lista przepisów</span>
-      <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sortuj według"
+      <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sortuj według" styleClass="sortOptions"
         (onChange)="onSortChange($event)" [style]="{'min-width':'15em'}"></p-dropdown>
       <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
     </div>
@@ -15,7 +15,7 @@
     <app-recipe-list-item [recipe]="recipe" class="p-col-12"></app-recipe-list-item>
   </ng-template>
   <ng-template let-recipe pTemplate="gridItem">
-    <app-recipe-grid-item [recipe]="recipe" class="p-col-12 p-md-3"></app-recipe-grid-item>
+    <app-recipe-grid-item [recipe]="recipe" class="p-col-12 p-sm-6 p-md-4"></app-recipe-grid-item>
   </ng-template>
   <ng-template let-item pTemplate="paginatordropdownitem">
     {{item.value}}

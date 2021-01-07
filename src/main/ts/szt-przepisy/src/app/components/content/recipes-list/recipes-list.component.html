@@ -1,8 +1,13 @@
+<p-sidebar [(visible)]="displayFilters" styleClass="filters">
+  <app-recipes-list-filters class="filtersContainer"></app-recipes-list-filters>
+</p-sidebar>
+<button pButton type="button" (click)="displayFilters = true" label="Filtruj" icon="pi pi-filter"
+  class="p-button-sm p-button-primary filterButton"></button>
 <div class="p-grid">
-  <div class="filters p-col">
+  <div class="filtersCol">
     <app-recipes-list-filters></app-recipes-list-filters>
   </div>
-  <div class="p-col">
+  <div class="galleryCol">
     <app-recipes-gallery></app-recipes-gallery>
   </div>
 </div>

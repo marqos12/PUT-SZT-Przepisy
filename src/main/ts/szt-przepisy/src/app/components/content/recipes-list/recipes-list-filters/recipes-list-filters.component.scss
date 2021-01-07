@@ -8,6 +8,8 @@ span {
 
 .filtersContainer {
   margin-top: 10px;
+  width: 350px;
+  max-width: 88vw;
 
   ::ng-deep .p-panel {
     margin-top: 10px;

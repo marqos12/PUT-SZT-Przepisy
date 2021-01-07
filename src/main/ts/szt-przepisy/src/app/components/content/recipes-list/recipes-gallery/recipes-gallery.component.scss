@@ -1,3 +1,11 @@
-::ng-deep .p-dataview {
-  margin-top: 20px;
+::ng-deep {
+  .p-dataview {
+    margin-top: 20px;
+    margin-left: 10px;
+  }
+
+  .sortOptions {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
 }

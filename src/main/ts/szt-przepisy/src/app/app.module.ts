@@ -53,6 +53,7 @@ import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { SidebarModule } from 'primeng/sidebar';
 
 @NgModule({
   declarations: [
@@ -110,7 +111,8 @@ import { MessageService } from 'primeng/api';
     DialogModule,
     MessagesModule,
     MessageModule,
-    ToastModule
+    ToastModule,
+    SidebarModule
   ],
   providers: [
     MessageService
