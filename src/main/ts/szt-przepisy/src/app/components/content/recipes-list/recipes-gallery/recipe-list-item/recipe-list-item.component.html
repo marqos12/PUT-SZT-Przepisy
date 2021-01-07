@@ -7,15 +7,15 @@
     <p>{{recipe.shortDescription}}</p>
     <div class="p-grid">
       <div class="p-col-6 p-md-4">
-        <p>Czas trwania: {{recipe.duration}} min</p>
-        <p>Rodzaj: {{getRecipeType(recipe.recipeType)}}</p>
+        <p><b>Czas trwania:</b> {{recipe.duration}} min</p>
+        <p><b>Rodzaj:</b> {{getRecipeType(recipe.recipeType)}}</p>
       </div>
       <div class="p-col-6 p-md-4">
-        <p>Poziom skomplikowania: {{recipe.complexity | recipeComplexityName}}</p>
-        <p>Ocena: {{recipe.mark}}</p>
+        <p><b>Poziom skomplikowania:</b> {{recipe.complexity | recipeComplexityName}}</p>
+        <p><b>Ocena:</b> {{recipe.mark}}</p>
       </div>
       <div class="p-col-12 p-md-4">
-        <p>Składniki: <span *ngFor="let ingredient of recipe.ingredients">{{ingredient.name}}, </span> </p>
+        <p><b>Składniki:</b> <span *ngFor="let ingredient of recipe.ingredients"> {{ingredient.name}}, </span> </p>
       </div>
     </div>
   </div>
