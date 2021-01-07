@@ -1,11 +1,11 @@
 <div class="userLoginForm">
-  <p-fieldset legend="Logowanie">
+  <p-fieldset legend="Logowanie" styleClass="dataContainer">
     <form [formGroup]="userLoginForm" class="detailsForm">
-      <span class="p-float-label">
+      <span class="p-float-label controlWithLabel">
         <input id="nameInput" type="text" formControlName="username" pInputText>
         <label for="nameInput">Nazwa użytkownika</label>
       </span>
-      <span class="p-float-label">
+      <span class="p-float-label controlWithLabel">
         <input id="passwordInput" type="password" formControlName="password" pInputText>
         <label for="passwordInput">Hasło</label>
       </span>

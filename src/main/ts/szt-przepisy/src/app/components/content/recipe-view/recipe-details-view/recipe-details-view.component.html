@@ -1,21 +1,21 @@
-<p-fieldset legend="Szczegóły przepisu">
-    <div>
-        <h4>Nazwa:</h4> <span>{{recipe.name}}</span>
-    </div>
-    <div>
-        <h4>Opis:</h4> <span [innerHTML]="recipe.description"></span>
-    </div>
-    <div>
-        <h4>Liczba porcji:</h4> <span>{{recipe.portions}}</span>
-    </div>
-    <div>
-        <h4>Czas przyrządzenia:</h4> <span>{{recipe.duration}}</span>
-    </div>
-    <div>
-        <h4>Rodzaj:</h4> <span>{{recipe.recipeType.name}}</span>
-    </div>
-    <div>
-        <h4>Poziom skomplikowania:</h4> <span>{{recipe.complexity}}</span>
-    </div>
-  
-  </p-fieldset>
+<p-fieldset legend="Szczegóły przepisu" styleClass="dataContainer">
+  <div>
+    <h4>Nazwa:</h4> <span>{{recipe.name}}</span>
+  </div>
+  <div>
+    <h4>Opis:</h4> <span [innerHTML]="recipe.description"></span>
+  </div>
+  <div>
+    <h4>Liczba porcji:</h4> <span>{{recipe.portions}}</span>
+  </div>
+  <div>
+    <h4>Czas przyrządzenia:</h4> <span>{{recipe.duration}}</span>
+  </div>
+  <div>
+    <h4>Rodzaj:</h4> <span>{{recipe.recipeType.name}}</span>
+  </div>
+  <div>
+    <h4>Poziom skomplikowania:</h4> <span>{{recipe.complexity}}</span>
+  </div>
+
+</p-fieldset>

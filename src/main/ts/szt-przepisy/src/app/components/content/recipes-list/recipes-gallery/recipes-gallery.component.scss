@@ -1,10 +1,18 @@
 ::ng-deep {
-  .p-dataview {
+  .recipesList {
     margin-top: 20px;
     margin-left: 10px;
   }
+}
 
-  .sortOptions {
+.header {
+  h3 {
+    margin: 0;
+  }
+}
+
+@media screen and (max-width:767px) {
+  ::ng-deep .sortOptions {
     margin-top: 15px;
     margin-bottom: 15px;
   }

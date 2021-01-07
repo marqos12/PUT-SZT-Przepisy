@@ -1,4 +1,4 @@
-<p-fieldset legend="Lista składników">
+<p-fieldset legend="Lista składników" styleClass="dataContainer">
   <div class="p-fluid">
     <app-recipe-ingredient *ngFor="let ingredient of ingredients" [ingredient]="ingredient"></app-recipe-ingredient>
     <app-new-ingredient-form *ngIf="showNewIngredientForm" (closeForm)="toggleShowIngredientForm()">

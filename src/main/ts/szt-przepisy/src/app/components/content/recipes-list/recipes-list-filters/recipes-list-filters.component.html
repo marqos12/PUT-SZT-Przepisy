@@ -2,13 +2,13 @@
   <button pButton pRipple label="Wyszukaj" class="p-button-lg" (click)="filter()"></button>
 
   <form [formGroup]="filtersForm">
-    <p-panel header="Nazwa" [toggleable]="true">
+    <p-panel header="Nazwa" [toggleable]="true" styleClass="controlContainer">
       <span class="p-float-label">
         <input id="nameInput" type="text" formControlName="name" pInputText>
         <label for="nameInput">Nazwa</label>
       </span>
     </p-panel>
-    <p-panel header="Czas trwania" [toggleable]="true" class="duration">
+    <p-panel header="Czas trwania" [toggleable]="true" class="duration" styleClass="controlContainer">
       <div class="p-grid">
         <div class="p-col">
           <span class="p-float-label">
@@ -27,20 +27,20 @@
         (onChange)="durationSliderChange($event)">
       </p-slider>
     </p-panel>
-    <p-panel header="Poziom skomplikowania" [toggleable]="true">
+    <p-panel header="Poziom skomplikowania" [toggleable]="true" styleClass="controlContainer">
       <span class="p-float-label p-fluid">
         <p-multiSelect [options]="complexityLevels" formControlName="complexity" optionLabel="name" defaultLabel="">
         </p-multiSelect>
         <label for="complexityInput">Poziom skomplikowania</label>
       </span>
     </p-panel>
-    <p-panel header="Rodzaj" [toggleable]="true">
+    <p-panel header="Rodzaj" [toggleable]="true" styleClass="controlContainer">
       <div>
         <label for="recipeTypeInput" class="floatingLabel">Rodzaj</label>
         <app-recipe-type-select formControlName="type" [multiple]="true" [allowAddNew]="false"></app-recipe-type-select>
       </div>
     </p-panel>
-    <p-panel header="Wymagane składniki" [toggleable]="true">
+    <p-panel header="Wymagane składniki" [toggleable]="true" styleClass="controlContainer">
       <span class="p-float-label p-fluid">
         <p-multiSelect [options]="ingredients" formControlName="ingredients" optionLabel="name" defaultLabel="">
         </p-multiSelect>

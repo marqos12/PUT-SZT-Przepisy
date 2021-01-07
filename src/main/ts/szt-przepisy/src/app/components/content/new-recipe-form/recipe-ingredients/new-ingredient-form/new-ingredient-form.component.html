@@ -3,13 +3,13 @@
     <div class="p-col-12 p-sm-9 p-md-12 p-lg-9 formColumn">
       <div class="p-grid">
         <div class="p-col">
-          <span class="p-float-label">
+          <span class="p-float-label controlWithLabel">
             <input id="quantityInput" type="text" formControlName="quantity" pInputText>
             <label for="quantityInput">Ilość</label>
           </span>
         </div>
         <div class="p-col">
-          <span class="p-float-label">
+          <span class="p-float-label controlWithLabel">
             <p-autoComplete formControlName="name" [delay]="0" [suggestions]="suggestedIngredients" field="name"
               (completeMethod)="searchIngredient($event)" (onSelect)="onIngredientSelect($event)">
               <ng-template let-ingredient pTemplate="selectedIngredient">
@@ -22,13 +22,13 @@
       </div>
       <div class="p-grid">
         <div class="p-col">
-          <span class="p-float-label">
+          <span class="p-float-label controlWithLabel">
             <input id="unitInput" type="text" formControlName="unit" pInputText>
             <label for="unitInput">Jednostka</label>
           </span>
         </div>
         <div class="p-col">
-          <span class="p-float-label fullWidth">
+          <span class="p-float-label fullWidth controlWithLabel">
             <p-toggleButton onLabel="Wymagane" offLabel="Niewymagane" formControlName="required" class="fullWidth">
             </p-toggleButton>
           </span>

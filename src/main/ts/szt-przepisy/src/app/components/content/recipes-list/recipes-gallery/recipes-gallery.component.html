@@ -1,10 +1,10 @@
-<p-dataView [value]="recipes" [paginator]="true" [rows]="10"
+<p-dataView [value]="recipes" [paginator]="true" [rows]="10" styleClass="recipesList"
   [totalRecords]="recipesPage ? recipesPage.numberOfElements : 0" [lazy]="true"
   (onLazyLoad)="onPaginationChange($event)" [loading]="isLoading" [rowsPerPageOptions]="rowsPerPageOptions">
 
   <p-header>
-    <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
-      <span>Lista przepisów</span>
+    <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between header">
+      <h3>Lista przepisów</h3>
       <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sortuj według" styleClass="sortOptions"
         (onChange)="onSortChange($event)" [style]="{'min-width':'15em'}"></p-dropdown>
       <p-dataViewLayoutOptions></p-dataViewLayoutOptions>

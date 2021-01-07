@@ -1,47 +1,43 @@
 .recipeDetailsForm {
-  span {
-    margin-bottom: 30px;
-    margin-top: 10px;
+  ::ng-deep {
+    .durationSlider {
+      margin-top: 25px;
+    }
 
-    &.withoutMargin {
-      margin-bottom: 0;
-      margin-top: 0;
+    .error {
+      color: red;
+
+      .descriptionInput {
+        border: 1px solid red;
+        border-radius: 3px;
+      }
     }
   }
 
-  .floatingLabel {
-    font-size: 12px;
-    top: -0.2rem;
-    margin-top: -.5rem;
-    left: .5rem;
-    position: relative;
-    color: #6c757d;
-  }
+  .durationContainer {
+    padding-top: 0;
+    margin-top: -10px;
 
-  .error {
-    color: red;
+    .durationTime {
+      margin-top: 15px;
+    }
 
-    ::ng-deep .p-editor-container {
-      border: 1px solid red;
-      border-radius: 3px;
+    .durationTimeInputContainer {
+      padding-top: 0;
+
+      .controlWithLabel {
+        margin-bottom: 0;
+      }
     }
   }
 
-  ::ng-deep .p-slider {
-    margin-top: 25px;
-  }
+  .recieTypeContainer {
+    height: 80px;
+    margin-top: -10px;
 
-  .durationTime {
-    margin-top: 15px;
-  }
-
-
-  .complexityLevelsContainer {
-    margin-top: 11px;
-  }
-
-  .durationTimeInputContainer {
-    margin-top: 10px;
+    .complexityLevelsContainer {
+      margin-top: 6px;
+    }
   }
 }
 

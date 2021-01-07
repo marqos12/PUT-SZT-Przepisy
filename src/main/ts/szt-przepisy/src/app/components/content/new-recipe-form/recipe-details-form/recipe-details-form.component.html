@@ -1,26 +1,26 @@
-<p-fieldset legend="Szczegóły przepisu">
+<p-fieldset legend="Szczegóły przepisu" styleClass="dataContainer">
   <form [formGroup]="recipeDetailsForm" class="recipeDetailsForm  p-fluid">
-    <span class="p-float-label">
+    <span class="p-float-label controlWithLabel">
       <input id="nameInput" type="text" formControlName="name" pInputText>
       <label for="nameInput">Nazwa</label>
     </span>
-    <span class="p-float-label">
+    <span class="p-float-label controlWithLabel">
       <textarea id="shortDescriptionIput" type="text" formControlName="shortDescription" pInputText></textarea>
       <label for="shortDescriptionIput">Krótki opis</label>
     </span>
-    <span class="p-float-label">
+    <span class="p-float-label controlWithLabel">
       <input id="imageInput" type="text" formControlName="image" pInputText>
       <label for="imageInput">Zdjęcie</label>
     </span>
-    <span class="p-float-label">
+    <span class="p-float-label controlWithLabel">
       <input id="portionsInput" type="text" formControlName="portions" pInputText>
       <label for="portionsInput">Liczba porcji</label>
     </span>
-    <div class="p-grid">
+    <div class="p-grid durationContainer">
       <div class="p-col-12 p-xl-6">
         <div class="p-grid">
           <div class="p-col-7 durationTimeInputContainer">
-            <span class="p-float-label withoutMargin">
+            <span class="p-float-label controlWithLabel">
               <input id="durationInput" type="number" min="0" max="300" formControlName="duration" pInputText>
               <label for="durationInput">Czas przyrządzenia [min]</label>
             </span>
@@ -37,7 +37,7 @@
         </p-slider>
       </div>
     </div>
-    <div class="p-grid">
+    <div class="p-grid recieTypeContainer">
       <div class="p-col">
         <div>
           <label for="recipeTypeInput" class="floatingLabel">Rodzaj</label>
@@ -46,18 +46,18 @@
         </div>
       </div>
       <div class="p-col p-fluid complexityLevelsContainer">
-        <span class="p-float-label">
+        <span class="p-float-label controlWithLabel">
           <p-dropdown [options]="complexityLevels" optionValue="value" optionLabel="name" formControlName="complexity">
           </p-dropdown>
           <label for="complexityInput">Poziom skomplikowania</label>
         </span>
       </div>
     </div>
-    <span class="p-float-label"
+    <div
       [ngClass]="{'error': (!recipeDetailsForm.controls.description.valid && recipeDetailsForm.controls.description.dirty)}">
-      <span>Opis</span>
-      <p-editor formControlName="description" [style]="{'height':'220px'}"></p-editor>
-    </span>
+      <span class="floatingLabel">Opis</span>
+      <p-editor formControlName="description" [style]="{'height':'220px'}" styleClass="descriptionInput"></p-editor>
+    </div>
 
   </form>
 </p-fieldset>

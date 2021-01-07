@@ -1,16 +1,16 @@
 <div class="userRegisterForm">
-  <p-fieldset legend="Rejestracja">
+  <p-fieldset legend="Rejestracja" styleClass="dataContainer">
     <form [formGroup]="userRegisterForm" class="detailsForm">
-      <div class="controlContainer">
-        <span class="p-float-label">
+      <div>
+        <span class="p-float-label controlWithLabel">
           <input id="usernameInput" type="text" formControlName="username" pInputText>
           <label for="usernameInput">Nazwa użytkownika</label>
         </span>
         <small *ngIf="showHelp && userRegisterForm.controls.username.invalid" id="username-help" class="p-invalid">Login
           jest zbyt krótki (min 3 znaki).</small>
       </div>
-      <div class="controlContainer">
-        <span class="p-float-label">
+      <div>
+        <span class="p-float-label controlWithLabel">
           <input id="passwordInput" type="password" formControlName="password" pInputText>
           <label for="passwordInput">Hasło</label>
         </span>
@@ -18,8 +18,8 @@
           jest zbyt słabe (powinno zawierać co najmniej 8 znaków, w tym małe i duże litery oraz liczby i znaki
           specjalne).</small>
       </div>
-      <div class="controlContainer">
-        <span class="p-float-label">
+      <div>
+        <span class="p-float-label controlWithLabel">
           <input id="passwordConfirmationInput" type="password" formControlName="passwordConfirmation" pInputText>
           <label for="passwordConfirmationInput">Powtórz hasło</label>
         </span>
