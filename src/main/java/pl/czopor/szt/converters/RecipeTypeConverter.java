@@ -5,9 +5,12 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import org.springframework.stereotype.Service;
+
 import pl.czopor.szt.dto.RecipeTypeDto;
 import pl.czopor.szt.models.RecipeType;
 
+@Service
 public class RecipeTypeConverter implements Converter<RecipeType, RecipeTypeDto> {
 	
 	public RecipeTypeDto mapToDto (RecipeType recipeType) {

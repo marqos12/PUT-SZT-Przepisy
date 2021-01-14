@@ -1,8 +1,11 @@
 package pl.czopor.szt.converters;
 
+import org.springframework.stereotype.Service;
+
 import pl.czopor.szt.dto.StepDto;
 import pl.czopor.szt.models.Step;
 
+@Service
 public class StepConverter implements Converter<Step, StepDto> {
 
 	public Step mapFromDto(StepDto stepDto) {

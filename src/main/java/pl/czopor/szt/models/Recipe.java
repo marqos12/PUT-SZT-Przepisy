@@ -53,17 +53,18 @@ public class Recipe {
 	private String shortDescription;
 	private String name;
 
-	@Column(length = 10000)
-	private String image;
 	private RecipeComplexity complexity;
 	private String portions;
 	private Long duration;
 	private Double mark;
 
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<RecipeIngredient> ingredients;
 
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Step> steps;
+
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Image> images;
 
 }

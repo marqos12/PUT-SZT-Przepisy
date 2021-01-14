@@ -1,9 +1,12 @@
 package pl.czopor.szt.converters;
 
+import org.springframework.stereotype.Service;
+
 import pl.czopor.szt.dto.RecipeIngredientDto;
 import pl.czopor.szt.models.Ingredient;
 import pl.czopor.szt.models.RecipeIngredient;
 
+@Service
 public class RecipeIngredientConverter implements Converter<RecipeIngredient, RecipeIngredientDto> {
 	
 	public RecipeIngredient mapFromDto(RecipeIngredientDto ingredientDto) {

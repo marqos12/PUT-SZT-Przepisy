@@ -1,12 +1,9 @@
 package pl.czopor.szt.dto;
 
-import java.util.List;
+import lombok.Builder;
 
-import pl.czopor.szt.enums.Role;
-
+@Builder
 public class UserDto {
 	public Long id;
 	public String username;
-	public String password;
-	public List<Role> authorities;
 }
