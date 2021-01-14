@@ -34,7 +34,6 @@ export class RecipeDetailsFormComponent implements OnInit, OnDestroy {
   initForm() {
     this.recipeDetailsForm = this.formBuilder.group({
       description: ['', Validators.required],
-      image: '',
       duration: [0, Validators.required],
       durationSlider: 0,
       recipeType: ['', Validators.required],

@@ -1,0 +1,27 @@
+.imageContainer {
+  border: 1px solid #dee2e6;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.detailsContainer {
+  width: calc(100% - 170px);
+  min-width: fit-content;
+}
+
+.imageCol {
+  width: 170px;
+
+  .imagePreview {
+    width: 150px;
+  }
+}
+
+.nameCol {
+  width: auto;
+  margin-right: 10px;
+}
+
+.removeButtonCol {
+  width: 50px;
+}

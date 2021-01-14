@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { RecipeDto, RecipeType, RecipeTypeDto } from 'src/app/api/api';
+import { ImageDto, RecipeDto, RecipeTypeDto } from 'src/app/api/api';
 
 @Component({
   selector: 'app-recipe-list-item',
@@ -23,6 +23,10 @@ export class RecipeListItemComponent implements OnInit {
       return ancestors + ' > ' + recipeType.name;
     }
     return recipeType.name
+  }
+
+  getImage(image: ImageDto) {
+    return `/api/images/download/${image.thumbnailImageSrc}`
   }
 
 }

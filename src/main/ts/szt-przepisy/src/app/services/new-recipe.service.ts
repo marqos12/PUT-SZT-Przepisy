@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { RecipeIngredientDto, RecipeDto, StepDto, User } from '../api/api';
+import { ImagesService } from './images.service';
 import { RestService } from './rest.service';
 import { UserAuthService } from './user-auth.service';
 
@@ -18,12 +19,13 @@ export class NewRecipeService {
   private steps = new BehaviorSubject<StepDto[]>([]);
 
   constructor(
-    private restService: RestService, 
+    private restService: RestService,
     private router: Router,
-    private userAuthService: UserAuthService
-    ) { 
-      this.init();
-    }
+    private userAuthService: UserAuthService,
+    private imagesService: ImagesService
+  ) {
+    this.init();
+  }
 
   init() {
     this.ingredientsList = [];
@@ -62,13 +64,17 @@ export class NewRecipeService {
   }
 
   private onRecipeSaveSuccess(recipe: RecipeDto) {
+    this.imagesService.saveImages(recipe.id.toString()).subscribe(this.onImagesSaveSuccess.bind(this));
+  }
+
+  private onImagesSaveSuccess(recipe: RecipeDto) {
     this.router.navigate(['/recipe/' + recipe.id]);
   }
 
   private buildRecipe(recipe: RecipeDto) {
     recipe.ingredients = this.ingredientsList;
     recipe.steps = this.stepsList;
-    recipe.user = this.user;
+    recipe.images = [];
     return recipe;
   }
 }

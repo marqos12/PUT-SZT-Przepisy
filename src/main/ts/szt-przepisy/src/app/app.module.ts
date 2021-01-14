@@ -25,7 +25,7 @@ import { RecipeIngredientComponent } from './components/content/new-recipe-form/
 import { RecipeStepComponent } from './components/content/new-recipe-form/recipe-steps/recipe-step/recipe-step.component';
 import { RecipeStepFormComponent } from './components/content/new-recipe-form/recipe-steps/recipe-step-form/recipe-step-form.component';
 import { EditorModule } from 'primeng/editor';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { RecipesListFiltersComponent } from './components/content/recipes-list/recipes-list-filters/recipes-list-filters.component';
 import { RecipesGalleryComponent } from './components/content/recipes-list/recipes-gallery/recipes-gallery.component';
 import { PanelMenuModule } from 'primeng/panelmenu';
@@ -55,6 +55,8 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { SidebarModule } from 'primeng/sidebar';
 import { RecipeComplexityNamePipe } from './common/pipes/recipe-complexity-name.pipe';
+import { FileUploadModule } from 'primeng/fileupload';
+import { ImagePreviewComponent } from './components/content/new-recipe-form/recipe-image/image-preview/image-preview.component';
 
 @NgModule({
   declarations: [
@@ -84,6 +86,7 @@ import { RecipeComplexityNamePipe } from './common/pipes/recipe-complexity-name.
     LoginFormComponent,
     RegisterFormComponent,
     RecipeComplexityNamePipe,
+    ImagePreviewComponent,
   ],
   imports: [
     BrowserModule,
@@ -114,7 +117,8 @@ import { RecipeComplexityNamePipe } from './common/pipes/recipe-complexity-name.
     MessagesModule,
     MessageModule,
     ToastModule,
-    SidebarModule
+    SidebarModule,
+    FileUploadModule
   ],
   providers: [
     MessageService

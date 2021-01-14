@@ -4,7 +4,9 @@
     <p><b>{{getRecipeType(recipe.recipeType)}}</b> </p>
   </div>
   <div class="">
-    <img [src]="recipe.image" />
+    <div *ngIf=recipe.images[0]>
+      <img [src]="getImage(recipe.images[0])">
+    </div>
   </div>
   <div class="">
     <h2>{{recipe.name}}</h2>

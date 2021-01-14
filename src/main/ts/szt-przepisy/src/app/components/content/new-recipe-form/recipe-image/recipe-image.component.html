@@ -1,3 +1,15 @@
 <p-fieldset legend="Zdjęcie poglądowe" styleClass="dataContainer">
-  lorem ipsum
+  <p-fileUpload chooseLabel="Dodaj zdjęcia" [showCancelButton]="false"
+    multiple="multiple" [showUploadButton]="false" accept="image/*" 
+    customUpload="true" (onSelect)="onSelect($event)" (paste)="onPaste($event)">
+    <ng-template let-file pTemplate="file">
+      <app-image-preview [image]="file">
+      </app-image-preview>
+    </ng-template>
+    <ng-template pTemplate="content" let-files>
+      <p>Przeciągnij lub wklej obrazy</p>
+      <app-image-preview *ngFor="let image of images" [image]="image">
+      </app-image-preview>
+    </ng-template>
+  </p-fileUpload>
 </p-fieldset>

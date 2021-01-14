@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { RecipeDto, RecipeTypeDto } from 'src/app/api/api';
+import { ImageDto, RecipeDto, RecipeTypeDto } from 'src/app/api/api';
 
 @Component({
   selector: 'app-recipe-grid-item',
@@ -22,4 +22,9 @@ export class RecipeGridItemComponent implements OnInit {
     }
     return recipeType.name
   }
+
+  getImage(image: ImageDto) {
+    return `/api/images/download/${image.thumbnailImageSrc}`
+  }
+
 }
