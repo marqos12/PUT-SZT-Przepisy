@@ -1,0 +1,40 @@
+::ng-deep {
+
+  .imageGallery {
+    width: 100%;
+    display: block;
+    background-color: rgba(0, 0, 0, 0.9);
+
+    p-galleriaitem {
+      width: 100%;
+    }
+
+    .p-galleria-item-wrapper,
+    .p-galleria-item-container {
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  .image {
+    display: block;
+    width: 100%;
+    text-align: center;
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+
+  .gallery-thumbnail {
+    width: 60px;
+    padding: 5px;
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+
+}

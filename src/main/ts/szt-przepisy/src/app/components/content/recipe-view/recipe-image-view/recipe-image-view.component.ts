@@ -7,11 +7,22 @@ import { RecipeDto } from 'src/app/api/api';
   styleUrls: ['./recipe-image-view.component.scss']
 })
 export class RecipeImageViewComponent implements OnInit {
+  customView = false;
+  activeIndex;
 
-  @Input() recipe:RecipeDto;
+  @Input() recipe: RecipeDto;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  openFullscreen(activeImage) {
+    this.customView = true;
+    this.activeIndex = this.recipe
+      .images
+      .map(image => image.previewImageSrc)
+      .indexOf(activeImage.previewImageSrc);
   }
 
 }

@@ -1,3 +1,29 @@
-<p-fieldset legend="Zdjęcie poglądowe" styleClass="dataContainer">
-  lorem ipsum
+<p-fieldset legend="Galeria zdjęć">
+  <div class="imageContainer">
+
+    <p-galleria [value]="recipe.images" [(visible)]="!customView" [numVisible]="5" [circular]="true"
+      [showItemNavigators]="true" [autoPlay]="true" [transitionInterval]="5000" class="imageGallery"
+      [showItemNavigatorsOnHover]="true" thumbnailsPosition="left">
+      <ng-template pTemplate="item" let-item>
+        <div class="image">
+          <img [src]="item.previewImageSrc" [alt]="item.alt" (click)="openFullscreen(item)" />
+        </div>
+      </ng-template>
+      <ng-template pTemplate="thumbnail" let-item>
+        <div class="gallery-thumbnail">
+          <img [src]="item.thumbnailImageSrc" class="thumbnailImage" />
+        </div>
+      </ng-template>
+    </p-galleria>
+  </div>
+
+  <p-galleria [(value)]="recipe.images" [(visible)]="customView" [(activeIndex)]="activeIndex"
+    [containerStyle]="{'max-width': 'min(850px, calc(100% - 40px))'}" [numVisible]="7" [circular]="true"
+    [fullScreen]="true" [showItemNavigators]="true" [showThumbnails]="false" [baseZIndex]="100000">
+    <ng-template pTemplate="item" let-item>
+      <img [src]="item.previewImageSrc" style="width: 100%; display: block;" />
+    </ng-template>
+  </p-galleria>
+
+
 </p-fieldset>

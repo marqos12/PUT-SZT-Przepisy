@@ -20,15 +20,23 @@ public class FileSystemStorageService {
 	private String RESOURCES_PATH;
 
 	public String save(byte[] content, String imageName) throws Exception {
-		
+
 		long timeStamp = new Date().getTime();
-		String fileName = timeStamp + imageName;
+		String fileName = reduceInvalidSigns(timeStamp + imageName);
 		Path newFile = Paths.get(RESOURCES_PATH + fileName);
 		Files.createDirectories(newFile.getParent());
 
 		Files.write(newFile, content);
 
 		return fileName;
+	}
+	
+	private String reduceInvalidSigns(String value) {
+		String[] invalidSigns = {};
+		for(String sign : invalidSigns) {
+			value.replaceAll(sign, "");
+		}
+		return value;
 	}
 
 	public Resource loadFileAsResource(String imageName) throws Exception {

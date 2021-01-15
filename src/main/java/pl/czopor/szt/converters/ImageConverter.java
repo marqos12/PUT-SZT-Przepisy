@@ -14,6 +14,7 @@ import static pl.czopor.szt.services.ImageService.THUMBNAIL_PREFIX;
 @Service
 public class ImageConverter implements Converter<Image, ImageDto> {
 	private RecipeDao recipeDao;
+	private final String IMAGE_DOWNLOAD_ENDPOINT = "/api/images/download/";
 
 	@Override
 	public Image mapFromDto(ImageDto imageDto) {
@@ -35,8 +36,8 @@ public class ImageConverter implements Converter<Image, ImageDto> {
 				.type(image.getType())
 				.alt(image.getAlt())
 				.recipeId(image.getRecipe().getId())
-				.previewImageSrc(image.getImageSrc())
-				.thumbnailImageSrc(THUMBNAIL_PREFIX + image.getImageSrc())
+				.previewImageSrc(IMAGE_DOWNLOAD_ENDPOINT + image.getImageSrc())
+				.thumbnailImageSrc(IMAGE_DOWNLOAD_ENDPOINT + THUMBNAIL_PREFIX + image.getImageSrc())
 				.build();
 	}
 
