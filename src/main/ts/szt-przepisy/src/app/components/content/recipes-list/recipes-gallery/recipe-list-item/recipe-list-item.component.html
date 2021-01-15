@@ -1,7 +1,7 @@
 <div class="recipeListItem p-grid vertical-container">
   <div class="p-col-12 p-lg-3 p-md-4 imgCol">
     <div *ngIf=recipe.images[0]>
-      <img [src]="getImage(recipe.images[0])">
+      <img [src]="recipe.images[0].thumbnailImageSrc">
     </div>
   </div>
   <div class="p-col-12 p-lg-7 p-md-8 ">

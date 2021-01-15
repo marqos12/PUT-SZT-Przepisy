@@ -25,8 +25,4 @@ export class RecipeListItemComponent implements OnInit {
     return recipeType.name
   }
 
-  getImage(image: ImageDto) {
-    return `/api/images/download/${image.thumbnailImageSrc}`
-  }
-
 }

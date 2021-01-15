@@ -1,8 +1,12 @@
-.dataContainer {
-  height:100%;
+html {
+  font-size: 20px;
 }
 
-.controlWithLabel{
+.dataContainer {
+  height: 100%;
+}
+
+.controlWithLabel {
   margin-top: 15px;
   margin-bottom: 30px;
 }
@@ -14,4 +18,10 @@
   left: .5rem;
   position: relative;
   color: #6c757d;
+}
+
+@media (max-width:1400px) {
+  html {
+    font-size: 16px;
+  }
 }
