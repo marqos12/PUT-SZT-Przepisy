@@ -1,7 +1,10 @@
-<div>
-    <i class="pi pi-circle-on" *ngIf="ingredient.required"></i>
-    <i class="pi pi-circle-off" *ngIf="!ingredient.required"></i>
-    <span class="name"> {{ingredient.name}} </span>
-    <span class="quantity"> {{ingredient.quantity}} </span>
-    <span class="unit"> [{{ingredient.unit}}] </span>
+<div class="ingredientContainer">
+  <i class="pi pi-circle-on" *ngIf="ingredient.required"></i>
+  <i class="pi pi-circle-off" *ngIf="!ingredient.required"></i>
+  <span class="name"> {{ingredient.name}} </span>
+  <span class="quantity"> {{ingredient.quantity}} </span>
+  <span class="unit"> [{{ingredient.unit}}] </span>
+
+  <i class="pi pi-pencil editButton" (click)="edit()"></i>
+  <i class="pi pi-trash editButton" (click)="remove()"></i>
 </div>

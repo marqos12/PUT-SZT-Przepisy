@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { StepDto } from 'src/app/api/api';
 
 @Component({
@@ -8,12 +8,33 @@ import { StepDto } from 'src/app/api/api';
 })
 export class RecipeStepComponent implements OnInit {
 
-  @Input()
-  step: StepDto;
+  @Output() onEditClick = new EventEmitter();
+  @Output() onRemoveClick = new EventEmitter();
+  @Output() onChangeNumber = new EventEmitter();
+
+  @Input() step: StepDto;
+  @Input() isFirst: boolean;
+  @Input() isLast: boolean;
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  edit() {
+    this.onEditClick.emit();
+  }
+
+  remove() {
+    this.onRemoveClick.emit();
+  }
+
+  down() {
+    this.onChangeNumber.emit(2)
+  }
+
+  up() {
+    this.onChangeNumber.emit(-2)
   }
 
 }

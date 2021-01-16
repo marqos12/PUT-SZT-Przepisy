@@ -2,6 +2,7 @@ import { Injectable, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { PageDto, RecipeDto, RecipeFilters, RecipeIngredientDto } from '../api/api';
 import { RestService } from './rest.service';
+import { UserAuthService } from './user-auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,10 @@ export class RecipesService implements OnInit {
     sortDirection: "desc"
   };
 
-  constructor(private rest: RestService) { }
+  constructor(
+    private rest: RestService,
+    private userAuthService: UserAuthService
+  ) { }
 
   ngOnInit(): void {
   }
@@ -45,9 +49,20 @@ export class RecipesService implements OnInit {
     return this.recipes.asObservable();
   }
 
-  public getRecipeById(id:string): Observable<RecipeDto> {
+  public getRecipeById(id: string): Observable<RecipeDto> {
     const recipeUrl = '/api/recipe/' + id;
     return this.rest.get(recipeUrl);
+  }
+
+  public checkUserIsAuthor(params: { recipe, successCallback, errorCallback }) {
+    var subscription = this.userAuthService.getLoggedUser().subscribe(user => {
+      if (user.id == params.recipe.user.id) {
+        params.successCallback();
+      } else if (params.errorCallback) {
+        params.errorCallback();
+      }
+      setTimeout(x => subscription.unsubscribe(), 1000);
+    })
   }
 
 }

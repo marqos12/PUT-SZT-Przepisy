@@ -53,7 +53,7 @@ public class RecipeConverter implements Converter<Recipe, RecipeDto> {
 		List<ImageDto> images = getImagesForRecipe(recipe);
 		UserDto user = null;
 		if(Objects.nonNull(recipe.getUser()))
-			user = UserDto.builder().username(recipe.getUser().getUsername()).build();
+			user = UserDto.builder().id(recipe.getUser().getId()).username(recipe.getUser().getUsername()).build();
 		return RecipeDto.builder().id(recipe.getId()).user(user).description(recipe.getDescription())
 				.images(images).duration(recipe.getDuration()).mark(recipe.getMark()).recipeType(recipeType)
 				.createdAt(recipe.getCreatedAt()).updatedAt(recipe.getUpdatedAt()).name(recipe.getName())

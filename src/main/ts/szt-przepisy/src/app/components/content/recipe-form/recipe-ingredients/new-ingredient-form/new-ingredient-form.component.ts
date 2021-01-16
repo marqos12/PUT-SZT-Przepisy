@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { IngredientDto, RecipeIngredientDto } from 'src/app/api/api';
 import { IngredientsService } from 'src/app/services/ingredients.service';
-import { NewRecipeService } from 'src/app/services/new-recipe.service';
+import { SingleRecipeService } from 'src/app/services/single-recipe.service';
 
 @Component({
   selector: 'app-new-ingredient-form',
@@ -23,7 +23,7 @@ export class NewIngredientFormComponent implements OnInit, OnDestroy {
   constructor(
     private formBuilder: FormBuilder,
     private ingredientsService: IngredientsService,
-    private newRecipeService: NewRecipeService
+    private singleRecipeService: SingleRecipeService
   ) { }
 
 
@@ -50,6 +50,18 @@ export class NewIngredientFormComponent implements OnInit, OnDestroy {
     })
   }
 
+  public initFormByIngredient(ingredient: RecipeIngredientDto) {
+    let ingredientObj = this.ingredients.filter(i => i.name == ingredient.name)[0]
+    this.newIngredientForm = this.formBuilder.group({
+      name: [ingredientObj, Validators.required],
+      unit: [ingredient.unit, Validators.required],
+      quantity: [ingredient.quantity, Validators.required],
+      required: ingredient.required,
+      id: ingredient.id,
+      isNew: ingredient.isNew,
+    })
+  }
+
   registerIngredientsListener() {
     this.ingredientsSubscription = this.ingredientsService.registerListener(ingredients => this.ingredients = ingredients);
   }
@@ -64,10 +76,20 @@ export class NewIngredientFormComponent implements OnInit, OnDestroy {
 
   onAddIngredient() {
     if (this.newIngredientForm.valid) {
-      this.newRecipeService.addIngredient(this.createIngredient(this.newIngredientForm.value));
+      this.addOrEditIngredient();
       this.initForm();
     } else {
       this.markAllControlsAsTouched()
+    }
+  }
+
+  addOrEditIngredient() {
+    if (this.newIngredientForm.value.id || this.newIngredientForm.value.isNew) {
+      this.singleRecipeService.editIngredient(this.createIngredient(this.newIngredientForm.value));
+    } else {
+      const ingredient = this.newIngredientForm.value
+      ingredient.isNew = true
+      this.singleRecipeService.addIngredient(this.createIngredient(ingredient));
     }
   }
 
@@ -84,7 +106,11 @@ export class NewIngredientFormComponent implements OnInit, OnDestroy {
   }
 
   close() {
-    this.closeForm.emit();
+    if (this.newIngredientForm.value.id || this.newIngredientForm.value.isNew) {
+      this.initForm();
+    } else {
+      this.closeForm.emit();
+    }
   }
 
 }

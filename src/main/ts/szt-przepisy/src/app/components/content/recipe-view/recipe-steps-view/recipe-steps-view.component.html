@@ -1,5 +1,5 @@
 <p-fieldset legend="Lista kroków" styleClass="dataContainer">
-  <div *ngFor="let step of recipe.steps" class="p-d-flex p-ai-center">
+  <div *ngFor="let step of sortSteps(recipe.steps)" class="p-d-flex p-ai-center">
     <span class="number"> {{step.number}}. </span>
     <span class="description" [innerHTML]="step.description"></span>
   </div>

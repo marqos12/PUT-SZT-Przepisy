@@ -1,4 +1,9 @@
-<div class="p-d-flex p-ai-center">
-    <span class="number"> {{step.number}}. </span>
-    <span class="description" [innerHTML]="step.description"></span>
+<div class="p-d-flex p-ai-center stepContainer">
+  <span class="number"> {{step.number}}. </span>
+  <span class="description" [innerHTML]="step.description"></span>
+
+  <i class="pi pi-angle-down editButton" (click)="down()" *ngIf="!isLast"></i>
+  <i class="pi pi-angle-up editButton" (click)="up()" *ngIf="!isFirst"></i>
+  <i class="pi pi-pencil editButton" (click)="edit()"></i>
+  <i class="pi pi-trash editButton" (click)="remove()"></i>
 </div>

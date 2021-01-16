@@ -21,7 +21,7 @@
         class="p-button-raised p-button-danger p-button-text p-button-lg" [routerLink]="'/'"></button>
     </div>
     <div class="p-col p-fluid">
-      <!-- <button pButton pRipple label="Zapisz" class="p-button-lg" (click)="save()"></button>-->
+      <button pButton pRipple label="Edytuj" class="p-button-lg" (click)="edit()" *ngIf="userIsAuthor"></button>
     </div>
   </div>
 </div>

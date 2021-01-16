@@ -1,10 +1,10 @@
 <div class="form-container">
   <div class="p-grid">
     <div class="p-col-12 p-md-6">
-      <app-recipe-details-form></app-recipe-details-form>
+      <app-recipe-details-form [recipe]="recipe"></app-recipe-details-form>
     </div>
     <div class="p-col-12 p-md-6">
-      <app-recipe-image></app-recipe-image>
+      <app-recipe-image [originalImages]="recipe?.images"></app-recipe-image>
     </div>
   </div>
   <div class="p-grid">

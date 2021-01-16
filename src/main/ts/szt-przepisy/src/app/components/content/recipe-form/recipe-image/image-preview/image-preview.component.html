@@ -1,10 +1,10 @@
 <div class="p-d-flex p-flex-wrap imageContainer p-fluid">
   <div class="imageCol">
-    <img class="imagePreview" [src]="image?.objectURL">
+    <img class="imagePreview" [src]="image?.thumbnailImageSrc || image?.objectURL">
   </div>
   <div class="p-d-flex p-jc-between p-ai-center detailsContainer">
     <div class="nameCol">
-      {{image?.name}}
+      {{image?.title || image?.name}}
     </div>
     <div class="removeButtonCol p-order-2">
       <button pButton pRipple type="button" icon="pi pi-times" class="p-button p-button-icon-only"

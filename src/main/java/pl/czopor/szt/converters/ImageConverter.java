@@ -22,7 +22,7 @@ public class ImageConverter implements Converter<Image, ImageDto> {
 				.id(imageDto.id)
 				.title(imageDto.title)
 				.type(imageDto.type)
-				.imageSrc(imageDto.previewImageSrc)
+				.imageSrc(imageDto.previewImageSrc.replace(IMAGE_DOWNLOAD_ENDPOINT, ""))
 				.alt(imageDto.alt)
 				.recipe(recipeDao.getOne(imageDto.recipeId))
 				.build();

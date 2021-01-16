@@ -6,24 +6,24 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header/header.component';
 import { MenubarModule } from 'primeng/menubar';
-import { NewRecipeFormComponent } from './components/content/new-recipe-form/new-recipe-form.component';
+import { RecipeFormComponent } from './components/content/recipe-form/recipe-form.component';
 import { RecipesListComponent } from './components/content/recipes-list/recipes-list.component';
 import { FieldsetModule } from 'primeng/fieldset';
-import { RecipeDetailsFormComponent } from './components/content/new-recipe-form/recipe-details-form/recipe-details-form.component';
-import { RecipeImageComponent } from './components/content/new-recipe-form/recipe-image/recipe-image.component';
-import { RecipeStepsComponent } from './components/content/new-recipe-form/recipe-steps/recipe-steps.component';
-import { RecipeIngredientsComponent } from './components/content/new-recipe-form/recipe-ingredients/recipe-ingredients.component';
+import { RecipeDetailsFormComponent } from './components/content/recipe-form/recipe-details-form/recipe-details-form.component';
+import { RecipeImageComponent } from './components/content/recipe-form/recipe-image/recipe-image.component';
+import { RecipeStepsComponent } from './components/content/recipe-form/recipe-steps/recipe-steps.component';
+import { RecipeIngredientsComponent } from './components/content/recipe-form/recipe-ingredients/recipe-ingredients.component';
 import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
-import { NewIngredientFormComponent } from './components/content/new-recipe-form/recipe-ingredients/new-ingredient-form/new-ingredient-form.component';
+import { NewIngredientFormComponent } from './components/content/recipe-form/recipe-ingredients/new-ingredient-form/new-ingredient-form.component';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { ButtonModule } from 'primeng/button';
-import { RecipeIngredientComponent } from './components/content/new-recipe-form/recipe-ingredients/recipe-ingredient/recipe-ingredient.component';
-import { RecipeStepComponent } from './components/content/new-recipe-form/recipe-steps/recipe-step/recipe-step.component';
-import { RecipeStepFormComponent } from './components/content/new-recipe-form/recipe-steps/recipe-step-form/recipe-step-form.component';
+import { RecipeIngredientComponent } from './components/content/recipe-form/recipe-ingredients/recipe-ingredient/recipe-ingredient.component';
+import { RecipeStepComponent } from './components/content/recipe-form/recipe-steps/recipe-step/recipe-step.component';
+import { RecipeStepFormComponent } from './components/content/recipe-form/recipe-steps/recipe-step-form/recipe-step-form.component';
 import { EditorModule } from 'primeng/editor';
 import { HttpClientModule } from '@angular/common/http';
 import { RecipesListFiltersComponent } from './components/content/recipes-list/recipes-list-filters/recipes-list-filters.component';
@@ -56,14 +56,14 @@ import { MessageService } from 'primeng/api';
 import { SidebarModule } from 'primeng/sidebar';
 import { RecipeComplexityNamePipe } from './common/pipes/recipe-complexity-name.pipe';
 import { FileUploadModule } from 'primeng/fileupload';
-import { ImagePreviewComponent } from './components/content/new-recipe-form/recipe-image/image-preview/image-preview.component';
+import { ImagePreviewComponent } from './components/content/recipe-form/recipe-image/image-preview/image-preview.component';
 import { GalleriaModule } from 'primeng/galleria';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    NewRecipeFormComponent,
+    RecipeFormComponent,
     RecipesListComponent,
     RecipeDetailsFormComponent,
     RecipeImageComponent,

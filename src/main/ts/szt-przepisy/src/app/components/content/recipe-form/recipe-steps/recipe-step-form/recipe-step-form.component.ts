@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StepDto } from 'src/app/api/api';
-import { NewRecipeService } from 'src/app/services/new-recipe.service';
+import { SingleRecipeService } from 'src/app/services/single-recipe.service';
 
 @Component({
   selector: 'app-recipe-step-form',
@@ -14,7 +14,7 @@ export class RecipeStepFormComponent implements OnInit {
   text;
   newStepForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private newRecipeService: NewRecipeService) { }
+  constructor(private formBuilder: FormBuilder, private singleRecipeService: SingleRecipeService) { }
 
 
   ngOnInit(): void {
@@ -26,17 +26,40 @@ export class RecipeStepFormComponent implements OnInit {
       description: ['', Validators.required]
     })
   }
-  
+
+  initFormByStep(step: StepDto) {
+    this.newStepForm = this.formBuilder.group({
+      description: [step.description, Validators.required],
+      id: [step.id],
+      number: [step.number],
+      isNew: step.isNew
+    })
+  }
+
   onAddStep() {
     if (this.newStepForm.valid) {
-      this.newRecipeService.addStep(this.newStepForm.value);
+      this.addOrEditStep();
       this.initForm();
     } else {
       this.newStepForm.controls.description.markAsDirty();
     }
   }
-  
+
+  addOrEditStep() {
+    if (this.newStepForm.value.id || this.newStepForm.value.isNew) {
+      this.singleRecipeService.editStep(this.newStepForm.value);
+    } else {
+      const step = this.newStepForm.value;
+      step.isNew = true;
+      this.singleRecipeService.addStep(step);
+    }
+  }
+
   close() {
-    this.closeForm.emit();
+    if (this.newStepForm.value.id || this.newStepForm.value.isNew) {
+      this.initForm();
+    } else {
+      this.closeForm.emit();
+    }
   }
 }

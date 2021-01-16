@@ -8,10 +8,14 @@ import { RecipeDto } from 'src/app/api/api';
 })
 export class RecipeStepsViewComponent implements OnInit {
 
-  @Input() recipe:RecipeDto;
+  @Input() recipe: RecipeDto;
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  sortSteps(steps) {
+    steps.sort((a, b) => a.number - b.number)
+    return steps;
+  }
 }

@@ -1,9 +1,31 @@
-.name{
-    font-size: 20px;
-    font-weight: 600;
+.name {
+  font-size: 20px;
+  font-weight: 600;
 }
 
-.unit, .quantity{
-    font-size: 20px;
+.unit,
+.quantity {
+  font-size: 20px;
 
+}
+
+.ingredientContainer {
+  .editButton {
+    margin-left: 20px;
+    opacity: 0;
+    transition-duration: 200ms;
+    transition-delay: 500ms;
+    cursor: pointer;
+
+    &:hover {
+      color: #0d89ec;
+    }
+  }
+
+  &:hover {
+    .editButton {
+      opacity: 1;
+      transition-delay: 0ms;
+    }
+  }
 }

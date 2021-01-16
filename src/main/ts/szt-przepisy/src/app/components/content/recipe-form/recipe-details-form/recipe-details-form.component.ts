@@ -1,17 +1,20 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { RecipeComplexity, RecipeDto, RecipeTypeDto } from 'src/app/api/api';
 import { ComplexityLevelsService } from 'src/app/services/complexity-levels.service';
 import { RecipeTypesService } from 'src/app/services/recipe-types.service';
-import { NewRecipeService } from 'src/app/services/new-recipe.service';
+import { SingleRecipeService } from 'src/app/services/single-recipe.service';
 
 @Component({
   selector: 'app-recipe-details-form',
   templateUrl: './recipe-details-form.component.html',
   styleUrls: ['./recipe-details-form.component.scss']
 })
-export class RecipeDetailsFormComponent implements OnInit, OnDestroy {
+export class RecipeDetailsFormComponent implements OnInit, OnDestroy, OnChanges {
+
+  @Input() recipe: RecipeDto;
+
   recipeDetailsForm: FormGroup;
   recipeTypes: RecipeTypeDto[] = [];
   recipeTypesSubscription: Subscription;
@@ -22,7 +25,7 @@ export class RecipeDetailsFormComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private recipeTypesService: RecipeTypesService,
     private complexityLevelsService: ComplexityLevelsService,
-    private newRecipeService: NewRecipeService
+    private singleRecipeService: SingleRecipeService
   ) { }
 
   ngOnInit(): void {
@@ -31,7 +34,22 @@ export class RecipeDetailsFormComponent implements OnInit, OnDestroy {
     this.registerComplexityLevelsListener();
   }
 
+  ngOnChanges() {
+    this.initForm();
+    this.registerRecipeTypesListener();
+    this.registerComplexityLevelsListener();
+  }
+
   initForm() {
+    if (this.recipe) {
+      this.initFormByRecipe(this.recipe);
+    } else {
+      this.initEmptyForm();
+    }
+    this.registerFormChangeListeners();
+  }
+
+  initEmptyForm() {
     this.recipeDetailsForm = this.formBuilder.group({
       description: ['', Validators.required],
       duration: [0, Validators.required],
@@ -42,8 +60,21 @@ export class RecipeDetailsFormComponent implements OnInit, OnDestroy {
       portions: ['', Validators.required],
       shortDescription: ['', Validators.required],
     })
-    this.registerFormChangeListeners();
   }
+
+  initFormByRecipe(recipe: RecipeDto) {
+    this.recipeDetailsForm = this.formBuilder.group({
+      description: [recipe.description, Validators.required],
+      duration: [recipe.duration, Validators.required],
+      durationSlider: recipe.duration,
+      recipeType: [recipe.recipeType, Validators.required],
+      name: [recipe.name, Validators.required],
+      complexity: [recipe.complexity, Validators.required],
+      portions: [recipe.portions, Validators.required],
+      shortDescription: [recipe.shortDescription, Validators.required],
+    })
+  }
+
 
   registerFormChangeListeners() {
     this.recipeDetailsForm.controls.duration.valueChanges.subscribe(val => {
@@ -78,8 +109,9 @@ export class RecipeDetailsFormComponent implements OnInit, OnDestroy {
   createRecipeAndSave() {
     if (this.recipeDetailsForm.valid) {
       const recipe = this.recipeDetailsForm.value;
+      recipe.id = this.recipe?.id
       recipe.complexity = recipe.complexity.value ? recipe.complexity.value : recipe.complexity;
-      this.newRecipeService.saveRecipe(recipe);
+      this.singleRecipeService.saveRecipe(recipe);
     } else {
       this.markAllControlsAsTouched()
     }

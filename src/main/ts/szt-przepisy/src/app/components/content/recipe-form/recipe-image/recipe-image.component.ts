@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ImageDto } from 'src/app/api/api';
 import { ImagesService } from 'src/app/services/images.service';
 
 @Component({
@@ -10,6 +11,8 @@ import { ImagesService } from 'src/app/services/images.service';
 export class RecipeImageComponent implements OnInit {
 
   images: any[] = [];
+
+  @Input() originalImages: ImageDto[] = [];
 
   constructor(
     private imagesService: ImagesService,

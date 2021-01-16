@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RecipeDto } from 'src/app/api/api';
 import { RecipesService } from 'src/app/services/recipes.service';
 
@@ -12,7 +11,13 @@ import { RecipesService } from 'src/app/services/recipes.service';
 export class RecipeViewComponent implements OnInit {
   recipe: RecipeDto;
   isRecipeLoaded = false;
-  constructor(private recipesService: RecipesService, private route: ActivatedRoute) { }
+  userIsAuthor = false;
+
+  constructor(
+    private recipesService: RecipesService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.getRecipe();
@@ -23,7 +28,19 @@ export class RecipeViewComponent implements OnInit {
     this.recipesService.getRecipeById(id).subscribe(recipe => {
       this.recipe = recipe;
       this.isRecipeLoaded = true;
+      this.checkUserIsAuthor();
     })
   }
 
+  checkUserIsAuthor() {
+    this.recipesService.checkUserIsAuthor({
+      recipe: this.recipe,
+      successCallback: () => this.userIsAuthor = true,
+      errorCallback: () => this.userIsAuthor = false
+    })
+  }
+
+  edit() {
+    this.router.navigate(['/edit/' + this.recipe.id]);
+  }
 }

@@ -5,8 +5,10 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.imageio.ImageIO;
 
@@ -34,7 +36,7 @@ public class ImageService {
 
 	public RecipeDto saveImages(List<MultipartFile> files, Long recipeId) {
 		Recipe recipe = recipeDao.getOne(recipeId);
-		List<Image> images = new ArrayList<>();
+		Set<Image> images = new HashSet<Image>(recipe.getImages());
 
 		for (MultipartFile file : files) {
 			String fileName = saveImageInStorage(file);
@@ -44,7 +46,7 @@ public class ImageService {
 			}
 		}
 
-		recipe.setImages(images);
+		recipe.setImages(new ArrayList<Image>(images));
 		recipe = recipeDao.save(recipe);
 
 		return recipeConverter.mapToDto(recipe);

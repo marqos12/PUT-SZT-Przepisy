@@ -11,6 +11,12 @@ export class ImagesService {
 
   constructor(private rest: RestService) { }
 
+  reset() {
+    this.allImages = [];
+    this.pastedImages = [];
+    this.isInitialized = false;
+  }
+
   setImages(images: any[]) {
     this.allImages = images;
     if (!this.isInitialized) {

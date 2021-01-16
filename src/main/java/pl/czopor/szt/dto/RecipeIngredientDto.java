@@ -9,4 +9,5 @@ public class RecipeIngredientDto {
 	public Boolean required;
 	public String name;
 	public String unit;
+	public boolean isNew;
 }

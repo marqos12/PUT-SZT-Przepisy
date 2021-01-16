@@ -1,15 +1,14 @@
 <p-fieldset legend="Zdjęcie poglądowe" styleClass="dataContainer">
-  <p-fileUpload chooseLabel="Dodaj zdjęcia" [showCancelButton]="false"
-    multiple="multiple" [showUploadButton]="false" accept="image/*" 
-    customUpload="true" (onSelect)="onSelect($event)" (paste)="onPaste($event)">
+  <p-fileUpload chooseLabel="Dodaj zdjęcia" [showCancelButton]="false" multiple="multiple" [showUploadButton]="false"
+    accept="image/*" customUpload="true" (onSelect)="onSelect($event)" (paste)="onPaste($event)">
     <ng-template let-file pTemplate="file">
       <app-image-preview [image]="file">
       </app-image-preview>
     </ng-template>
     <ng-template pTemplate="content" let-files>
+      <app-image-preview *ngFor="let image of images" [image]="image"></app-image-preview>
+      <app-image-preview *ngFor="let image of originalImages" [image]="image" [isOriginal]="true"></app-image-preview>
       <p>Przeciągnij lub wklej obrazy</p>
-      <app-image-preview *ngFor="let image of images" [image]="image">
-      </app-image-preview>
     </ng-template>
   </p-fileUpload>
 </p-fieldset>

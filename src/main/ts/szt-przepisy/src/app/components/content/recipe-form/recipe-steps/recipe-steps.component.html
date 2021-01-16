@@ -1,5 +1,7 @@
 <p-fieldset legend="Lista kroków" styleClass="dataContainer">
-  <app-recipe-step *ngFor="let step of steps" [step]="step"></app-recipe-step>
+  <app-recipe-step *ngFor="let step of steps; let first = first; let last = last" [step]="step" [isFirst]="first"
+    [isLast]="last" (onEditClick)="onStepEditRequest(step)" (onRemoveClick)="onStepRemoveRequest(step)"
+    (onChangeNumber)="onChangeNumber(step, $event)"></app-recipe-step>
   <app-recipe-step-form *ngIf="showNewStepForm" (closeForm)="toggleShowIngredientForm()"></app-recipe-step-form>
   <button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded toggleShowFormButton"
     *ngIf="!showNewStepForm" (click)="toggleShowIngredientForm()"></button>
