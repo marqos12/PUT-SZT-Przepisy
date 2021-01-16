@@ -2,11 +2,11 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { RecipeDetailsFormComponent } from './recipe-details-form/recipe-details-form.component';
 
 @Component({
-  selector: 'app-new-recipe-form',
-  templateUrl: './new-recipe-form.component.html',
-  styleUrls: ['./new-recipe-form.component.scss']
+  selector: 'app-recipe-form',
+  templateUrl: './recipe-form.component.html',
+  styleUrls: ['./recipe-form.component.scss']
 })
-export class NewRecipeFormComponent implements OnInit {
+export class RecipeFormComponent implements OnInit {
 
   @ViewChild(RecipeDetailsFormComponent) recipeDetailsForm: RecipeDetailsFormComponent;
 
