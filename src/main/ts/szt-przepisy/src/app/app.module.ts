@@ -59,6 +59,7 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { ImagePreviewComponent } from './components/content/recipe-form/recipe-image/image-preview/image-preview.component';
 import { GalleriaModule } from 'primeng/galleria';
 import { TooltipModule } from 'primeng/tooltip';
+import { CheckboxModule } from 'primeng/checkbox';
 
 @NgModule({
   declarations: [
@@ -122,7 +123,8 @@ import { TooltipModule } from 'primeng/tooltip';
     SidebarModule,
     FileUploadModule,
     GalleriaModule,
-    TooltipModule
+    TooltipModule,
+    CheckboxModule
   ],
   providers: [
     MessageService

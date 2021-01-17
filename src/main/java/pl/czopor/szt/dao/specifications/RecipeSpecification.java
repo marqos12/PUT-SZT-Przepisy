@@ -6,12 +6,14 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import javax.persistence.criteria.Subquery;
 
 import org.springframework.data.jpa.domain.Specification;
 
 import lombok.RequiredArgsConstructor;
 import pl.czopor.szt.dto.RecipeFilters;
 import pl.czopor.szt.enums.RecipeComplexity;
+import pl.czopor.szt.models.Activity;
 import pl.czopor.szt.models.Recipe;
 
 @RequiredArgsConstructor
@@ -71,6 +73,16 @@ public class RecipeSpecification implements Specification<Recipe> {
 				predicate = or(predicate, criteriaBuilder.equal(root.get("recipeType").get("id"), typeId));
 			}
 			and(predicate);
+		}
+
+		if (Objects.nonNull(filters.wantsToCook) && filters.wantsToCook) {
+			Subquery<Activity> activitySubquery = query.subquery(Activity.class);
+			Root<Activity> activity = activitySubquery.from(Activity.class);
+			activitySubquery.select(activity)
+					.where(builder.and(criteriaBuilder.equal(activity.get("recipe").get("id"), root.get("id")),
+							criteriaBuilder.equal(activity.get("user").get("username"), filters.username),
+							criteriaBuilder.equal(activity.get("wantToCook"), filters.wantsToCook)));
+			and(criteriaBuilder.exists(activitySubquery));
 		}
 
 		return predicate;

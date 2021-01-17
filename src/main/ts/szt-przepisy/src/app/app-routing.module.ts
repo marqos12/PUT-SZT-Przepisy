@@ -14,6 +14,7 @@ const routes: Routes = [
   { path: "recipe/:id", component: RecipeViewComponent },
   { path: "login", component: LoginFormComponent, canActivate: [IsUserLoggedGuardService], data: { invertAuth: true } },
   { path: "register", component: RegisterFormComponent, canActivate: [IsUserLoggedGuardService], data: { invertAuth: true } },
+  { path: "planned", component: RecipesListComponent, canActivate: [IsUserLoggedGuardService], data: { invertAuth: false } },
   { path: "", component: RecipesListComponent },
   { path: "**", redirectTo: "" },
 ];

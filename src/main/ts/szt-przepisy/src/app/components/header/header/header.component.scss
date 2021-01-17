@@ -1,12 +1,12 @@
 @media (min-width: 960px) {
   ::ng-deep {
     .toRightFull {
-      left: calc(100vw - 610px);
+      left: calc(100vw - 850px);
     }
 
     .p-submenu-list {
       width: 120px !important;
-      left: calc(100vw - 610px);
+      left: calc(100vw - 850px);
     }
   }
 }
@@ -14,11 +14,11 @@
 @media (max-width:1400px) {
   ::ng-deep {
     .toRightFull {
-      left: calc(100vw - 500px);
+      left: calc(100vw - 690px);
     }
 
     .p-submenu-list {
-      left: calc(100vw - 500px);
+      left: calc(100vw - 690px);
     }
   }
 }

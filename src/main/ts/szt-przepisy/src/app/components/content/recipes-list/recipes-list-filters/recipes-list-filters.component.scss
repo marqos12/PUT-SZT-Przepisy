@@ -18,4 +18,12 @@ span {
   button {
     margin-top: 10px;
   }
+
+  .wantsToCookInputContainer {
+    ::ng-deep {
+      label {
+        left: 1.5rem;
+      }
+    }
+  }
 }

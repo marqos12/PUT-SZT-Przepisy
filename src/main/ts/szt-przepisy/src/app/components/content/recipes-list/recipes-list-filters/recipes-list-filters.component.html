@@ -47,6 +47,12 @@
         <label for="ingredientsInput">Składnik</label>
       </span>
     </p-panel>
+    <p-panel header="Wyłącznie planowane" [toggleable]="true" styleClass="controlContainer" *ngIf="showPlannedFilter">
+      <span class="p-float-label p-fluid wantsToCookInputContainer">
+        <p-checkbox formControlName="wantsToCook" [binary]="true" inputId="wantsToCookInput"></p-checkbox>
+        <label for="wantsToCookInput">Wyłącznie planowane</label>
+      </span>
+    </p-panel>
   </form>
 
   <button pButton pRipple label="Wyszukaj" class="p-button-lg" (click)="filter()"></button>

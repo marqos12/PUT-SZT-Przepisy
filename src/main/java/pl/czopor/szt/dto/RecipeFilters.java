@@ -13,4 +13,6 @@ public class RecipeFilters {
 	public List<RecipeComplexity> complexity;
 	public List<Long> ingredients;
 	public List<Long> type;
+	public Boolean wantsToCook;
+	public String username;
 }

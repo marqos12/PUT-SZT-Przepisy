@@ -64,6 +64,11 @@ export class HeaderComponent implements OnInit {
   userAuthenticatedMenuItems() {
     return [
       {
+        label: 'Lista planowanych',
+        icon: 'pi pi-fw pi-book',
+        routerLink: "planned"
+      },
+      {
         label: 'Dodaj przepis',
         icon: 'pi pi-fw pi-plus',
         routerLink: "add"

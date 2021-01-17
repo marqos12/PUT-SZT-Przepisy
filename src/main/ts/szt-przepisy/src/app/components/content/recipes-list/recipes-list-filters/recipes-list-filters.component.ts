@@ -1,11 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { IngredientDto, RecipeComplexity, RecipeTypeDto } from 'src/app/api/api';
+import { IngredientDto, RecipeComplexity, RecipeTypeDto, UserDto } from 'src/app/api/api';
 import { ComplexityLevelsService } from 'src/app/services/complexity-levels.service';
 import { IngredientsService } from 'src/app/services/ingredients.service';
 import { RecipeTypesService } from 'src/app/services/recipe-types.service';
 import { RecipesService } from 'src/app/services/recipes.service';
+import { UserAuthService } from 'src/app/services/user-auth.service';
 
 @Component({
   selector: 'app-recipes-list-filters',
@@ -15,6 +17,9 @@ import { RecipesService } from 'src/app/services/recipes.service';
 export class RecipesListFiltersComponent implements OnInit, OnDestroy {
 
   filtersForm: FormGroup;
+  user: UserDto;
+  userSubscription: Subscription;
+  showPlannedFilter = false;
 
   recipeTypes: RecipeTypeDto[] = [];
   recipeTypesSubscription: Subscription;
@@ -28,7 +33,9 @@ export class RecipesListFiltersComponent implements OnInit, OnDestroy {
     private recipeTypesService: RecipeTypesService,
     private complexityLevelsService: ComplexityLevelsService,
     private ingredientsService: IngredientsService,
-    private recipesService: RecipesService
+    private recipesService: RecipesService,
+    private userAuthService: UserAuthService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
@@ -36,9 +43,11 @@ export class RecipesListFiltersComponent implements OnInit, OnDestroy {
     this.registerRecipeTypesListener();
     this.registerComplexityLevelsListener();
     this.registerIngredientsListener();
+    this.registerUserChangeListener();
   }
 
   initForm() {
+    const isPlannedActive = this.route.snapshot.url[0]?.path === "planned";
     this.filtersForm = this.formBuilder.group({
       name: '',
       durationFrom: 0,
@@ -47,7 +56,9 @@ export class RecipesListFiltersComponent implements OnInit, OnDestroy {
       complexity: '',
       type: '',
       ingredients: '',
+      wantsToCook: isPlannedActive,
     })
+    setTimeout(this.filter.bind(this), 10);
     this.registerFormChangeListeners();
   }
 
@@ -96,6 +107,7 @@ export class RecipesListFiltersComponent implements OnInit, OnDestroy {
     this.recipeTypesSubscription.unsubscribe();
     this.complexityLevelsSubscription.unsubscribe();
     this.ingredientsSubscription.unsubscribe();
+    this.userSubscription.unsubscribe();
   }
 
   filter() {
@@ -110,7 +122,7 @@ export class RecipesListFiltersComponent implements OnInit, OnDestroy {
       const value = filters[field]
       if (value) {
         if (paramsNumber > 0) params += '&'
-        if (['name', 'durationFrom', 'durationTo'].includes(field)) {
+        if (['name', 'durationFrom', 'durationTo', 'wantsToCook'].includes(field)) {
           params += `${field}=${value}`;
         } else if (['type', 'ingredients'].includes(field) && value instanceof Array && value.length > 0) {
           params += this.addToParams(value, type => `${field}=${type.id}`)
@@ -131,5 +143,18 @@ export class RecipesListFiltersComponent implements OnInit, OnDestroy {
       params += method(values[i])
     }
     return params;
+  }
+
+  registerUserChangeListener() {
+    this.userSubscription = this.userAuthService.getLoggedUser().subscribe(this.onUserLogin.bind(this));
+  }
+
+  onUserLogin(user) {
+    this.user = user;
+    if (user) {
+      this.showPlannedFilter = true;
+    } else {
+      this.showPlannedFilter = false;
+    }
   }
 }

@@ -67,4 +67,7 @@ public class Recipe {
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Image> images;
 
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Activity> activities;
+
 }

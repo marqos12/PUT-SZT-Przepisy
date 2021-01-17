@@ -2,6 +2,7 @@ package pl.czopor.szt.controllers;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Objects;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.data.domain.Page;
@@ -55,13 +56,16 @@ public class RecipesController {
 			@RequestParam(required = false) Long durationFrom, @RequestParam(required = false) Long durationTo,
 			@RequestParam(required = false) List<RecipeComplexity> complexity,
 			@RequestParam(required = false) List<Long> ingredients, @RequestParam(required = false) List<Long> type,
+			@RequestParam(required = false) Boolean wantsToCook,
 			@RequestParam(required = false, defaultValue = "0") int pageNo,
 			@RequestParam(required = false, defaultValue = "10") int pageSize,
 			@RequestParam(required = false, defaultValue = "id") String sortBy,
-			@RequestParam(required = false, defaultValue = "desc") String sortDirection) {
-
-		RecipeFilters recipeFilters = RecipeFilters.builder().complexity(complexity).durationFrom(durationFrom)
-				.durationTo(durationTo).ingredients(ingredients).name(name).type(type).build();
+			@RequestParam(required = false, defaultValue = "desc") String sortDirection,
+			Principal principal) {
+		String username = Objects.isNull(principal) ? null : principal.getName();
+		
+		RecipeFilters recipeFilters = RecipeFilters.builder().complexity(complexity).durationFrom(durationFrom).wantsToCook(wantsToCook)
+				.durationTo(durationTo).ingredients(ingredients).name(name).type(type).username(username).build();
 
 		Sort sort = Sort.by(sortBy);
 		if (sortDirection.equals("desc"))
