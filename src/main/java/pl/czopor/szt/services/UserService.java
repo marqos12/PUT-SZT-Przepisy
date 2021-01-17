@@ -7,6 +7,8 @@ import javax.xml.bind.ValidationException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -66,5 +68,14 @@ public class UserService {
 		response.addCookie(cookie);
 		
 		return user;
+	}
+	
+	public User getActiveUser() {
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		if(principal instanceof UserDetails) {
+			return (User) principal;
+		} else {
+			return userDao.findByUsername(principal.toString()).orElse(null);
+		}
 	}
 }

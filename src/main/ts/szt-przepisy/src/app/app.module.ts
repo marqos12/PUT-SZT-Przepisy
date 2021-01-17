@@ -58,6 +58,7 @@ import { RecipeComplexityNamePipe } from './common/pipes/recipe-complexity-name.
 import { FileUploadModule } from 'primeng/fileupload';
 import { ImagePreviewComponent } from './components/content/recipe-form/recipe-image/image-preview/image-preview.component';
 import { GalleriaModule } from 'primeng/galleria';
+import { TooltipModule } from 'primeng/tooltip';
 
 @NgModule({
   declarations: [
@@ -120,7 +121,8 @@ import { GalleriaModule } from 'primeng/galleria';
     ToastModule,
     SidebarModule,
     FileUploadModule,
-    GalleriaModule
+    GalleriaModule,
+    TooltipModule
   ],
   providers: [
     MessageService

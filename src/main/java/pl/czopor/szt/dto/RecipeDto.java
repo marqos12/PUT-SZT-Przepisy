@@ -24,5 +24,5 @@ public class RecipeDto {
 	public String portions;
 	public String shortDescription;
 	public List<ImageDto> images;
-
+	public ActivityDto userActivity;
 }

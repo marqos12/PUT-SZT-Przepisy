@@ -1,4 +1,5 @@
 import { Injectable, OnInit } from '@angular/core';
+import { MessageService } from 'primeng/api';
 import { Observable, Subject } from 'rxjs';
 import { PageDto, RecipeDto, RecipeFilters, RecipeIngredientDto } from '../api/api';
 import { RestService } from './rest.service';
@@ -19,6 +20,7 @@ export class RecipesService implements OnInit {
 
   constructor(
     private rest: RestService,
+    private messageService: MessageService,
     private userAuthService: UserAuthService
   ) { }
 
@@ -65,4 +67,16 @@ export class RecipesService implements OnInit {
     })
   }
 
+  public addToWishlist(recipe: RecipeDto) {
+    this.rest.post('/api/recipe/addToWishlist', recipe).subscribe(this.afterWishlistChanged.bind(this, true))
+  }
+
+  private afterWishlistChanged(add: boolean) {
+    this.refreshRecipes();
+    this.messageService.add({ severity: 'success', summary: "Zaktualizowano listę planowanych", detail: add ? "Dodano przepis" : "Skasowano przepis" });
+  }
+
+  public removeFromWishlist(recipe: RecipeDto) {
+    this.rest.post('/api/recipe/removeFromWishlist', recipe).subscribe(this.afterWishlistChanged.bind(this, false))
+  }
 }

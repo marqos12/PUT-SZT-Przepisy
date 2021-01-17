@@ -18,12 +18,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.AllArgsConstructor;
+import pl.czopor.szt.converters.RecipeConverter;
 import pl.czopor.szt.dao.RecipeDao;
+import pl.czopor.szt.dto.ActivityDto;
 import pl.czopor.szt.dto.RecipeDto;
 import pl.czopor.szt.dto.RecipeFilters;
 import pl.czopor.szt.dto.UserDto;
 import pl.czopor.szt.enums.RecipeComplexity;
 import pl.czopor.szt.models.Recipe;
+import pl.czopor.szt.services.ActivityService;
 import pl.czopor.szt.services.NewRecipeService;
 import pl.czopor.szt.services.RecipeService;
 
@@ -35,32 +38,27 @@ public class RecipesController {
 
 	NewRecipeService newRecipeService;
 	RecipeService recipeService;
+	RecipeConverter recipeConverter;
 	RecipeDao recipeDao;
+	ActivityService activityService;
 
 	@PostMapping()
 	@Secured("ROLE_USER")
-	public RecipeDto createNewRecipe(
-			@RequestBody RecipeDto recipe,
-			Principal principal
-			) {
+	public RecipeDto createNewRecipe(@RequestBody RecipeDto recipe, Principal principal) {
 		recipe.user = UserDto.builder().username(principal.getName()).build();
 		Recipe savedRecipe = newRecipeService.createAndSaveRecipe(recipe);
 		return recipeService.mapRecipeToRecipeDto(savedRecipe);
 	}
 
 	@GetMapping()
-	public Page<RecipeDto> getRecipes(
-			@RequestParam(required = false) String name,
-			@RequestParam(required = false) Long durationFrom, 
-			@RequestParam(required = false) Long durationTo,
+	public Page<RecipeDto> getRecipes(@RequestParam(required = false) String name,
+			@RequestParam(required = false) Long durationFrom, @RequestParam(required = false) Long durationTo,
 			@RequestParam(required = false) List<RecipeComplexity> complexity,
-			@RequestParam(required = false) List<Long> ingredients, 
-			@RequestParam(required = false) List<Long> type,
+			@RequestParam(required = false) List<Long> ingredients, @RequestParam(required = false) List<Long> type,
 			@RequestParam(required = false, defaultValue = "0") int pageNo,
 			@RequestParam(required = false, defaultValue = "10") int pageSize,
 			@RequestParam(required = false, defaultValue = "id") String sortBy,
-			@RequestParam(required = false, defaultValue = "desc") String sortDirection
-			) {
+			@RequestParam(required = false, defaultValue = "desc") String sortDirection) {
 
 		RecipeFilters recipeFilters = RecipeFilters.builder().complexity(complexity).durationFrom(durationFrom)
 				.durationTo(durationTo).ingredients(ingredients).name(name).type(type).build();
@@ -75,11 +73,24 @@ public class RecipesController {
 
 		return recipeService.getRecipeByFilters(recipeFilters, pageable);
 	}
-	
 
 	@GetMapping("/{id}")
 	public RecipeDto getRecipeById(@PathVariable long id) {
 		return recipeService.getRecipeById(id);
+	}
+
+	@PostMapping("/addToWishlist")
+	@Secured("ROLE_USER")
+	public ActivityDto addToWishlist(@RequestBody RecipeDto recipeDto, Principal principal) {
+		Recipe recipe = recipeConverter.mapFromDto(recipeDto);
+		return activityService.changeWishlist(recipe, principal.getName(), true);
+	}
+
+	@PostMapping("/removeFromWishlist")
+	@Secured("ROLE_USER")
+	public ActivityDto removeFromWishlist(@RequestBody RecipeDto recipeDto, Principal principal) {
+		Recipe recipe = recipeConverter.mapFromDto(recipeDto);
+		return activityService.changeWishlist(recipe, principal.getName(), false);
 	}
 
 }

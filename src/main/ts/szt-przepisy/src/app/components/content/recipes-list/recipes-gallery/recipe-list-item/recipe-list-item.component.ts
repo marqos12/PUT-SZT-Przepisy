@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ImageDto, RecipeDto, RecipeTypeDto } from 'src/app/api/api';
+import { RecipesService } from 'src/app/services/recipes.service';
 
 @Component({
   selector: 'app-recipe-list-item',
@@ -11,7 +12,7 @@ export class RecipeListItemComponent implements OnInit {
   @Input()
   recipe: RecipeDto
 
-  constructor() { }
+  constructor(private recipesService: RecipesService) { }
 
   ngOnInit(): void {
   }
@@ -25,4 +26,11 @@ export class RecipeListItemComponent implements OnInit {
     return recipeType.name
   }
 
+  addToWishlist() {
+    this.recipesService.addToWishlist(this.recipe);
+  }
+
+  removeFromWishlist() {
+    this.recipesService.removeFromWishlist(this.recipe);
+  }
 }

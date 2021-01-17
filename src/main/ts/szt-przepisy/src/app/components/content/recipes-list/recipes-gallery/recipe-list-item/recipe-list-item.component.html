@@ -25,5 +25,11 @@
   <div class="p-col-12 p-lg-2 p-as-center buttonCol ">
     <button pButton pRipple label="Zobacz" class="p-button-lg recipeDetailsButton"
       [routerLink]="'/recipe/'+recipe.id"></button>
+    <button pButton pRipple type="button" icon="pi pi-tag" class="p-button-rounded p-button-help"
+      *ngIf="recipe?.userActivity?.wantToCook" pTooltip="Dodano do planowanych"
+      (click)=" removeFromWishlist()"></button>
+    <button pButton pRipple type="button" icon="pi pi-tag" pTooltip="Dodaj do planowanych"
+      *ngIf="!recipe?.userActivity?.wantToCook" class="p-button-rounded p-button-help p-button-outlined"
+      (click)="addToWishlist()"></button>
   </div>
 </div>
