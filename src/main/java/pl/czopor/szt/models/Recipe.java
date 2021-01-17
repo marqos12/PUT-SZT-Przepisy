@@ -58,6 +58,9 @@ public class Recipe {
 	private Long duration;
 	private Double mark;
 
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Comment> comments;
+
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<RecipeIngredient> ingredients;
 

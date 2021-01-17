@@ -77,6 +77,10 @@ export class RecipesService implements OnInit {
   }
 
   public removeFromWishlist(recipe: RecipeDto) {
-    this.rest.post('/api/recipe/removeFromWishlist', recipe).subscribe(this.afterWishlistChanged.bind(this, false))
+    this.rest.post('/api/recipe/removeFromWishlist', recipe).subscribe(this.afterWishlistChanged.bind(this, false));
+  }
+
+  public changeRecipeMark(recipe: RecipeDto) {
+    this.rest.post('/api/recipe/changeMark', recipe).subscribe();
   }
 }

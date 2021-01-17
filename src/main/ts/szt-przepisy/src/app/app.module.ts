@@ -60,6 +60,7 @@ import { ImagePreviewComponent } from './components/content/recipe-form/recipe-i
 import { GalleriaModule } from 'primeng/galleria';
 import { TooltipModule } from 'primeng/tooltip';
 import { CheckboxModule } from 'primeng/checkbox';
+import { RecipeCommentsComponent } from './components/content/recipe-view/recipe-comments/recipe-comments.component';
 
 @NgModule({
   declarations: [
@@ -90,6 +91,7 @@ import { CheckboxModule } from 'primeng/checkbox';
     RegisterFormComponent,
     RecipeComplexityNamePipe,
     ImagePreviewComponent,
+    RecipeCommentsComponent,
   ],
   imports: [
     BrowserModule,

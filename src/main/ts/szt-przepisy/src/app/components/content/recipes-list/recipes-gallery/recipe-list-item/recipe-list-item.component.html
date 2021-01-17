@@ -14,7 +14,8 @@
       </div>
       <div class="p-col-6 p-md-4">
         <p><b>Poziom skomplikowania:</b> {{recipe.complexity | recipeComplexityName}}</p>
-        <p><b>Ocena:</b> {{recipe.mark}}</p>
+        <p><b>Ocena:</b>
+          <p-rating [(ngModel)]="recipe.mark" [cancel]="false" readonly="true"></p-rating>
       </div>
       <div class="p-col-12 p-md-4">
         <p><b>Składniki:</b> <span *ngFor="let ingredient of recipe.ingredients"> {{ingredient.name}}, </span> </p>

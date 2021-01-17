@@ -17,5 +17,8 @@
   <div>
     <h4>Poziom skomplikowania:</h4> <span>{{recipe.complexity}}</span>
   </div>
-
+  <div>
+    <h4>Ocena:</h4>
+    <p-rating [(ngModel)]="recipe.mark" [cancel]="false" readonly="true"></p-rating>
+  </div>
 </p-fieldset>

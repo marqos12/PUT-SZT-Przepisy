@@ -1,0 +1,7 @@
+<p-fieldset legend="Komentarze i oceny" styleClass="dataContainer">
+  <div *ngIf="recipe">
+    <h4>Moja ocena:</h4>
+    <p-rating [(ngModel)]="recipe.userMark" [cancel]="false"></p-rating>
+    <button pButton pRipple type="button" icon="pi pi-check" class="p-button-rounded " (click)="check()"></button>
+  </div>
+</p-fieldset>
