@@ -3,14 +3,14 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { Observable, ReplaySubject } from 'rxjs';
-import { User } from '../api/api';
+import { UserDto } from '../api/api';
 import { RequestParams, RestService } from './rest.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserAuthService {
-  private user = new ReplaySubject<User>(1);
+  private user = new ReplaySubject<UserDto>(1);
   constructor(
     private http: HttpClient,
     private messageService: MessageService,
@@ -53,12 +53,12 @@ export class UserAuthService {
     this.onSuccess('Zalogowano!', '/');
   }
 
-  public getLoggedUser(): Observable<User> {
+  public getLoggedUser(): Observable<UserDto> {
     return this.user.asObservable();
   }
 
   private checkLoggedUserRequest() {
-    this.http.get<User>("/api/auth/whoami").subscribe(
+    this.http.get<UserDto>("/api/auth/whoami").subscribe(
       {
         next: this.checkLoggedUserResponse.bind(this),
         error: this.userNotAuthorized.bind(this)

@@ -1,23 +1,33 @@
 @media (min-width: 960px) {
   ::ng-deep {
-    .toRightFull {
+    .toRightWithUser {
       left: calc(100vw - 850px);
     }
 
+    .toRightWithoutUser {
+      left: calc(100vw - 605px);
+    }
+
     .p-submenu-list {
-      width: 120px !important;
+      width: 150px !important;
       left: calc(100vw - 850px);
+      z-index: 20 !important;
     }
   }
 }
 
-@media (max-width:1400px) {
+@media (min-width: 960px) and (max-width:1400px) {
   ::ng-deep {
-    .toRightFull {
+    .toRightWithUser {
       left: calc(100vw - 690px);
     }
 
+    .toRightWithoutUser {
+      left: calc(100vw - 490px);
+    }
+
     .p-submenu-list {
+      width: 120px !important;
       left: calc(100vw - 690px);
     }
   }

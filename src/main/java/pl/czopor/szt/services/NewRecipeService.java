@@ -1,5 +1,7 @@
 package pl.czopor.szt.services;
 
+import java.util.Objects;
+
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
@@ -20,6 +22,11 @@ public class NewRecipeService {
 		Recipe recipe = recipeConverter.mapFromDto(recipeDto);
 
 		updateIngredients(recipe);
+
+		if (Objects.nonNull(recipeDto.id)) {
+			Recipe oldRecipe = recipeDao.getOne(recipeDto.id);
+			recipe.setMark(oldRecipe.getMark());
+		}
 
 		Recipe newRecipe = recipeDao.save(recipe);
 		return newRecipe;

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { RecipeIngredientDto, RecipeDto, StepDto, User } from '../api/api';
+import { RecipeIngredientDto, RecipeDto, StepDto, UserDto } from '../api/api';
 import { ImagesService } from './images.service';
 import { RestService } from './rest.service';
 import { UserAuthService } from './user-auth.service';
@@ -12,7 +12,7 @@ import { UserAuthService } from './user-auth.service';
 export class SingleRecipeService {
 
   recipe: RecipeDto;
-  user: User;
+  user: UserDto;
   private ingredientsList: RecipeIngredientDto[] = [];
   private ingredients = new BehaviorSubject<RecipeIngredientDto[]>([]);
   private stepsList: StepDto[] = [];

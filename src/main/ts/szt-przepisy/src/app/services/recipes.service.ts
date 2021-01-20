@@ -58,7 +58,7 @@ export class RecipesService implements OnInit {
 
   public checkUserIsAuthor(params: { recipe, successCallback, errorCallback }) {
     var subscription = this.userAuthService.getLoggedUser().subscribe(user => {
-      if (user.id == params.recipe.user.id) {
+      if (user && user.id == params.recipe.user.id) {
         params.successCallback();
       } else if (params.errorCallback) {
         params.errorCallback();

@@ -1,6 +1,6 @@
 <div class="recipeListItem p-grid vertical-container">
   <div class="p-col-12 p-lg-3 p-md-4 imgCol">
-    <div *ngIf=recipe.images[0]>
+    <div *ngIf=recipe.images[0] class="recipeImage">
       <img [src]="recipe.images[0].thumbnailImageSrc">
     </div>
   </div>
@@ -11,6 +11,7 @@
       <div class="p-col-6 p-md-4">
         <p><b>Czas trwania:</b> {{recipe.duration}} min</p>
         <p><b>Rodzaj:</b> {{getRecipeType(recipe.recipeType)}}</p>
+        <p><b>Autor:</b> {{recipe.user.username}}</p>
       </div>
       <div class="p-col-6 p-md-4">
         <p><b>Poziom skomplikowania:</b> {{recipe.complexity | recipeComplexityName}}</p>
@@ -26,11 +27,11 @@
   <div class="p-col-12 p-lg-2 p-as-center buttonCol ">
     <button pButton pRipple label="Zobacz" class="p-button-lg recipeDetailsButton"
       [routerLink]="'/recipe/'+recipe.id"></button>
-    <button pButton pRipple type="button" icon="pi pi-tag" class="p-button-rounded p-button-help"
-      *ngIf="recipe?.userActivity?.wantToCook" pTooltip="Dodano do planowanych"
+    <button pButton pRipple type="button" icon="pi pi-tag" class="p-button-rounded p-button-help planButton"
+      *ngIf="user && recipe?.userActivity?.wantToCook" pTooltip="Dodano do planowanych"
       (click)=" removeFromWishlist()"></button>
     <button pButton pRipple type="button" icon="pi pi-tag" pTooltip="Dodaj do planowanych"
-      *ngIf="!recipe?.userActivity?.wantToCook" class="p-button-rounded p-button-help p-button-outlined"
-      (click)="addToWishlist()"></button>
+      *ngIf="user && !recipe?.userActivity?.wantToCook"
+      class="p-button-rounded p-button-help p-button-outlined planButton" (click)="addToWishlist()"></button>
   </div>
 </div>

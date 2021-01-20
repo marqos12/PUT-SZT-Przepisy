@@ -1,24 +1,28 @@
 <p-fieldset legend="Szczegóły przepisu" styleClass="dataContainer">
-  <div>
-    <h4>Nazwa:</h4> <span>{{recipe.name}}</span>
+  <div class="recipeTitle">
+    <h2>{{recipe.name}}</h2>
   </div>
+
   <div>
-    <h4>Opis:</h4> <span [innerHTML]="recipe.description"></span>
+    <h3>Opis:</h3> <span [innerHTML]="recipe.description"></span>
   </div>
-  <div>
-    <h4>Liczba porcji:</h4> <span>{{recipe.portions}}</span>
-  </div>
-  <div>
-    <h4>Czas przyrządzenia:</h4> <span>{{recipe.duration}}</span>
-  </div>
-  <div>
-    <h4>Rodzaj:</h4> <span>{{recipe.recipeType.name}}</span>
-  </div>
-  <div>
-    <h4>Poziom skomplikowania:</h4> <span>{{recipe.complexity}}</span>
-  </div>
-  <div>
-    <h4>Ocena:</h4>
-    <p-rating [(ngModel)]="recipe.mark" [cancel]="false" readonly="true"></p-rating>
+  <div class="details">
+    <h3>Dodatkowe informacje</h3>
+    <div>
+      <h4>Liczba porcji:</h4> <span>{{recipe.portions}}</span>
+    </div>
+    <div>
+      <h4>Czas przyrządzenia:</h4> <span>{{recipe.duration}}</span>
+    </div>
+    <div>
+      <h4>Rodzaj:</h4> <span>{{recipe.recipeType.name}}</span>
+    </div>
+    <div>
+      <h4>Poziom skomplikowania:</h4> <span>{{recipe.complexity | recipeComplexityName}}</span>
+    </div>
+    <div class="p-d-flex p-ai-center">
+      <h4>Ocena:</h4>
+      <p-rating [(ngModel)]="recipe.mark" [cancel]="false" readonly="true"></p-rating>
+    </div>
   </div>
 </p-fieldset>

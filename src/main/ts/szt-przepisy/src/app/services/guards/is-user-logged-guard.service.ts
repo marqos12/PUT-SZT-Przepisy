@@ -3,7 +3,7 @@ import { ActivatedRouteSnapshot, CanActivate, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { Observable, ReplaySubject } from 'rxjs';
 import { first } from 'rxjs/operators';
-import { User } from 'src/app/api/api';
+import { UserDto } from 'src/app/api/api';
 import { UserAuthService } from '../user-auth.service';
 
 @Injectable({
@@ -24,7 +24,7 @@ export class IsUserLoggedGuardService implements CanActivate {
     return isLogged.asObservable();
   }
 
-  isAuthenticated(isLogged: ReplaySubject<boolean>, invertAuth: boolean, user: User) {
+  isAuthenticated(isLogged: ReplaySubject<boolean>, invertAuth: boolean, user: UserDto) {
     if (!invertAuth && user || invertAuth && !user)
       isLogged.next(true);
     else {

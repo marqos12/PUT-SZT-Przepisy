@@ -1,17 +1,30 @@
-<div class="recipeGridItem">
-  <div class="p-d-flex p-jc-between">
-    <p><b>{{recipe.complexity | recipeComplexityName}}</b> </p>
-    <p><b>{{getRecipeType(recipe.recipeType)}}</b> </p>
-  </div>
-  <div class="">
-    <div *ngIf=recipe.images[0]>
-      <img [src]="recipe.images[0].thumbnailImageSrc">
+<div class="bottomGutter">
+  <div class="recipeGridItem p-d-flex p-flex-column">
+    <div class="p-d-flex p-jc-between">
+      <p><b>{{recipe.complexity | recipeComplexityName}}</b> </p>
+      <div>
+        <button pButton pRipple type="button" icon="pi pi-tag" class="p-button-rounded p-button-help planButton"
+          *ngIf="user && recipe?.userActivity?.wantToCook" pTooltip="Dodano do planowanych"
+          (click)=" removeFromWishlist()"></button>
+        <button pButton pRipple type="button" icon="pi pi-tag" pTooltip="Dodaj do planowanych"
+          *ngIf="user && !recipe?.userActivity?.wantToCook"
+          class="p-button-rounded p-button-help p-button-outlined planButton" (click)="addToWishlist()"></button>
+      </div>
+      <p><b>{{getRecipeType(recipe.recipeType)}}</b> </p>
     </div>
+    <div class="p-mt-auto">
+      <div *ngIf=recipe.images[0]>
+        <img [src]="recipe.images[0].thumbnailImageSrc">
+      </div>
+      <div *ngIf=!recipe.images[0] class="noImageInfo">
+        <i>Brak zdjęcia poglądowego</i>
+      </div>
+    </div>
+    <div class="">
+      <h2>{{recipe.name}}</h2>
+      <p-rating [(ngModel)]="recipe.mark" [cancel]="false" readonly="true"></p-rating>
+      <p><b>Czas trwania:</b> {{recipe.duration}} min</p>
+    </div>
+    <button pButton pRipple label="Zobacz" class="p-button-lg" [routerLink]="'/recipe/'+recipe.id"></button>
   </div>
-  <div class="">
-    <h2>{{recipe.name}}</h2>
-    <p><b>Czas trwania:</b> {{recipe.duration}} min</p>
-    <p><b>Ocena:</b> {{recipe.mark}}</p>
-  </div>
-  <button pButton pRipple label="Zobacz" class="p-button-lg" [routerLink]="'/recipe/'+recipe.id"></button>
 </div>

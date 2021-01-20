@@ -7,21 +7,31 @@
 
   .imgCol {
     max-width: 240px;
+    margin-bottom: 10px;
 
-    img {
-      margin: 10px;
-      max-width: 200px;
+    .recipeImage {
+      transform: translate(0, 30%);
+
+      img {
+        margin: 10px;
+        max-width: 200px;
+      }
     }
   }
 
   .descriptionCol {
     width: 100%;
   }
+
+  .recipeDetailsButton {
+    margin-bottom: 20px;
+  }
 }
 
 .buttonCol {
   width: 12%;
   margin: 10px;
+  text-align: center;
 }
 
 @media screen and (max-width: 1500px) {
@@ -46,6 +56,11 @@
     padding-right: 0;
     margin-left: 0;
     margin-right: 0;
+
+    .planButton {
+      margin-left: 10px;
+      transform: translate(0px, -30px);
+    }
   }
 
   ::ng-deep {
@@ -53,6 +68,7 @@
       width: 90%;
       font-size: 1.5rem !important;
       padding: 0.75rem 1.25rem !important;
+
     }
   }
 }
@@ -63,6 +79,15 @@
 
     .imgCol {
       max-width: 100%;
+    }
+  }
+}
+
+
+@media screen and (max-width: 516px) {
+  .recipeListItem {
+    .recipeDetailsButton {
+      margin-bottom: 50px;
     }
   }
 }

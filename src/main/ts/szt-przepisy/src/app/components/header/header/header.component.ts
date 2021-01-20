@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-import { User, UserDto } from 'src/app/api/api';
+import { UserDto } from 'src/app/api/api';
 import { UserAuthService } from 'src/app/services/user-auth.service';
 
 @Component({
@@ -47,13 +47,13 @@ export class HeaderComponent implements OnInit {
   userNotAuthenticatedMenuItems() {
     return [
       {
-        styleClass: "toRightFull",
+        styleClass: "toRightWithoutUser",
         label: 'Rejestracja',
         icon: 'pi pi-fw pi-user-edit',
         routerLink: "/register"
       },
       {
-        styleClass: "toRightFull",
+        styleClass: "toRightWithoutUser",
         label: 'Logowanie',
         icon: 'pi pi-fw pi-user-plus',
         routerLink: "/login"
@@ -65,7 +65,7 @@ export class HeaderComponent implements OnInit {
     return [
       {
         label: 'Lista planowanych',
-        icon: 'pi pi-fw pi-book',
+        icon: 'pi pi-fw pi-tags',
         routerLink: "planned"
       },
       {
@@ -74,7 +74,7 @@ export class HeaderComponent implements OnInit {
         routerLink: "add"
       },
       {
-        styleClass: "toRightFull",
+        styleClass: "toRightWithUser",
         label: this.user.username,
         icon: 'pi pi-fw pi-user',
         items: [

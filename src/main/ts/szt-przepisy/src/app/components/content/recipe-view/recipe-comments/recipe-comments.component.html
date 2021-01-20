@@ -1,6 +1,6 @@
 <p-fieldset legend="Komentarze i oceny" styleClass="dataContainer">
   <div>
-    <div *ngIf="recipe">
+    <div *ngIf="user && recipe">
       <h4>Moja ocena:</h4>
       <div class="p-d-flex p-ai-center">
         <p-rating [(ngModel)]="recipe.userMark" [cancel]="false"></p-rating>
@@ -13,7 +13,7 @@
     <div class="commentSection">
       <app-comment-view *ngFor="let comment of comments" [comment]="comment"
         (onEditClick)="onCommentEditClicked(comment)"></app-comment-view>
-      <app-comment-form [recipe]="recipe"></app-comment-form>
+      <app-comment-form [recipe]="recipe" *ngIf="user"></app-comment-form>
     </div>
   </div>
 </p-fieldset>
