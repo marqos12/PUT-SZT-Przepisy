@@ -16,6 +16,12 @@ export class RestService {
     );
   }
 
+  public delete<T>(url: string) {
+    return this.http.delete<T>(url).pipe(
+      catchError(this.handleError)
+    );
+  }
+
   public post(url: string, body) {
     return this.http.post(url, body).pipe(
       catchError(this.handleError)

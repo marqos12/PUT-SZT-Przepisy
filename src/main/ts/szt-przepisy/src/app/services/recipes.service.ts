@@ -1,7 +1,7 @@
 import { Injectable, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { Observable, Subject } from 'rxjs';
-import { PageDto, RecipeDto, RecipeFilters, RecipeIngredientDto } from '../api/api';
+import { PageDto, RecipeDto } from '../api/api';
 import { RestService } from './rest.service';
 import { UserAuthService } from './user-auth.service';
 
@@ -78,9 +78,5 @@ export class RecipesService implements OnInit {
 
   public removeFromWishlist(recipe: RecipeDto) {
     this.rest.post('/api/recipe/removeFromWishlist', recipe).subscribe(this.afterWishlistChanged.bind(this, false));
-  }
-
-  public changeRecipeMark(recipe: RecipeDto) {
-    this.rest.post('/api/recipe/changeMark', recipe).subscribe();
   }
 }

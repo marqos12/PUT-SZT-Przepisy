@@ -1,0 +1,7 @@
+<div class="commentContainer">
+  <div><span class="author">Autor:</span> {{comment.user.username}} ({{comment.date | date:'dd/MM/yyyy, HH:mm '}})
+    <i class="pi pi-pencil editButton" (click)="edit()" *ngIf="user?.id===comment.user.id"></i>
+    <i class="pi pi-trash editButton" (click)="remove()" *ngIf="user?.id===comment.user.id"></i>
+  </div>
+  <div [innerHTML]="comment.content"></div>
+</div>

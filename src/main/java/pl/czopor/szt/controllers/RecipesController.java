@@ -9,7 +9,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,12 +24,14 @@ import lombok.AllArgsConstructor;
 import pl.czopor.szt.converters.RecipeConverter;
 import pl.czopor.szt.dao.RecipeDao;
 import pl.czopor.szt.dto.ActivityDto;
+import pl.czopor.szt.dto.CommentDto;
 import pl.czopor.szt.dto.RecipeDto;
 import pl.czopor.szt.dto.RecipeFilters;
 import pl.czopor.szt.dto.UserDto;
 import pl.czopor.szt.enums.RecipeComplexity;
 import pl.czopor.szt.models.Recipe;
 import pl.czopor.szt.services.ActivityService;
+import pl.czopor.szt.services.CommentService;
 import pl.czopor.szt.services.MarkService;
 import pl.czopor.szt.services.NewRecipeService;
 import pl.czopor.szt.services.RecipeService;
@@ -44,6 +48,7 @@ public class RecipesController {
 	RecipeDao recipeDao;
 	ActivityService activityService;
 	MarkService markService;
+	CommentService commentService;
 
 	@PostMapping()
 	@Secured("ROLE_USER")
@@ -107,6 +112,27 @@ public class RecipesController {
 		markService.changeMark(recipe, mark);
 
 		return recipeConverter.mapToDto(recipe);
+	}
+
+	@PostMapping("/comment")
+	@Secured("ROLE_USER")
+	public CommentDto saveComment(@RequestBody CommentDto commentDto) {
+		return commentService.saveComment(commentDto);
+	}
+
+	@GetMapping("/comment/{recipeId}")
+	public List<CommentDto> saveComment(@PathVariable long recipeId) {
+		return commentService.getCommentsForRecipe(recipeId);
+	}
+
+	@DeleteMapping("/comment/{commentId}")
+	@Secured("ROLE_USER")
+	public ResponseEntity<String> deleteComment(@PathVariable long commentId) {
+		boolean result = commentService.deleteComment(commentId);
+		if (result) {
+			return ResponseEntity.ok().body("{\"status\":true}");
+		}
+		return ResponseEntity.badRequest().build();
 	}
 
 }

@@ -1,0 +1,8 @@
+<form [formGroup]="commentForm" class="commentFormContainer p-d-flex">
+  <div class="editorColumn">
+    <p-editor formControlName="content" [style]="{'height':'220px'}"></p-editor>
+  </div>
+  <div class="buttonColumn">
+    <button pButton pRipple type="button" icon="pi pi-send" class="p-button-rounded " (click)="onAddComment()"></button>
+  </div>
+</form>
