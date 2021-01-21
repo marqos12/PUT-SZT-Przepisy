@@ -51,8 +51,8 @@ export class RecipesListFiltersComponent implements OnInit, OnDestroy {
     this.filtersForm = this.formBuilder.group({
       name: '',
       durationFrom: 0,
-      durationTo: 60,
-      durationSlider: [[0, 60]],
+      durationTo: 300,
+      durationSlider: [[0, 300]],
       complexity: '',
       type: '',
       ingredients: '',

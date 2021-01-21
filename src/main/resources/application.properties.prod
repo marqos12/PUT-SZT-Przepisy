@@ -1,0 +1,10 @@
+server.port=9080
+
+spring.datasource.platform=postgres
+spring.datasource.url=jdbc:postgresql://localhost:5432/cms_lab
+spring.datasource.username=postgres
+spring.datasource.password=sztproj
+
+file-storage.resources-path=./src/main/resources/static/files/
+spring.servlet.multipart.max-file-size=100MB
+spring.servlet.multipart.max-request-size=100MB

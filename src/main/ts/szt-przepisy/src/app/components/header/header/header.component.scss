@@ -1,7 +1,9 @@
 @media (min-width: 960px) {
   ::ng-deep {
     .toRightWithUser {
-      left: calc(100vw - 850px);
+      position: absolute !important;
+      top: 20px;
+      right: 20px;
     }
 
     .toRightWithoutUser {
@@ -10,25 +12,25 @@
 
     .p-submenu-list {
       width: 150px !important;
-      left: calc(100vw - 850px);
+      right: 20px;
+      top: 70px;
+      position: absolute;
       z-index: 20 !important;
+    }
+
+    .p-menubar .p-menuitem {
+      position: unset !important;
     }
   }
 }
 
 @media (min-width: 960px) and (max-width:1400px) {
   ::ng-deep {
-    .toRightWithUser {
-      left: calc(100vw - 690px);
-    }
-
     .toRightWithoutUser {
       left: calc(100vw - 490px);
     }
-
     .p-submenu-list {
-      width: 120px !important;
-      left: calc(100vw - 690px);
+      top: 60px;
     }
   }
 }

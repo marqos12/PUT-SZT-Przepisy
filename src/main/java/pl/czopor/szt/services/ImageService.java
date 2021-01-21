@@ -91,7 +91,7 @@ public class ImageService {
 
 		String formatName = imageName.substring(imageName.lastIndexOf(".") + 1);
 		String thumbnailFileName = THUMBNAIL_PREFIX + imageName;
-		String thumbnailFilePath = file.getParent() + "\\" + thumbnailFileName;
+		String thumbnailFilePath = file.getParent() + "/" + thumbnailFileName;
 
 		ImageIO.write(outputImage, formatName, new File(thumbnailFilePath));
 		return thumbnailFileName;

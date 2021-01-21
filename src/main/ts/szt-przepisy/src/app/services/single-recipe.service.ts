@@ -146,7 +146,7 @@ export class SingleRecipeService {
   private buildRecipe(recipe: RecipeDto) {
     recipe.ingredients = this.ingredientsList;
     recipe.steps = this.stepsList;
-    recipe.images = this.recipe?.images;
+    recipe.images = this.recipe?.images || [];
     return recipe;
   }
 }
