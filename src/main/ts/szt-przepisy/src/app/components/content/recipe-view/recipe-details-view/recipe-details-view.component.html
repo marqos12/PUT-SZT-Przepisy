@@ -25,4 +25,7 @@
       <p-rating [(ngModel)]="recipe.mark" [cancel]="false" readonly="true"></p-rating>
     </div>
   </div>
+  <p-confirmDialog header="Potwierdź skasowanie przepisu" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+  <button pButton type="button" icon="pi pi-trash" class="p-button-danger p-button-text" label="Skasuj przepis"
+    (click)="delete()" *ngIf="userIsAuthor"></button>
 </p-fieldset>

@@ -15,6 +15,7 @@ import pl.czopor.szt.dto.RecipeDto;
 import pl.czopor.szt.dto.RecipeFilters;
 import pl.czopor.szt.models.Mark;
 import pl.czopor.szt.models.Recipe;
+import pl.czopor.szt.models.User;
 
 @Service
 @AllArgsConstructor
@@ -23,6 +24,7 @@ public class RecipeService {
 	private RecipeConverter recipeConverter;
 	private RecipeDao recipeDao;
 	private MarkService markService;
+	private UserService userService;
 
 	public RecipeDto mapRecipeToRecipeDto(Recipe recipe) {
 		return recipeConverter.mapToDto(recipe);
@@ -43,6 +45,15 @@ public class RecipeService {
 		Mark userMark = markService.getUserMarkForRecipe(recipe);
 		recipeDto.userMark = Objects.nonNull(userMark) ? userMark.getValue().doubleValue() : 0.0;
 		return recipeDto;
+	}
+
+	public String deleteRecipeById(long id) {
+		User user = userService.getActiveUser();
+		Recipe recipe = recipeDao.getOne(id);
+		if (recipe.getUser().getId().equals(user.getId())) {
+			recipeDao.delete(recipe);
+		}
+		return "{\"userDeleted\":true}";
 	}
 
 }

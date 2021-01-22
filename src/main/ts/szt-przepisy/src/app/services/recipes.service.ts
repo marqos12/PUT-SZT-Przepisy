@@ -1,4 +1,5 @@
 import { Injectable, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { Observable, Subject } from 'rxjs';
 import { PageDto, RecipeDto } from '../api/api';
@@ -21,7 +22,8 @@ export class RecipesService implements OnInit {
   constructor(
     private rest: RestService,
     private messageService: MessageService,
-    private userAuthService: UserAuthService
+    private userAuthService: UserAuthService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -54,6 +56,16 @@ export class RecipesService implements OnInit {
   public getRecipeById(id: string): Observable<RecipeDto> {
     const recipeUrl = '/api/recipe/' + id;
     return this.rest.get(recipeUrl);
+  }
+
+  public deleteRecipeById(id) {
+    const recipeUrl = '/api/recipe/' + id;
+    return this.rest.delete(recipeUrl).subscribe(this.afterRecipeDelete.bind(this));
+  }
+
+  private afterRecipeDelete() {
+    this.router.navigate(['/']);
+    this.messageService.add({ severity: 'success', summary: "Poprawnie skasowano przepis" });
   }
 
   public checkUserIsAuthor(params: { recipe, successCallback, errorCallback }) {

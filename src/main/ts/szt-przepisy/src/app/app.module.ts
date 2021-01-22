@@ -64,6 +64,7 @@ import { RecipeCommentsComponent } from './components/content/recipe-view/recipe
 import { CommentFormComponent } from './components/content/recipe-view/recipe-comments/comment-form/comment-form.component';
 import { CommentViewComponent } from './components/content/recipe-view/recipe-comments/comment-view/comment-view.component';
 import { ContactComponent } from './components/content/contact/contact.component';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @NgModule({
   declarations: [
@@ -132,7 +133,8 @@ import { ContactComponent } from './components/content/contact/contact.component
     FileUploadModule,
     GalleriaModule,
     TooltipModule,
-    CheckboxModule
+    CheckboxModule,
+    ConfirmDialogModule
   ],
   providers: [
     MessageService

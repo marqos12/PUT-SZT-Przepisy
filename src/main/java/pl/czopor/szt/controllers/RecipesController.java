@@ -90,6 +90,12 @@ public class RecipesController {
 		return recipeService.getRecipeById(id);
 	}
 
+	@DeleteMapping("/{id}")
+	@Secured("ROLE_USER")
+	public String deleteRecipeById(@PathVariable long id) {
+		return recipeService.deleteRecipeById(id);
+	}
+
 	@PostMapping("/addToWishlist")
 	@Secured("ROLE_USER")
 	public ActivityDto addToWishlist(@RequestBody RecipeDto recipeDto, Principal principal) {

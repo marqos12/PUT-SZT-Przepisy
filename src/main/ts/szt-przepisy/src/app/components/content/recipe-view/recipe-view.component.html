@@ -1,7 +1,7 @@
 <div class="recipeContainer" *ngIf="isRecipeLoaded">
   <div class="p-grid">
     <div class="p-col-12 p-md-6">
-      <app-recipe-details-view [recipe]="recipe"></app-recipe-details-view>
+      <app-recipe-details-view [recipe]="recipe" [userIsAuthor]="userIsAuthor"></app-recipe-details-view>
     </div>
     <div class="p-col-12 p-md-6">
       <app-recipe-image-view [recipe]="recipe"></app-recipe-image-view>
