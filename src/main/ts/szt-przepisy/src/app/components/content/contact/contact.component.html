@@ -1,0 +1,34 @@
+<p-fieldset legend="Formularz kontaktowy" styleClass="contactMessageFormContainer">
+  <form [formGroup]="newContactMessageForm" class="newContactMessageForm  p-fluid">
+    <div class="p-grid">
+      <div class="p-col-12 p-sm-6">
+        <span class="p-float-label controlWithLabel">
+          <input id="nameInput" type="text" formControlName="author" pInputText>
+          <label for="nameInput">Nazwa</label>
+        </span>
+      </div>
+      <div class="p-col-12 p-sm-6">
+        <span class="p-float-label controlWithLabel">
+          <input id="nameInput" type="email" formControlName="email" pInputText>
+          <label for="nameInput">Zwrotny adres email</label>
+        </span>
+      </div>
+    </div>
+    <span class="p-float-label controlWithLabel">
+      <input id="nameInput" type="text" formControlName="title" pInputText>
+      <label for="nameInput">Tytuł</label>
+    </span>
+    <div
+      [ngClass]="{'error': (!newContactMessageForm.controls.content.valid && newContactMessageForm.controls.content.dirty)}">
+      <span class="floatingLabel">Wiadomość</span>
+      <p-editor formControlName="content" [style]="{'height':'220px'}" styleClass="contentInput"></p-editor>
+    </div>
+    <div class="p-grid">
+      <div class="p-col">
+      </div>
+      <div class="buttonContainer">
+        <button pButton type="button" icon="pi pi-envelope" label="Wyślij" (click)="add()"></button>
+      </div>
+    </div>
+  </form>
+</p-fieldset>

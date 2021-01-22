@@ -63,6 +63,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { RecipeCommentsComponent } from './components/content/recipe-view/recipe-comments/recipe-comments.component';
 import { CommentFormComponent } from './components/content/recipe-view/recipe-comments/comment-form/comment-form.component';
 import { CommentViewComponent } from './components/content/recipe-view/recipe-comments/comment-view/comment-view.component';
+import { ContactComponent } from './components/content/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -96,6 +97,7 @@ import { CommentViewComponent } from './components/content/recipe-view/recipe-co
     RecipeCommentsComponent,
     CommentFormComponent,
     CommentViewComponent,
+    ContactComponent,
   ],
   imports: [
     BrowserModule,

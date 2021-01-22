@@ -1,0 +1,20 @@
+::ng-deep {
+  .contactMessageFormContainer {
+    max-width: 800px;
+    margin: 10px auto;
+  }
+
+  .error {
+    color: red;
+
+    .contentInput {
+      border: 1px solid red;
+      border-radius: 3px;
+    }
+  }
+}
+
+.buttonContainer {
+  min-width: 150px;
+  margin: 10px;
+}

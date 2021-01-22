@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginFormComponent } from './components/content/auth/login-form/login-form.component';
 import { RegisterFormComponent } from './components/content/auth/register-form/register-form.component';
+import { ContactComponent } from './components/content/contact/contact.component';
 import { RecipeFormComponent } from './components/content/recipe-form/recipe-form.component';
 import { RecipeViewComponent } from './components/content/recipe-view/recipe-view.component';
 import { RecipesListComponent } from './components/content/recipes-list/recipes-list.component';
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: "login", component: LoginFormComponent, canActivate: [IsUserLoggedGuardService], data: { invertAuth: true } },
   { path: "register", component: RegisterFormComponent, canActivate: [IsUserLoggedGuardService], data: { invertAuth: true } },
   { path: "planned", component: RecipesListComponent, canActivate: [IsUserLoggedGuardService], data: { invertAuth: false } },
+  { path: "contact", component: ContactComponent },
   { path: "", component: RecipesListComponent },
   { path: "**", redirectTo: "" },
 ];

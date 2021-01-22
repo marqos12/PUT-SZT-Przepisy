@@ -52,7 +52,7 @@ export class RecipeFormComponent implements OnInit {
 
   onUserNotAuthor() {
     this.router.navigate(['/']);
-    this.messageService.add({ severity: 'success', summary: "Brak uprawnień do edycji wybranego przepisu!" });
+    this.messageService.add({ severity: 'error', summary: "Brak uprawnień do edycji wybranego przepisu!" });
   }
 
   save() {

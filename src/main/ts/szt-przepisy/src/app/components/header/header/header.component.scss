@@ -7,7 +7,7 @@
     }
 
     .toRightWithoutUser {
-      left: calc(100vw - 605px);
+      left: calc(100vw - 750px);
     }
 
     .p-submenu-list {
@@ -27,7 +27,7 @@
 @media (min-width: 960px) and (max-width:1400px) {
   ::ng-deep {
     .toRightWithoutUser {
-      left: calc(100vw - 490px);
+      left: calc(100vw - 590px);
     }
     .p-submenu-list {
       top: 60px;

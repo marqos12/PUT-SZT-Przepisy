@@ -47,6 +47,11 @@ export class HeaderComponent implements OnInit {
   userNotAuthenticatedMenuItems() {
     return [
       {
+        label: 'Kontakt',
+        icon: 'pi pi-fw pi-envelope',
+        routerLink: "/contact"
+      },
+      {
         styleClass: "toRightWithoutUser",
         label: 'Rejestracja',
         icon: 'pi pi-fw pi-user-edit',
@@ -72,6 +77,11 @@ export class HeaderComponent implements OnInit {
         label: 'Dodaj przepis',
         icon: 'pi pi-fw pi-plus',
         routerLink: "add"
+      },
+      {
+        label: 'Kontakt',
+        icon: 'pi pi-fw pi-envelope',
+        routerLink: "/contact"
       },
       {
         styleClass: "toRightWithUser",
